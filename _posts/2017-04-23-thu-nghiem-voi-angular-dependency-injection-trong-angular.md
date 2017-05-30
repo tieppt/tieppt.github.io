@@ -291,11 +291,11 @@ Nếu bạn sử dụng token như sau, value sẽ được truyền vào thay v
 ```ts
 {
   provide: 'API_ENDPOINT',
-  useValue: 'http://tiepphan.com/api-fake-day'
+  useValue: 'http://tiepphan.com/blog/'
 }
 ```
 
-### **4.2 Sử dụng alias**
+### 4.2 Sử dụng alias
 
 Có nhiều token có thể cùng sử dụng một token đã có.
 
@@ -304,14 +304,14 @@ Có nhiều token có thể cùng sử dụng một token đã có.
 { provide: Server, useExisting: Computer }
 ```
 
-### **4.3 Sử dụng factory**
+### 4.3 Sử dụng factory
 
 Khi bạn muốn trả về một value dựa vào một điều kiện đầu vào, hoặc bạn muốn mỗi lần gọi đến instance của token sẽ cho một instance khác nhau thì bạn sử dụng factory function như sau.
 
 ```ts
 {
   provide: CPU,
-  useFactory: () =&gt; {
+  useFactory: () => {
     return forOC ? new OCCPU() : new CPU();
   }
 }
@@ -329,7 +329,7 @@ class CPU {
 
 {
   provide: CPU,
-  useFactory: () =&gt; {
+  useFactory: () => {
     return new CPU('3.5GHz');
   }
 }
@@ -340,7 +340,7 @@ Factory có thể có dependencies, lúc đó chúng ta sử dụng key **deps**
 ```ts
 {
   provide: Computer,
-  useFactory: (cpu) =&gt; {
+  useFactory: (cpu) => {
     return new Computer(cpu);
   },
   deps: [CPU]
@@ -352,11 +352,11 @@ Factory có thể có dependencies, lúc đó chúng ta sử dụng key **deps**
 Khi có nhiều providers có cùng giá trị của key **provide** và không sử dụng config multi: true thì provider nào thêm vào sau cùng sẽ win.
 
 ```ts
-{ provide: 'API_ENDPOINT',  useValue: 'http://tiepphan.com/api-fake-day' },
-{ provide: 'API_ENDPOINT',  useValue: 'http://tiepphan.com/api-super-fake' }
+{ provide: 'API_ENDPOINT',  useValue: 'http://tiepphan.com/blog/' },
+{ provide: 'API_ENDPOINT',  useValue: 'http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/' }
 ```
 
-Kết quả cuối cùng của API_ENDPOINT sẽ là `http://tiepphan.com/api-super-fake`.
+Kết quả cuối cùng của API_ENDPOINT sẽ là `http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/`.
 
 Để tránh nhập nhằng token, chúng ta sử dụng OpaqueToken (Angular 2) hoặc InjectionToken (chỉ có trong Angular 4+) để tạo các unique token.
 
@@ -384,12 +384,12 @@ Trong trường hợp bạn muốn một token có thể có nhiều value, lúc
 ```ts
 {
   provide: 'API_ENDPOINT',
-  useValue: 'http://tiepphan.com/api-fake-day',
+  useValue: 'http://tiepphan.com/blog/',
   multi: true
 },
 {
   provide: 'API_ENDPOINT',
-  useValue: 'http://tiepphan.com/api-super-fake',
+  useValue: 'http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/',
   multi: true
 },
 ```
@@ -418,7 +418,7 @@ export class Computer {
 })
 export class AppComponent {
   constructor(@Inject('COMP') comps) {
-    comps.forEach(comp =&gt; comp.run());
+    comps.forEach(comp => comp.run());
   }
 }
 
@@ -438,7 +438,7 @@ Cách giải quyết lúc này, chúng ta sẽ sử dụng **Forward References*
 
 ```ts
 { provide: 'COMP', useClass: Computer, multi: true },
-{ provide: 'COMP', useClass: forwardRef(() =&gt; Laptop), multi: true }
+{ provide: 'COMP', useClass: forwardRef(() => Laptop), multi: true }
 ```
 
 Trường hợp này bạn thường gặp phải khi tạo custom validator directive cho form. Dưới đây là một đoạn code trích ra từ Angular Forms module để validate một field là **required**:
@@ -446,7 +446,7 @@ Trường hợp này bạn thường gặp phải khi tạo custom validator dir
 ```ts
 export const REQUIRED_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
-  useExisting: forwardRef(() =&gt; RequiredValidator),
+  useExisting: forwardRef(() => RequiredValidator),
   multi: true
 };
 
