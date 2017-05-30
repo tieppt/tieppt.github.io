@@ -29,6 +29,7 @@ Làm thế nào để sử dụng lại các component trong Angular 2+, hay là
 
 * ToC
 {:toc}
+{:.tp__toc}
 
 ## 1. Nhúng một phần content vào một component
 
