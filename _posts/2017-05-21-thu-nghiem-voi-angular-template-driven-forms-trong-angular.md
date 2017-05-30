@@ -20,13 +20,15 @@ tags:
 ---
 
 # Template-Driven Forms Trong Angular
-
+{:.no_toc}
 
 Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là Reactive forms hay Model-driven forms.
 
 Trong bài này chúng ta sẽ cùng tìm hiểu cách tạo forms trong Angular, và để bắt đầu chúng ta sẽ tìm hiểu Template-driven forms.
 
-<!--more-->
+* ToC
+{:toc}
+{:.tp__toc}
 
 Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template (giống như trong Angularjs). Chúng ta thực hiện việc thêm các directives và hành vi vào template, sau đó Angular sẽ tự động tạo forms để quản lý và sử dụng.
 

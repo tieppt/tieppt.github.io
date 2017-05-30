@@ -24,18 +24,16 @@ tags:
 ---
 
 #  Pipe Trong Angular
-
+{:.no_toc}
 
 Bạn có dữ liệu nhận được từ đâu đó &#8211; từ API trả về &#8211; cho kiểu Date là dãy số kiểu long, bây giờ bạn phải hiển thị dữ liệu đó thành dạng mà người dùng có thể hiểu được trong ứng dụng viết bằng Angular. Làm thế nào để thực hiện điều đó trong Angular? Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular &#8211; một thành phần cơ bản của Angular.
 
   
 Chúng ta sẽ cùng tìm hiểu các câu hỏi như:
 
-  * [Pipe là gì?](#tnva-pipe-la-gi)
-  * [Pipe sử dụng như thế nào?](#tnva-su-dung-pipe)
-  * [Cách tạo một Custom Pipe trong Angular như thế nào?](#tnva-tao-custom-pipe)
-
-[Chuyển xuống video.](#tnva-pipe-video)
+* ToC
+{:toc}
+{:.tp__toc}
 
 ## 1. Pipe là gì? {#tnva-pipe-la-gi}
 
@@ -48,6 +46,7 @@ Ví dụ: định dạng ngày tháng cho kiểu Date, viết hoa các chữ cá
 Pipe nhận một đầu vào và cho kết quả ở đầu ra, giống hình minh họa sau:
 
 ![Pipe - what is it?](/assets/uploads/2017/04/pipe-what-is-it.png){:class="img-responsive"}
+{:class="text-center"}
 
 Angular cung cấp cho chúng ta các Pipes sau đây (những Pipes là Stable):
 
@@ -85,6 +84,7 @@ Angular cung cấp cho chúng ta các Pipes sau đây (những Pipes là Stable)
 </ul>
 
 ![List Pipes trong Angular](/assets/uploads/2017/04/pipe-list-item.png){:class="img-responsive"}
+{:class="text-center"}
 
 Trong đó có TitleCasePipe là pipe có từ phiên bản Angular 4.
 
@@ -168,6 +168,7 @@ Sử dụng nhiều Pipe tuần tự &#8211; Chaining Pipe:
 Chúng ta có thể sử dụng nhiều Pipes để có được kết quả mong muốn.
 
 ![Chain Pipe](/assets/uploads/2017/04/pipe-chain-pipe.png){:class="img-responsive"}
+{:class="text-center"}
 
 {% raw %}
 ```ts

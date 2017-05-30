@@ -21,6 +21,7 @@ tags:
 ---
 
 # Reactive Forms Trong Angular
+{:.no_toc}
 
 Thuật ngữ **Reactive Forms** hay còn được gọi là **Model-Driven Forms**, là một phương pháp để tạo form trong Angular, phương pháp này tránh việc sử dụng các directive ví dụ như ngModel, required, etc, thay vào đó tạo các Object Model ở trong các Component, rồi tạo ra form từ chúng.
 Một điều lưu ý đó là Template-Driven là async còn Reactive là sync.
@@ -30,6 +31,10 @@ Trong Reactive forms, chúng ta tạo toàn bộ form control tree ở trong cod
 Trong Template-driven forms, chúng ta ủy thác việc tạo form control cho directives, để tránh bị lỗi `changed after checked`, directives cần một cycle nữa để build toàn bộ form control tree. Vậy nên bạn cần đợi một tick nữa để có thể truy cập vào các phẩn tử của form. Chính điều này khiến việc test template-driven form trở nên phức tạp hơn.
 
 Bạn có thể tham khảo thêm tại document sau: <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#async-vs-sync" target="_blank" rel="noopener noreferrer">https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#async-vs-sync</a>
+
+* ToC
+{:toc}
+{:.tp__toc}
 
 ## 1. Các thành phần cơ bản của form
 -	AbstractControl là một abstract class cho 3 lớp con form control: FormControl, FormGroup, và FormArray. Nó cung cấp các hành vi, thuộc tính chung cho các lớp con.
@@ -113,6 +118,7 @@ Cũng giống như trong <a href="http://www.tiepphan.com/thu-nghiem-voi-angular
 Trên đây chỉ là một form HTML thông thường, khi browser render chúng ta sẽ có form trông giống như sau:
 
 ![Contact App Form](/assets/uploads/2017/05/ContactAppForm.png){:class="img-responsive"}
+{:class="text-center"}
 
 Nhưng trong template trên chúng ta mặc định sử dụng `ngSubmit`, các bạn có thể trở lại bài trước để hiểu về `ngSubmit` vs `submit` event.
 
@@ -385,6 +391,7 @@ Và template của chúng ta sẽ có:
 Khi render chúng ta sẽ có form có dạng:
 
 ![Contact App Form](/assets/uploads/2017/05/ContactAppTels.png){:class="img-responsive"}
+{:class="text-center"}
 
 Ở đoạn code trên chúng ta đã tạo ra một FormArray instance và khi binding vào template chúng ta thông báo nó với directive `formArrayName`.
 Khi thực hiện việc lặp, chúng ta tạo ra biến index có tên là `"i"`, với mỗi biến index như thế, Angular sẽ lưu trữ tương ứng với một phần tử trong FormArray là một AbstractControl instance, trong trường hợp này của chúng ta là một FormControl instance, vậy nên chúng ta có đoạn binding property như sau: `[formControlName]="i"`. 

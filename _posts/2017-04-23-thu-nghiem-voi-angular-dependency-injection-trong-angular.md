@@ -24,20 +24,15 @@ tags:
   - Lập Trình Angular 2
 ---
 #  Dependency Injection Trong Angular
+{:.no_toc}
 
 Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI.
 
 Bài viết bao gồm các nội dung sau:
 
-  1. [Dependency là gì?](#tp-di-di-la-gi)
-  2. [Injection](#tp-di-injection)
-  3. [DI system trong Angular như thế nào?](#tp-di-di-trong-angular-ntn)
-  4. [Provider in-depth](#tp-di-di-in-depth)
-  5. [DI sử dụng trong thực tế](#tp-di-di-su-dung-trong-angular)
-  6. [Services](#tp-di-services-la-gi)
-  7. [Optional Dependencies](#tp-di-optional-di-la-gi)
-  8. [Video bài học](#tp-di-di-video)
-  9. [Tham khảo](#tp-di-di-references)
+* ToC
+{:toc}
+{:.tp__toc}
 
 ## 1. Dependency là gì? {#tp-di-di-la-gi}
 

@@ -26,8 +26,13 @@ tags:
 ---
 
 # QueryList Changes Event Trong Angular
+{:.no_toc}
 
 Trong bài học trước, chúng ta đã &#8220;<a href="http://www.tiepphan.com/thu-nghiem-voi-angular-thuc-hanh-content-projection-va-lifecycle-angular/" target="_blank" rel="noopener noreferrer">Thực Hành Content Projection Và Lifecycle Liên Quan Trong Angular</a>&#8220;, với phiên bản code đó khi chúng ta làm việc với async như gọi api để lấy dữ liệu rồi in ra thì liệu app của chúng ta có chạy đúng. Bài học này sẽ giải quyết vấn đề chúng ta gặp phải khi cần phải hook vào QueryList Changes Event Trong Angular nhằm theo dõi khi nào đối tượng này thay đổi để áp dụng các logic liên quan.
+
+* ToC
+{:toc}
+{:.tp__toc}
 
 ## Nội dung
 
