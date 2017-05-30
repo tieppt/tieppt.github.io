@@ -26,9 +26,13 @@ tags:
 ---
 
 # Quản Lý Event Trong Angular 2
+{:.no_toc}
 
 Trong <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series **Thử Nghiệm Với Angular 2** chúng ta đã làm quen với **Event Binding** trong Angular 2. Bài học này sẽ củng cố một số kiến thức về Event trong Angular 2 như `$event` object hay **key event filtering**.
 
+* ToC
+{:toc}
+{:.tp__toc}
 
 ## Giới thiệu
 Angular 2 cung cấp event binding cho bất kỳ event nào của DOM tương ứng như `click`, `keyup`, `keydown`, `mouseover`, &#8230;
