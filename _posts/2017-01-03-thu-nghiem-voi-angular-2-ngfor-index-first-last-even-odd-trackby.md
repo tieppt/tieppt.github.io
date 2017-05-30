@@ -65,7 +65,7 @@ Sử dụng với cú pháp thẻ `template` (sẽ có bài giới thiệu sau):
 </template>
 ```
 
-Update từ Angular 4+:
+## Update từ Angular 4+
 
 Cho phép sử dụng `as`:
 
