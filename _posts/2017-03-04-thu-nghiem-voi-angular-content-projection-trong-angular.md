@@ -23,9 +23,11 @@ tags:
 ---
 
 # Content Projection Trong Angular
+{:.no_toc}
 
 Làm thế nào để sử dụng lại các component trong Angular 2+, hay làm sao để có thể nhúng content của một component cho một component khác. Bài học này sẽ giới thiệu cho các bạn về Content Projection trong Angular sử dụng `ng-content` directive.
 
+{:toc}
 
 ## 1. Nhúng một phần content vào một component
 
