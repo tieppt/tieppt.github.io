@@ -69,3 +69,11 @@ iframe {
   margin-left: auto;
   margin-right: auto;
 }
+
+.tp__toc {
+  padding-left: 20px; 
+}
+
+.tp__toc ul {
+  padding-left: 20px;
+}
