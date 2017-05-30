@@ -6,8 +6,7 @@ author: Tiep Phan
 layout: post
 guid: http://www.tiepphan.com/?p=253
 permalink: /thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/
-beans_layout:
-  - default_fallback
+description: 'Trong bài học này chúng ta sẽ tìm hiểu việc truyền dữ liệu cho Component trong Angular với @Input decorator.'
 image: /assets/uploads/2017/01/angular2-PHAN7.jpg
 categories:
   - Javascript
@@ -25,19 +24,22 @@ tags:
   - Lập Trình Angular 2
   - Web Dev
 ---
-<h2 style="text-align: center;">
-  Truyền Dữ Liệu Cho Component Với @Input
-</h2>
 
-Trong những bài học trước của series _**Thử Nghiệm Với Angular 2**_, chúng ta đã tạo ra các Component, hầu hết các Component này chứa dữ liệu của chính nó mà không có sự tương tác với các Component khác. Trong bài học này chúng ta sẽ tìm hiểu việc truyền dữ liệu cho Component với **_@Input _**decorator, từ cú pháp, đến các chú ý khi thực hiện truyền dữ liệu cho một Component.
+# Truyền Dữ Liệu Cho Component Với @Input
+{:.no_toc}
 
-<!--more-->
+Trong những bài học trước của series **Thử Nghiệm Với Angular 2**, chúng ta đã tạo ra các Component, hầu hết các Component này chứa dữ liệu của chính nó mà không có sự tương tác với các Component khác. Trong bài học này chúng ta sẽ tìm hiểu việc truyền dữ liệu cho Component với `@Input` decorator, từ cú pháp, đến các chú ý khi thực hiện truyền dữ liệu cho một Component.
 
-### 1. @Input sử dụng như thế nào?
+* ToC
+{:toc}
+{:.tp__toc}
 
-  * Đầu tiên, để có thể nhận được dữ liệu từ bên ngoài truyền vào cho một Component chúng ta cần thực hiện khai báo tên của property và gán nó với @Input decorator như sau:
+## `@Input` sử dụng như thế nào?
 
-<pre class="brush:js; highlight:[9,10]">import { Component, Input } from '@angular/core';
+Đầu tiên, để có thể nhận được dữ liệu từ bên ngoài truyền vào cho một Component chúng ta cần thực hiện khai báo tên của property và gán nó với `@Input` decorator như sau:
+
+```ts
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -45,24 +47,27 @@ Trong những bài học trước của series _**Thử Nghiệm Với Angular 2
   styleUrls: ['./contact-image-detail.component.scss']
 })
 export class ContactImageDetailComponent {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   @Input() avatarUrl: string = '';
 
   constructor() {}
 }
-</pre>
+```
 
-  * Sau đó khi sử dụng ở trong một template của một Component khác chúng ta có thể truyền dữ liệu như sau:
+Sau đó khi sử dụng ở trong một template của một Component khác chúng ta có thể truyền dữ liệu như sau:
 
-<pre class="brush:html;highlight:[2,3]">&lt;tp-contact-image-detail
+```html
+<tp-contact-image-detail
   [avatarUrl]="contact.avatar?.url"
   [round]="contact.avatar?.round"
-&gt;
-&lt;/tp-contact-image-detail&gt;</pre>
+>
+</tp-contact-image-detail>
+```
 
-  * Hoặc sử dụng get/set để thực thi một số hành động như chuẩn hóa dữ liệu đầu vào cho property của Component.
+Hoặc sử dụng get/set để thực thi một số hành động như chuẩn hóa dữ liệu đầu vào cho property của Component.
 
-<pre class="brush:js;highlight:[18,19]">import { Component, Input } from '@angular/core';
+```ts
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -70,7 +75,7 @@ export class ContactImageDetailComponent {
   styleUrls: ['./contact-image-detail.component.scss']
 })
 export class ContactImageDetailComponent {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   _avatarUrl: string = '';
 
   constructor() {}
@@ -84,15 +89,16 @@ export class ContactImageDetailComponent {
     this._avatarUrl = value.trim();
   }
 }
-</pre>
+```
 
 Cách sử dụng tương tự như ở ví dụ phía trên.
 
-### 2. Yêu cầu một property nào đó là required cho một Component.
+## Yêu cầu một property nào đó là required cho một Component.
 
 Bạn có thể kiểm tra property trong life-cycle là OnInit hoặc OnChange.
 
-<pre class="brush:js;highlight:[23]">import { Component, OnInit, Input } from '@angular/core';
+```ts
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -120,13 +126,14 @@ export class ContactImageDetailComponent implements OnInit {
     }
   }
 }
-</pre>
+```
 
-### 3. Đặt một tên cho property lúc truyền vào khác với tên sử dụng trong Component.
+## Đặt một alias cho property
 
 Bạn có thể tạo ra một alias cho một property với cú pháp như sau:
 
-<pre class="brush:js;highlight:[10]">import { Component, Input } from '@angular/core';
+```ts
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -134,16 +141,17 @@ Bạn có thể tạo ra một alias cho một property với cú pháp như sau
   styleUrls: ['./contact-image-detail.component.scss']
 })
 export class ContactImageDetailComponent {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   @Input('avatar-url') avatarUrl: string = '';
 
   constructor() {}
 }
-</pre>
+```
 
 Hoặc:
 
-<pre class="brush:js;highlight:[18]">import { Component, OnInit, Input } from '@angular/core';
+```ts
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -151,7 +159,7 @@ Hoặc:
   styleUrls: ['./contact-image-detail.component.scss']
 })
 export class ContactImageDetailComponent implements OnInit {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   _avatarUrl: string = '';
 
   constructor() {}
@@ -171,21 +179,26 @@ export class ContactImageDetailComponent implements OnInit {
     }
   }
 }
-</pre>
+```
 
 Khi sử dụng binding data, bạn sẽ bind cho alias:
 
-<pre class="brush:html;highlight:[2]">&lt;tp-contact-image-detail
+```html
+<tp-contact-image-detail
   [avatar-url]="contact.avatar?.url"
   [round]="contact.avatar?.round"
-&gt;
-&lt;/tp-contact-image-detail&gt;</pre>
+>
+</tp-contact-image-detail>
+```
 
-### 4. Sử dụng **_inputs_** array trong **_@Component()_** để thay thế cho việc dùng **_@Input._**
+## Phương pháp thay thế decorator
 
-Lưu ý: cách này thường không được khuyến cáo sử dụng như @Input.
+Sử dụng `inputs` array trong `@Component()` để thay thế cho việc dùng `@Input` decorator.
 
-<pre class="brush:js;highlight:[7]">import { Component, OnInit, Input } from '@angular/core';
+> Lưu ý: cách này thường không được khuyến cáo sử dụng như @Input.
+
+```ts
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -194,7 +207,7 @@ Lưu ý: cách này thường không được khuyến cáo sử dụng như @In
   inputs: ['avatarUrl']
 })
 export class ContactImageDetailComponent implements OnInit {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   _avatarUrl: string = '';
 
   constructor() {
@@ -215,11 +228,12 @@ export class ContactImageDetailComponent implements OnInit {
     }
   }
 }
-</pre>
+```
 
 Khai báo trong inputs array có sử dụng alias:
 
-<pre class="brush:js;highlight:[7]">import { Component, OnInit, Input } from '@angular/core';
+```ts
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tp-contact-image-detail',
@@ -228,7 +242,7 @@ Khai báo trong inputs array có sử dụng alias:
   inputs: ['avatarUrl:avatar-url']
 })
 export class ContactImageDetailComponent implements OnInit {
-  @Input() round: boolean = false;
+  @Input() round: Boolean = false;
   _avatarUrl: string = '';
 
   constructor() {
@@ -249,10 +263,16 @@ export class ContactImageDetailComponent implements OnInit {
     }
   }
 }
-</pre>
+```
 
 > Lưu ý: alias sẽ có thứ tự `internalProp:externalProp` ví dụ như `avatarUrl:avatar-url`.
 
-Link tham khảo: <a href="https://angular.io/docs/ts/latest/cookbook/component-communication.html" target="_blank">https://angular.io/docs/ts/latest/cookbook/component-communication.html</a>
+## Video bài học
 
-### 5. Video bài học:
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/9DBOFhUis80" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+## Tham khảo
+
+Documentation: <a href="https://angular.io/docs/ts/latest/cookbook/component-communication.html" target="_blank">https://angular.io/docs/ts/latest/cookbook/component-communication.html</a>
