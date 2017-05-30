@@ -22,7 +22,7 @@ tags:
 # Template-Driven Forms Trong Angular
 {:.no_toc}
 
-Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là Reactive forms hay Model-driven forms.
+Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là [Reactive forms hay Model-driven forms](http://www.tiepphan.com/thu-nghiem-voi-angular-reactive-forms-trong-angular/).
 
 Trong bài này chúng ta sẽ cùng tìm hiểu cách tạo forms trong Angular, và để bắt đầu chúng ta sẽ tìm hiểu Template-driven forms.
 
