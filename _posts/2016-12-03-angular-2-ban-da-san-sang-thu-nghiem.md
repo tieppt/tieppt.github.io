@@ -160,7 +160,7 @@ _Hình 5: Custom tag `<app-root>` &#8211; selector_
 
 Dòng 5: `templateUrl` sử dụng để link đến phần template tương ứng của component này. Trong một số trường hợp, các bạn có thể sử dụng inline template mà không cần tạo file html template riêng lẻ, khi đó bạn thay thế việc sử dụng property `templateUrl` thành property `template`.
 
-> Lưu ý, nếu bạn dùng property `template`, bạn có thể sử dụng `multi-line string` bằng việc bao đóng string trong cặp dấu `\`\``.
+> Lưu ý, nếu bạn dùng property `template`, bạn có thể sử dụng `multi-line string` bằng việc bao đóng string trong cặp dấu <code>``</code>.
 
 ![templateUrl](http://www.tiepphan.com/assets/uploads/2016/12/templateUrl.png){:class="img-responsive"}
 {:class="text-center"}
