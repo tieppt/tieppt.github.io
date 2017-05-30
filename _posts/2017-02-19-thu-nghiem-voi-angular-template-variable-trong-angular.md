@@ -52,7 +52,6 @@ switches.toggle()
 Hoặc sử dụng ở trong Component:
 
 ```ts
-
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { SwitchesComponent } from "./presentation/switches/switches.component";
 

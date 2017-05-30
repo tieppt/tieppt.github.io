@@ -95,6 +95,7 @@ Các options khác:
 | Interface | `ng g interface my-new-interface` |
 | Enum      | `ng g enum my-new-enum`           |
 | Module    | `ng g module my-module`           |
+{:class="table table-striped table-hover"}
 
 &#8211; Serve ứng dụng:
 
@@ -229,6 +230,9 @@ Builds your app and places it into the output path (dist/ by default).
 
 ## Video bài học
 
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/SXW-Nz-lp70" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
 
 ## Tham khảo
 Ahead-of-time compilation: <a href="https://angular.io/docs/ts/latest/cookbook/aot-compiler.html" target="_blank">https://angular.io/docs/ts/latest/cookbook/aot-compiler.html</a>
