@@ -31,7 +31,7 @@ tags:
 # Angular 2 Two-way Binding Và Tạo Custom Two-way Data Binding
 {:.no_toc}
 
-Angular 2 Component có thể <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">truyền vào data với @Input</a> hoặc <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-event-voi-eventemitter-output/" target="_blank" rel="noopener noreferrer">gửi event ra ngoài với @Output</a>, chúng đều là _**unidirectional data flow** _hay one-way binding. Angular 2 Two-way Binding không là built-in trong Angular 2. Tuy vậy chúng ta vẫn có thể áp dụng Two-way Binding bằng cách sử dụng directive _**ngModel**_ trong Angular 2. Bài học này chúng ta sẽ cùng tìm hiểu về Two-way Binding và cách tạo Custom Two-way Data Binding trong Angular 2.
+Angular 2 Component có thể <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">truyền vào data với `@Input`</a> hoặc <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-event-voi-eventemitter-output/" target="_blank" rel="noopener noreferrer">gửi event ra ngoài với `@Output`</a>, chúng đều là _**unidirectional data flow** _hay one-way binding. Angular 2 Two-way Binding không là built-in trong Angular 2. Tuy vậy chúng ta vẫn có thể áp dụng Two-way Binding bằng cách sử dụng directive `ngModel` trong Angular 2. Bài học này chúng ta sẽ cùng tìm hiểu về Two-way Binding và cách tạo Custom Two-way Data Binding trong Angular 2.
 
 * ToC
 {:toc}
