@@ -396,7 +396,7 @@ Khi render chúng ta sẽ có form có dạng:
 Ở đoạn code trên chúng ta đã tạo ra một FormArray instance và khi binding vào template chúng ta thông báo nó với directive `formArrayName`.
 Khi thực hiện việc lặp, chúng ta tạo ra biến index có tên là `"i"`, với mỗi biến index như thế, Angular sẽ lưu trữ tương ứng với một phần tử trong FormArray là một AbstractControl instance, trong trường hợp này của chúng ta là một FormControl instance, vậy nên chúng ta có đoạn binding property như sau: `[formControlName]="i"`. 
 
-FormArray cung cấp một số phương thức cho phép chúng ta thêm, xóa phần tử trong array như insert, push, removeAt. Hay phương thức at để lấy ra phần tử ở vị trí cụ thể. Chúng sẽ có ích khi bạn sử dụng trong ứng dụng của mình – trong trường hợp ở trên chúng ta có dùng để thêm hoặc xóa.
+FormArray cung cấp một số phương thức cho phép chúng ta thêm, xóa phần tử trong array như `insert`, `push`, `removeAt`. Hay phương thức `at` để lấy ra phần tử ở vị trí cụ thể. Chúng sẽ có ích khi bạn sử dụng trong ứng dụng của mình – trong trường hợp ở trên chúng ta có dùng để thêm hoặc xóa.
 
 ## 9. Forms with a single control
 
