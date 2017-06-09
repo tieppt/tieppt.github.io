@@ -6,16 +6,22 @@ layout: page
   <!-- Wrapper Start -->
   <section>
     <div class="container">
-      <div>
-        <div class="block">
-          <h1>{{ page.title }}</h1>
-          <div class="post-info-wrapper">
-            <p class="italic">By <span class="bold">{{ page.author }}</span> on <span class="bold">{{ page.date | date: "%B %-d, %Y" }}</span></p>
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>{{ page.title }}</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">{{ page.author }}</span> on <span class="bold">{{ page.date | date: "%B %-d, %Y" }}</span></p>
+            </div>
+            <hr />
+            <p>{{ content }}</p>
           </div>
-          <hr />
-          <p>{{ content }}</p>
         </div>
-      </div><!-- .col-md-7 close -->
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
