@@ -430,7 +430,7 @@ Có 2 phương thức để cập nhật giá trị cho form control được m�
 
 Đối với class `FormControl`, không có gì khác biệt giữa 2 phương thức – thực chất `patchValue` gọi lại `setValue`.
 
-Đối với các class `FormGroup` và `FormArray`, patchValue sẽ cập nhật các giá trị được khai báo tương ứng trong object value truyền vào. Nhưng `setValue` sẽ báo lỗi nếu một control nào bị thiếu.
+Đối với các class `FormGroup` và `FormArray`, patchValue sẽ cập nhật các giá trị được khai báo tương ứng trong object value truyền vào. Nhưng `setValue` sẽ báo lỗi nếu một control nào bị thiếu hoặc thừa, tức là bạn phải truyền chính xác object có cấu trúc giống như cấu trúc của form hay nói cách khác là không chấp nhận subset hoặc superset của cấu trúc form hiện tại.
 
 Vậy nên nếu bạn muốn cập nhật một phần của form thì hãy dùng `patchValue`, nếu bạn muốn set lại tất cả và đảm bảo không cái nào bị thiếu thì dùng `setValue` để tận dụng việc báo lỗi của nó.
 
@@ -445,6 +445,6 @@ Ngoài ra, còn có phương thức `reset` để bạn có thể reset lại tr
 
 ## 12. Tham khảo
 
-Reactive Forms documentation: <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">https://angular.io/docs/ts/latest/guide/reactive-forms.html</a>
+Reactive Forms documentation: <a href="https://angular.io/guide/reactive-forms" target="_blank">https://angular.io/guide/reactive-forms</a>
 
 Git repo: <a href="https://github.com/tieppt/try-angular/tree/lesson-18" target="_blank">https://github.com/tieppt/try-angular/tree/lesson-18</a>
