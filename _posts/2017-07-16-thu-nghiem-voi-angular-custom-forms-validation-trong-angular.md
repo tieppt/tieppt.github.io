@@ -168,6 +168,10 @@ Ngoài template chúng ta đã có một thông báo lỗi nếu người dùng 
 </div>
 ```
 
+> Lưu ý khi sử dụng AoT build
+> `form.hasError('code', 'path')` AoT failure.
+> `form.get('path').hasError('code')` OK
+
 Ở đây chúng ta sử dụng `hasError` để kiểm tra xem control nào đó có bị error hay không, mô tả của nó như sau:
 
 ```ts
@@ -310,7 +314,7 @@ export class ForbiddenUsernameDirective implements Validator {
 
 Đầu tiên, chúng ta phải đăng ký validator directive của chúng ta với Angular thông qua việc khai báo thêm directive vào token `NG_VALIDATORS`, lúc này Angular mới nhận biết được và thực hiện validate cho form control.
 
-Nếu bạn nào chưa tìm hiểu về Dependency Injection và Multi-provider trong Angular, bạn có thể trở lại bài 16 trong series để tìm hiểu thêm.
+Nếu bạn nào chưa tìm hiểu về Dependency Injection và Multi-provider trong Angular, bạn có thể trở lại <a href="/thu-nghiem-voi-angular-dependency-injection-trong-angular/" target="_blank">bài 16 trong series</a> để tìm hiểu thêm.
 
 Ở trong phần `selector` của directive, chúng ta sử dụng `property selector` giống như trong CSS, ở đây chúng ta đảm bảo rằng chúng ta đang thao tác trên form control nào đó, do đó chúng ta ghép thêm với `[ngModel]`.
 
