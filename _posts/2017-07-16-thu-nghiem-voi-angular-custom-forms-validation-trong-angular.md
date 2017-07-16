@@ -7,7 +7,7 @@ layout: post
 guid: http://www.tiepphan.com/?p=1000
 permalink: /thu-nghiem-voi-angular-custom-forms-validation-trong-angular/
 description: 'Hướng dẫn tạo Custom Forms Validation trong Angular'
-image: /assets/uploads/2017/07/angular-p19.jpg
+image: /assets/uploads/2017/07/custom-forms-validation.jpg
 categories:
   - Javascript
   - Lập Trình Angular
@@ -540,7 +540,7 @@ export class ConfirmPasswordDirective implements Validator, OnChanges {
 ## 6. Video bài học
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/SKwXZ_0Yk9I" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://www.youtube.com/embed/dKKEWL9qwpk" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 ## 7. Tham khảo
