@@ -550,6 +550,12 @@ export class ConfirmPasswordDirective implements Validator, OnChanges {
   <iframe src="https://www.youtube.com/embed/dKKEWL9qwpk" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
+**Angular Form Validation - KARA ERICKSON - NgConf 2017**
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/kM5QBOWrUVI" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
 ## 7. Tham khảo
 
 Reactive Forms documentation: <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">https://angular.io/docs/ts/latest/guide/reactive-forms.html</a>
