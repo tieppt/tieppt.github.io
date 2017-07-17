@@ -66,7 +66,7 @@ Trong bài này, chúng ta sẽ sử dụng một form để cho người dùng 
     </label>
   </div>
   <div class="col alert alert-danger" role="alert"
-    *ngIf="form.hasError('invalidusername', 'username') &&
+    *ngIf="form.hasError('invalidusername', ['username']) &&
       form.get('username').touched">
     Invalid Username!
   </div>
@@ -162,15 +162,18 @@ Ngoài template chúng ta đã có một thông báo lỗi nếu người dùng 
 
 ```html
 <div class="col alert alert-danger" role="alert"
-  *ngIf="form.hasError('invalidusername', 'username') &&
+  *ngIf="form.hasError('invalidusername', ['username']) &&
     form.get('username').touched">
   Invalid Username!
 </div>
 ```
 
-> Lưu ý khi sử dụng AoT build
-> `form.hasError('code', 'path')` AoT failure.
-> `form.get('path').hasError('code')` OK
+> Lưu ý khi sử dụng AoT build:
+>
+> `form.hasError('code', 'path.to.control')` AoT failure.
+>
+> `form.get('path.to.control').hasError('code')`
+>  hoặc `form.hasError('code', ['path', 'to', 'control'])` AoT OK
 
 Ở đây chúng ta sử dụng `hasError` để kiểm tra xem control nào đó có bị error hay không, mô tả của nó như sau:
 
@@ -256,7 +259,7 @@ pw: this.fb.group({
 Và template sẽ giống như sau:
 ```html
 <div class="col alert alert-danger" role="alert"
-  *ngIf="form.hasError('passwordnotmatch', 'pw') &&
+  *ngIf="form.hasError('passwordnotmatch', ['pw']) &&
     form.get('pw').touched">
   Password does not match!
 </div>
