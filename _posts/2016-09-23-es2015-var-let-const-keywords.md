@@ -6,8 +6,7 @@ author: Tiep Phan
 layout: post
 guid: http://www.tiepphan.com/?p=9
 permalink: /es2015-var-let-const-keywords/
-beans_layout:
-  - default_fallback
+description: 'Giới thiệu chi tiết về đặc điểm của let, var, const trong ES2015'
 image: /assets/uploads/2016/09/es2015-logo.png
 categories:
   - Lập Trình
