@@ -85,7 +85,7 @@ Hay trong 1 ví dụ khác, trong ví dụ dưới đây, tôi sẽ minh họa c
 
 var age = 15;
 
-if (age &gt;= 18) {
+if (age >= 18) {
   var message = 'Bạn đã đủ tuổi xem phim 18+';
 }
 
