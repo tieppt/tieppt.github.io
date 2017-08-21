@@ -74,12 +74,29 @@ Example:
 ```html
 <div [ngStyle]="{
     // CSS property names
-    'font-style': this.canSave ? 'italic' : 'normal',        // italic
-    'font-weight': !this.isUnchanged ? 'bold' : 'normal',    // normal
-    'font-size.px': this.isSpecial ? 24 : 8,                 // with unit
+    'font-style': canSave ? 'italic' : 'normal',        // italic
+    'font-weight': !isUnchanged ? 'bold' : 'normal',    // normal
+    'font-size.px': isSpecial ? 24 : 8,                 // with unit
   }">
   This div is cool.
 </div>
+```
+
+Hoặc:
+
+```html
+<div [ngStyle]="objStyle">
+  This div is cool.
+</div>
+```
+
+```ts
+objStyle = {
+  // CSS property names
+  'font-style': this.canSave ? 'italic' : 'normal',        // italic
+  'font-weight': !this.isUnchanged ? 'bold' : 'normal',    // normal
+  'font-size.px': this.isSpecial ? 24 : 8,                 // with unit
+};
 ```
 
 ## Class binding
