@@ -579,3 +579,40 @@ observable.subscribe(
 ## 7. Subscription
 {:#rxjs-subscription}
 
+Subscription là một object đại diện cho một nguồn tài nguyên có khả năng hủy được, thông thường trong Rxjs là hủy Observable execution. Subscription có chứa một method quan trọng `unsubscribe` (từ Rxjs 5), khi method này được gọi, execution sẽ bị hủy.
+
+Ví dụ: chúng ta có một đồng hồ đếm thời gian, mỗi giây sẽ gửi đi một giá trị, giả sử sau khi chạy 5s chúng ta cần hủy phần thực thi này.
+
+```ts
+const observable = Rx.Observable.interval(1000);
+const subscription = observable.subscribe(x => console.log(x));
+
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 5000);
+
+```
+
+> A Subscription essentially just has an unsubscribe() function to release resources or cancel Observable executions.
+
+Một Subscription có thể chứa trong nó nhiều Subscriptions con, khi Subscription `unsubscribe`, các Subscriptions con cũng sẽ `unsubscribe`.
+
+Ở Subscription cha, chúng ta có thể gọi method `add` để thêm các Subscriptions con mà phụ thuộc Subscription cha này.
+
+```ts
+const foo = Rx.Observable.interval(500);
+const bar = Rx.Observable.interval(700);
+
+const subscription = foo.subscribe(x => console.log('first: ' + x));
+const childSub = bar.subscribe(x => console.log('second: ' + x));
+
+subscription.add(childSub);
+
+setTimeout(() => {
+  // Unsubscribes BOTH subscription and childSub
+  subscription.unsubscribe();
+}, 2000);
+
+
+```
+
