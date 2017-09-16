@@ -518,6 +518,64 @@ setTimeout(() => {
 ```
 
 ## 6. Observer
+{:#rxjs-observer}
 
+Observer là một Consumer những dữ liệu được gửi bởi Observable. Observer là một object chứa một tập 3 callbacks tương ứng cho mỗi loại notification được gửi từ Observable: `next`, `error`, `complete`.
 
+Một Observer có dạng như sau:
+
+```ts
+const observer = {
+  next: x => console.log('Observer got a next value: ' + x),
+  error: err => console.error('Observer got an error: ' + err),
+  complete: () => console.log('Observer got a complete notification'),
+};
+
+```
+
+Observer được cung cấp là tham số đầu vào của `subscribe` để kích hoạt Observable execution.
+
+```ts
+observable.subscribe(observer);
+
+```
+
+> Observers are just objects with three callbacks, one for each type of notification that an Observable may deliver.
+
+Observe có thể chỉ có một số callbacks trong bộ 3 callbacks kể trên (có thể là một object không có callback nào trong bộ kể trên, trường hợp này ít dùng đến).
+
+Như tôi đã đề cập từ trước, `observable.subscribe` sẽ chuẩn hóa các callbacks thành Observer object tương ứng, **bạn có thể truyền vào các hàm rời rạc nhau, nhưng cần lưu ý truyền đúng thứ tự callback**.
+
+```ts
+observable.subscribe(
+  x => console.log('Observer got a next value: ' + x),
+  err => console.error('Observer got an error: ' + err),
+  () => console.log('Observer got a complete notification')
+);
+
+// tương đương với
+
+const observer = {
+  next: x => console.log('Observer got a next value: ' + x),
+  error: err => console.error('Observer got an error: ' + err),
+  complete: () => console.log('Observer got a complete notification'),
+};
+
+observable.subscribe(observer);
+
+```
+
+Lưu ý: Nếu bạn không muốn truyền error handler function vào, hãy truyền `null`/`undefined`:
+
+```ts
+observable.subscribe(
+  x => console.log('Observer got a next value: ' + x),
+  null,
+  () => console.log('Observer got a complete notification')
+);
+
+```
+
+## 7. Subscription
+{:#rxjs-subscription}
 
