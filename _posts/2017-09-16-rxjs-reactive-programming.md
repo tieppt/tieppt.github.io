@@ -616,3 +616,570 @@ setTimeout(() => {
 
 ```
 
+## 8. Cold Observables vs Hot Observables
+{:#rxjs-cold-hot-observables}
+
+> Cold Observables: Producers created **inside**
+
+Một observable là “cold” nếu Producer được tạo ra và quản lý bên trong nó.
+
+Ví dụ:
+
+```ts
+
+const observable = Rx.Observable.create(observer => {
+  let x = 5;
+  observer.next(x);
+  x += 10;
+  setTimeout(() => {
+	observer.next(x);
+	observer.complete();
+  }, 1000);
+});
+
+const observer = {
+  next: value => console.log(value),
+  complete: () => console.log('done')
+};
+
+observable.subscribe(observer);
+
+setTimeout(() => {
+  observable.subscribe(observer);
+}, 1000);
+
+```
+
+Kết quả là sau 1s thì lần `subscribe` đầu tiên có in ra 15, và lần `subscribe` thứ 2 in ra 5. Chúng không có cùng giá trị của `x`.
+
+Giờ thay đổi chút bằng việc move khai báo biến `x` ra ngoài `create`:
+
+```ts
+
+let x = 5;
+
+const observable = Rx.Observable.create(observer => {
+  observer.next(x);
+  x += 10;
+  setTimeout(() => {
+	observer.next(x);
+	observer.complete();
+  }, 1000);
+});
+
+const observer = {
+  next: value => console.log(value),
+  complete: () => console.log('done')
+};
+
+observable.subscribe(observer);
+
+setTimeout(() => {
+  observable.subscribe(observer);
+}, 1000);
+
+```
+
+Lần này, sau 1s thì cả 2 execution đều in ra giá trị là 15.
+
+Đây chính là ví dụ về Hot Observables.
+
+> Hot Observables: Producers created **outside**
+> 
+
+
+## 9. Subject
+{:#rxjs-subject}
+
+Giả sử chúng ta có đoạn code sau đây:
+
+Ở đây mình mong muốn sau khi observerBaz chạy 1.5s thì observerBar sẽ nhận được giá trị hiện tại mà observerBaz đang nhận.
+
+```ts
+const foo = Rx.Observable.interval(500).take(5);
+
+const observerBaz = {
+  next: x => console.log('first next: ' + x),
+  error: err => console.log('first error: ' + err),
+  complete: _ => console.log('first done')
+};
+
+const observerBar = {
+  next: x => console.log('second next: ' + x),
+  error: err => console.log('second error: ' + err),
+  complete: _ => console.log('second done')
+};
+
+foo.subscribe(observerBaz);
+
+setTimeout(() => {
+  foo.subscribe(observerBar);
+}, 1500);
+
+```
+
+Kết quả khi chạy chương trình:
+
+```ts
+"first next: 0"
+"first next: 1"
+"first next: 2"
+"second next: 0"
+"first next: 3"
+"second next: 1"
+"first next: 4"
+"first done"
+"second next: 2"
+"second next: 3"
+"second next: 4"
+"second done"
+
+```
+
+Oh well, observerBaz và observerBar tạo ra các execution khác nhau của riêng chúng, chúng ta không kết nối chúng đến với nhau theo cách trên được.
+
+Có cách nào để share execution giữa nhiều Observers không?
+
+Lúc này, chúng ta cần đến một object làm cầu nối ở giữa để làm nhiệm vụ tạo ra Observable execution và share dữ liệu ra cho những Observers khác.
+
+OK, tiến hành thêm một số code nữa.
+
+
+```ts
+const foo = Rx.Observable.interval(500).take(5);
+
+const observerB = {
+  observers: [],
+  add: function(observer) {
+    this.observers.push(observer);
+  },
+  
+  // this part is an Observer
+  next: function(x) {
+    this.observers.forEach(observer => observer.next(x));
+  },
+  error: function(err) {
+    this.observers.forEach(observer => observer.error(err));
+  },
+  complete: function() {
+    this.observers.forEach(observer => observer.complete());
+  }
+};
+
+const observerBaz = {
+  next: x => console.log('first next: ' + x),
+  error: err => console.log('first error: ' + err),
+  complete: _ => console.log('first done')
+};
+
+const observerBar = {
+  next: x => console.log('second next: ' + x),
+  error: err => console.log('second error: ' + err),
+  complete: _ => console.log('second done')
+};
+
+observerB.add(observerBaz);
+
+// only subscribe bridge observer
+foo.subscribe(observerB);
+
+setTimeout(() => {
+  observerB.add(observerBar);
+}, 1500);
+
+```
+
+Giờ đây chúng ta có thể có được kết quả như mong muốn.
+
+```ts
+"first next: 0"
+"first next: 1"
+"first next: 2"
+"second next: 2"
+"first next: 3"
+"second next: 3"
+"first next: 4"
+"second next: 4"
+"first done"
+"second done"
+
+```
+
+Bây giờ, nếu chúng ta thay đổi một chút:
+
+```ts
+const foo = Rx.Observable.interval(500).take(5);
+
+const observerB = {
+  observers: [],
+  subscribe: function(observer) {
+    this.observers.push(observer);
+  },
+  
+  // this part is an Observer
+  next: function(x) {
+    this.observers.forEach(observer => observer.next(x));
+  },
+  error: function(err) {
+    this.observers.forEach(observer => observer.error(err));
+  },
+  complete: function() {
+    this.observers.forEach(observer => observer.complete());
+  }
+};
+
+const observerBaz = {
+  next: x => console.log('first next: ' + x),
+  error: err => console.log('first error: ' + err),
+  complete: _ => console.log('first done')
+};
+
+const observerBar = {
+  next: x => console.log('second next: ' + x),
+  error: err => console.log('second error: ' + err),
+  complete: _ => console.log('second done')
+};
+
+observerB.subscribe(observerBaz);
+
+// only subscribe bridge observer
+foo.subscribe(observerB);
+
+setTimeout(() => {
+  observerB.subscribe(observerBar);
+}, 1500);
+
+```
+
+Giờ bạn có thể thấy, `observerB` trông giống như một Observable, nó lại còn giống như Observer, hơn nữa nó có thể gửi signals cho nhiều Observers mà nó đang quản lý. Đây chính là cấu trúc hybrid của Subject.
+
+> A Subject is like an Observable, but can multicast to many Observers. Subjects are like EventEmitters: they maintain a registry of many listeners.
+> 
+
+**Mỗi Subject là một Observable**: bạn có thể `subscribe` vào nó, cung cấp cho nó một Observer và bạn có thể nhận data tương ứng.
+
+**Mỗi Subject là một Observer**: bên trong Subject có chứa các method `next`, `error`, `complete` tương ứng để bạn có thể `subscribe` vào Observable chẳng hạn.
+Khi cần gửi dữ liệu cho các Observers mà Subject đang quản lý, bạn chỉ cần gọi hàm tương ứng.
+
+Ví dụ:
+
+```ts
+const subject = new Rx.Subject();
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+subject.next('Hello');
+subject.next('Subject');
+
+// result
+"observerA: Hello"
+"observerB: Hello"
+"observerA: Subject"
+"observerB: Subject"
+
+```
+
+Hoặc truyền vào một Observable:
+
+```ts
+const subject = new Rx.Subject();
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+// subject.next('Hello');
+// subject.next('Subject');
+
+const observable = Rx.Observable.interval(500).take(3);
+
+observable.subscribe(subject);
+
+// result
+"observerA: 0"
+"observerB: 0"
+"observerA: 1"
+"observerB: 1"
+"observerA: 2"
+"observerB: 2"
+
+```
+
+Với phương pháp kể trên, chúng ta đã cơ bản chuyển đổi từ một unicast Observable execution sang multicast, bằng cách sử dụng Subject.
+
+unicast: giống như bạn vào Youtube, mở video nào đó đã được thu sẵn và xem, nó play từ đầu đến cuối video. Một người khác vào xem, Youtube cũng sẽ phát từ đầu đến cuối như thế, hai người không có liên quan gì về thời gian hiện tại của video mà mình đang xem.
+
+multicast: cũng là hai người (có thể nhiều hơn) vào xem video ở Youtube, nhưng video đó đang phát Live (theo dõi một show truyền hình, hay một trận bóng đá Live chẳng hạn). Lúc này Youtube sẽ phát video Live, và những người vào xem video đó sẽ có cùng một thời điểm của video đó (cùng thời điểm của trận đấu đang diễn ra chẳng hạn).
+
+### 9.1 BehaviorSubject
+{:#rxjs-BehaviorSubject}
+
+Một trong các biến thể của Subject đó là BehaviorSubject, nó là biến thế có khái niệm về "the current value". BehaviorSubject lưu trữ lại giá trị mới emit gần nhất để khi một Observer mới subscribe vào, nó sẽ emit giá trị đó ngay lập tức cho Observer vừa rồi.
+
+> BehaviorSubjects are useful for representing "values over time". For instance, an event stream of birthdays is a Subject, but the stream of a person's age would be a BehaviorSubject.
+
+Hay như sử dụng BehaviorSubject để chia sẻ thông tin user hiện tại đang đăng nhập hệ thống cho các component khác nhau trong Angular chẳng hạn.
+
+Lưu ý: BehaviorSubject yêu cầu phải có giá trị khởi tạo khi tạo ra subject.
+
+
+```ts
+
+const subject = new Rx.BehaviorSubject(0); // 0 is the initial value
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+subject.next(3);
+
+//result
+observerA: 0
+observerA: 1
+observerA: 2
+observerB: 2
+observerA: 3
+observerB: 3
+
+```
+
+### 9.2 ReplaySubject
+{:#rxjs-ReplaySubject}
+
+Một ReplaySubject tương tự như một BehaviorSubject khi nó có thể gửi những dữ liệu trước đó cho Observer mới subscribe, nhưng nó có thể lưu giữ nhiều giá trị (có thể là toàn bộ giá trị của stream từ thời điểm ban đầu).
+
+Tham số đầu vào của ReplaySubject có thể là:
+
+buffer: là số lượng phần tử tối đa có thể lưu trữ.
+windowTime: (ms) thời gian tối đa tính đến thời điểm gần nhất emit value.
+
+
+```ts
+const subject = new Rx.ReplaySubject(3); // buffer 3 values for new subscribers
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+subject.next(5);
+
+// result
+"observerA: 1"
+"observerA: 2"
+"observerA: 3"
+"observerA: 4"
+"observerB: 2"
+"observerB: 3"
+"observerB: 4"
+"observerA: 5"
+"observerB: 5"
+
+```
+
+Hoặc kết hợp buffer với windowTime:
+
+```ts
+const subject = new Rx.ReplaySubject(100, 500 /* windowTime */);
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+
+let i = 1;
+const id = setInterval(() => subject.next(i++), 200);
+
+setTimeout(() => {
+  subject.subscribe({
+    next: (v) => console.log('observerB: ' + v)
+  });
+}, 1000);
+
+setTimeout(() => {
+  subject.complete();
+  clearInterval(id);
+}, 2000);
+
+// result
+"observerA: 1"
+"observerA: 2"
+"observerA: 3"
+"observerA: 4"
+"observerA: 5"
+"observerB: 3"
+"observerB: 4"
+"observerB: 5"
+"observerA: 6"
+"observerB: 6"
+...
+
+```
+
+Trong ví dụ trên sau 1s chỉ có giá trị 3, 4 và 5 là được emit trong 500ms gần nhất và nằm trong buffer nên được replay lại cho `observerB`.
+
+### 9.3 AsyncSubject
+{:#rxjs-AsyncSubject}
+
+Đây là biến thể mà chỉ emit giá trị cuối cùng của Observable execution cho các observers, và chỉ khi execution complete.
+
+Lưu ý:
+
+Nếu stream không complete thì không có gì được emit cả.
+
+
+```ts
+const subject = new Rx.AsyncSubject();
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+subject.next(5);
+subject.complete();
+
+// result
+"observerA: 5"
+"observerB: 5"
+
+```
+
+### 9.4 Subject Complete
+{:#rxjs-SubjectComplete}
+
+Khi BehaviorSubject complete, thì các Observers subscribe vào sau đó sẽ chỉ nhận được `complete` signal.
+
+Khi ReplaySubject complete, thì các Observers subscribe vào sau đó sẽ được emit tất cả các giá trị lưu trữ trong buffer, sau đó mới thực thi `complete` của Observer.
+
+Kể cả khi AsyncSubject complete rồi, Observer vẫn có thể subscribe vào được và vẫn nhận giá trị cuối cùng.
+
+```ts
+const subject = new Rx.BehaviorSubject(0); // 0 is the initial value
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v),
+  complete: () => console.log('observerA: done')
+});
+
+subject.next(1);
+subject.next(2);
+
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v),
+  complete: () => console.log('observerB: done')
+});
+
+subject.next(3);
+
+subject.complete();
+
+subject.subscribe({
+  next: (v) => console.log('observerC: ' + v),
+  complete: () => console.log('observerC: done')
+});
+
+// result
+"observerA: 0"
+"observerA: 1"
+"observerA: 2"
+"observerB: 2"
+"observerA: 3"
+"observerB: 3"
+"observerA: done"
+"observerB: done"
+"observerC: done"
+// ===========================================
+
+const subject = new Rx.ReplaySubject(3);
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v),
+  complete: () => console.log('observerA: done')
+});
+
+let i = 1;
+const id = setInterval(() => subject.next(i++), 200);
+
+setTimeout(() => {
+  subject.complete();
+  clearInterval(id);
+  subject.subscribe({
+    next: (v) => console.log('observerB: ' + v),
+    complete: () => console.log('observerB: done')
+  });
+}, 1000);
+
+// result
+"observerA: 1"
+"observerA: 2"
+"observerA: 3"
+"observerA: 4"
+"observerA: 5"
+"observerA: done"
+"observerB: 3"
+"observerB: 4"
+"observerB: 5"
+"observerB: done"
+
+// ===========================================
+
+const subject = new Rx.AsyncSubject();
+
+subject.subscribe({
+  next: (v) => console.log('observerA: ' + v),
+  complete: () => console.log('observerA: done')
+});
+
+subject.next(1);
+subject.next(2);
+subject.next(3);
+subject.next(4);
+subject.next(5);
+
+subject.complete();
+
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v),
+  complete: () => console.log('observerB: done')
+});
+
+// result
+"observerA: 5"
+"observerA: done"
+"observerB: 5"
+"observerB: done"
+
+```
+
+
