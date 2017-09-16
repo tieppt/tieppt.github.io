@@ -257,7 +257,7 @@ iter.next();
 
 iter.next();
 
->{value: undefined, done: true}
+> {value: undefined, done: true}
 
 ```
 
@@ -271,4 +271,79 @@ button.addEventListener('click', () => console.log('Clicked!'));
 ## 4. Observable
 {:#observable}
 
+Vậy Observable là gì?
+
+**Observable** chỉ là một function (class) mà nó có một số yêu cầu đặc biệt. Nó nhận đầu vào là một Observer và trả về một function để có thể thực hiện việc cancel quá trình xử lý. Thông thường (Rxjs 5) chúng ta đặt tên function đó là `unsubscribe`.
+
+**Observer**: một object có chứa các phương thức `next`, `error` và `complete` để xử lý dữ liệu tương ứng với các `signals` được gửi từ Observable.
+
+> Observables are functions that tie an observer to a producer. That’s it. They don’t necessarily set up the producer, they just set up an observer to listen to the producer, and generally return a teardown mechanism to remove that listener. The act of subscription is the act of “calling” the observable like a function, and passing it an observer.
+> 
+
+Nói theo cách lý thuyết hơn:
+
+> Observables are lazy Push collections of multiple values.
+
+Như vậy, chúng ta có thể thấy Observable là lazy computation, giống như function, nếu chúng ta tạo chúng ra mà không gọi, thì không có gì thực thi cả.
+
+Tạm thời bỏ qua các chi tiết về hàm `create` dưới đây, chúng ta sẽ gặp lại nó khi tìm hiểu về **Operator**:
+
+```ts
+function getDetail() {
+  console.log('tiepphan.com');
+  return 100;
+}
+
+const observable = Rx.Observable.create(function (observer) {
+  console.log('Rxjs và Reactive Programming');
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+  setTimeout(() => {
+    observer.next(4);
+    observer.complete();
+  }, 1000);
+});
+
+```
+
+
+Đến đây, nếu chúng ta không gọi hàm `getDetail`, hoặc không `invoke` đến `observable` thì chẳng có gì xảy ra cả.
+
+Để thực thi, chúng ta sẽ làm như sau:
+
+```ts
+
+const ret = getDetail();
+console.log(ret);
+
+// and
+
+console.log('before subscribe');
+observable.subscribe({
+  next: val => console.log('next: ' + val),
+  error: err => console.error('error: ' + err),
+  complete: () => console.log('done'),
+});
+console.log('after subscribe');
+
+```
+
+Và sau đây là kết quả chúng ta nhận được:
+
+```ts
+"tiepphan.com"
+100
+"before subscribe"
+"Rxjs và Reactive Programming"
+"next: 1"
+"next: 2"
+"next: 3"
+"after subscribe"
+"next: 4"
+"done"
+
+```
+
+Observable có thể deal với cả sync và async.
 
