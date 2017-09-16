@@ -77,3 +77,21 @@ iframe {
 .tp__toc ul {
   padding-left: 20px;
 }
+
+.tpc__list li {
+  list-style-type: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+.tpc__list li::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border-radius: 50%;
+  background: #ed323b;
+  left: 0px;
+  top: 7px;
+}

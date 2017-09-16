@@ -78,6 +78,7 @@ Các Concepts nền tảng của Rxjs bao gồm:
 * Operators: là các pure functions cho phép lập trình functional với Observable.
 * Subject: để thực hiện việc gửi dữ liệu đến nhiều Observers (multicasting).
 * Schedulers: một scheduler sẽ điều khiển khi nào một subscription bắt đầu thực thi, và khi nào sẽ gửi tín hiệu đi. (Trong bài này chúng ta sẽ không nói về phần này).
+{:.tpc__list}
 
 ## 2. Array Trong Javascript
 {:#array}
