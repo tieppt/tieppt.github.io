@@ -201,7 +201,74 @@ Như ở ví dụ trên, chúng ta flat mảng con 2 chiều thành 1 chiều, v
 
 Điều này các bạn sẽ hay gặp khi làm việc với Observable trả về Observable trong các phần tiếp theo.
 
-## 3. Observable
+## 3. Producer vs Consumer, Push vs Pull
+{:#producer-consumer-push-pull}
+
+> Pull and Push are two different protocols how a data Producer can communicate with a data Consumer.
+> 
+
+OK, chúng ta lại có một số khái niệm mới:
+
+**Producer**: là nguồn sản sinh ra data.
+
+**Consumer**: là nơi `chế biến` data sản sinh từ Producer.
+
+**Pull systems**: Consumer sẽ quyết định khi nào lấy data từ Producer. Producer không quan tâm khi nào data sẽ được gửi đến cho Consumer.
+
+Các `function` trong Javascript là một Pull system. Khi nào lời gọi hàm thì khi đó mới xử lý. Gọi `n` lần thì xử lý `n` lần.
+
+Lưu ý: function chỉ trả về 1 giá trị sau khi lời gọi hàm được thực hiện. (một mảng cũng chỉ coi là 1 giá trị, vì nó được trả về 1 lần).
+
+**Push systems**: Producer sẽ quyết định khi nào gửi dữ liệu cho Consumer. Consumer không quan tâm khi nào nhận được data.
+
+Promise, DOM events là các Push systems. Chúng ta register các callbacks và khi event phát sinh, các callbacks sẽ được gọi với dữ liệu từ Producer truyền vào.
+
+Chúng ta có một bảng so sánh như sau:
+
+&nbsp; | **Producer** | **Consumer**
+---    | ---      | ---
+**Pull** | **Passive**: produces data when requested. | **Active**: decides when data is requested.
+**Push** | **Active**: produces data at its own pace. | **Passive**: reacts to received data.
+{:class="table table-striped table-hover"}
+
+Ví dụ:
+
+**Pull**
+
+```ts
+const arr = [1,2,3,4];
+const iter = arr[Symbol.iterator]();
+
+iter.next();
+
+> {value: 1, done: false}
+
+iter.next();
+
+> {value: 2, done: false}
+
+iter.next();
+
+> {value: 3, done: false}
+
+iter.next();
+
+> {value: 4, done: false}
+
+iter.next();
+
+>{value: undefined, done: true}
+
+```
+
+**Push**
+
+```ts
+var button = document.querySelector('button');
+button.addEventListener('click', () => console.log('Clicked!'));
+```
+
+## 4. Observable
 {:#observable}
 
 
