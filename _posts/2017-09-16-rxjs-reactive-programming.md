@@ -33,7 +33,7 @@ Hẳn các bạn vẫn còn nhớ trong một số bài trước chúng ta có n
 {:.tp__toc}
 
 ## 1. Giới thiệu
-{:#intro}
+{:#post-intro}
 
 Angular đi kèm với một dependency là Rxjs giúp cho nó trở nên **reactive**, một ứng dụng Angular là một **reactive system**.
 Dễ thấy nhất ở đây chính là EventEmitter, hay Reactive Forms mà chúng ta đã tìm hiểu trong các bài học trước.
@@ -58,7 +58,7 @@ Và chúng ta có thể coi mọi thứ là stream: single value, array, event, 
 
 Không những thế, khi thao tác với stream, chúng ta có thể có `value`, `error`, hay `complete` signals. Đây là điều mà các API trước đây của các hệ thống event trong Javascript còn thiếu, chúng có qua nhiều interface khác nhau cho các loại event khác nhau, Observable sinh ra để tổng quát hóa các interface đó lại. 
 
-![figure-stream](/assets/uploads/2017/09/figure-stream.jpg){:class="img-responsive"}
+![figure-stream](/assets/uploads/2017/09/figure-stream.png){:class="img-responsive"}
 {:class="text-center"}
 
 Và Rxjs giúp chúng ta có được **reactive** trong lập trình ứng dụng Javascript:
