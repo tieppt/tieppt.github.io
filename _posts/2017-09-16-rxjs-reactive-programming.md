@@ -63,9 +63,9 @@ Không những thế, khi thao tác với stream, chúng ta có thể có `value
 
 Và Rxjs giúp chúng ta có được **reactive** trong lập trình ứng dụng Javascript:
 
-> RxJS is a library for composing asynchronous and event-based programs by using observable sequences.
+> Rxjs is a library for composing asynchronous and event-based programs by using observable sequences.
 > 
-> Think of RxJS as Lodash (ultility for array/object) for events/streams.
+> Think of Rxjs as Lodash (ultility for array/object) for events/streams.
 > 
 > ReactiveX combines the Observer pattern with the Iterator pattern and functional programming with collections to fill the need for an ideal way of managing sequences of events.
 > 
@@ -346,4 +346,178 @@ Và sau đây là kết quả chúng ta nhận được:
 ```
 
 Observable có thể deal với cả sync và async.
+
+> Observables are able to deliver values either synchronously or asynchronously.
+> 
+
+## 5. Làm Quen Với Observable
+{:#anatomy-observable}
+
+Với Observable chúng ta sẽ quan tâm đến các thao tác như sau:
+
+* **Creating** Observables
+* **Subscribing** to Observables
+* **Executing** the Observable
+* **Disposing** Observables
+{:.tpc__list}
+
+
+### 5.1 Creating Observables
+{:#creating-observables}
+
+`Rx.Observable.create` là một operator, nó chỉ là một alias cho `Observable` constructor, chúng ta hoàn toàn có thể thay thế tương ứng bằng cách gọi constructor cũng cho kết quả tương tự.
+
+Đầu vào của `constructor` yêu cầu một hàm gọi là `subscribe` mà hàm này có đầu vào là một `observer` object.
+
+```ts
+const observable = new Rx.Observable(function subscribe(observer) {
+  const id = setInterval(() => {
+    observer.next('Hello Rxjs');
+  }, 1000);
+});
+
+// same
+
+/*
+const observable = Rx.Observable.create(function subscribe(observer) {
+  const id = setInterval(() => {
+    observer.next('Hello Rxjs');
+  }, 1000);
+});
+
+*/
+
+```
+
+Bạn hoàn toàn có thể sử dụng `new` hoặc `Rx.Observable.create`.
+
+Ngoài operator như `create`, Rxjs mang đến cho bạn nhiều lựa chọn khác nhau để tạo mới một Observable như các operators: `of`, `from`, `interval`, etc. Chúng được đặt trong nhóm **creation operators**.
+
+Ví dụ, bạn muốn tạo Observable cho một mảng các giá trị, lúc này bạn không cần dùng `Rx.Observable.create` rồi lặp qua các phần tử, xong gọi `next` nữa. Rxjs có cách dùng khác, vì đây là một usecase rất hay dùng và `create` là một low-level API.
+
+```ts
+const arr = [1, 2, 3, 4];
+
+const fromArrayObservable = Rx.Observable.from(arr);
+
+```
+
+### 5.2 Subscribing to Observables
+{:#subscribing-observables}
+
+Sau khi đã tạo xong một Observable, chúng ta cần `invoke` bằng cách `subscribe` vào như sau:
+
+```ts
+observable.subscribe(val => console.log(val));
+
+```
+
+> Subscribing to an Observable is like calling a function, providing callbacks where the data will be delivered to.
+> 
+
+Vậy nên chúng ta call một function `n` lần, chúng ta sẽ có `n` lần thực thi. Tương tự như thế, khi chúng ta `subscribe` vào một Observable `m` lần, thì có `m` lần thực thi, một lời gọi `subscribe` giống như một cách để Observable bắt đầu thực thi.
+
+### 5.3 Executing Observables
+{:#executing-observables}
+
+Phần code khi chúng ta khởi tạo Observable `Rx.Observable.create(function subscribe(observer) {...})` chính là "Observable execution". Giống như khai báo một function, phần code này để thực hiện một số hành động, xử lý nào đó; chúng là `lazy computation` - chỉ thực thi khi Observer thực hiện subscribe.
+
+Có ba kiểu giá trị mà một Observable Execution có thể gửi đi:
+
+* "Next" notification: gửi đi một giá trị, có thể là bất kỳ kiểu dữ liệu nào như Number, a String, an Object, etc.
+* "Error" notification: gửi đi một JavaScript Error hoặc exception.
+* "Complete" notification: không gửi đi một giá trị nào, nhưng nó gửi đi một tín hiệu để báo rằng stream này đã completed, mục đích để Observer có thể thực hiện một hành động nào đó khi stream completed.
+{:.tpc__list}
+
+Next notifications thường được sử dụng rộng rãi, nó cực kỳ quan trọng, vì nó gửi đi dữ liệu cần thiết cho một Observer.
+
+Error và Complete notifications có thể chỉ xảy ra duy nhất một lần trong một **Observable Execution**.
+Lưu ý rằng, chỉ có 1 trong 2 loại tín hiệu trên được gửi đi, nếu đã complete thì không có error, nếu có error thì không có complete. (Chúng không thuộc về nhau :D). Và nếu đã gửi đi complete, hoặc error signal, thì sau đó không có dữ liệu nào được gửi đi nữa. Tức là stream đã close.
+
+> In an Observable Execution, zero to infinite Next notifications may be delivered. If either an Error or Complete notification is delivered, then nothing else can be delivered afterwards.
+> 
+
+Ví dụ:
+
+```ts
+const observable = Rx.Observable.create((observer) => {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+  observer.complete();
+  observer.next(4); // Is not delivered because it would violate the contract
+});
+
+```
+Khi Subscribe vào observable được tạo ở trên, bạn có thể thấy được kết quả như sau:
+
+```ts
+observable.subscribe(
+  val => console.log(val),
+  err => console.log(err),
+  () => console.log('done')
+);
+
+// result
+1
+2
+3
+"done"
+
+```
+
+Lưu ý rằng trong ví dụ trên, tôi đã `invoke` Observable bằng cách `subscribe` với 3 callbacks riêng biệt cho 3 loại signals tương ứng, về mặt xử lý phía sâu bên trong sẽ convert về Observer object có dạng.
+
+```ts
+
+const observer = {
+  next: val => console.log(val),
+  error: err => console.log(err),
+  complete: () => console.log('done')
+}
+
+// sử dụng để subscribe
+
+observable.subscribe(observer);
+
+```
+
+### 5.4 Disposing Observable Executions
+{:#disposing-observables}
+
+Bởi vì quá trình thực thi Observable có thể lặp vô hạn, hoặc trong trường hợp nào đó bạn muốn thực hiện hủy việc thực thi vì việc này không còn cần thiết nữa - dữ liệu đã lỗi thời, có dữ liệu khác thay thế. Các bạn có thể liên tưởng tới việc close websocket stream, removeEvenListener cho một element nào đó đã bị loại bỏ khỏi DOM chẳng hạn.
+
+Observable có cơ chế tương ứng, cho phép chúng ta hủy việc thực thi. Đó là khi `subscribe` được gọi, một Observer sẽ bị gắn với một Observable execution mới được tạo, sau đó nó sẽ trả về một object thuộc type Subscription. Kiểu dữ liệu này có một method `unsubscribe` khi chúng ta gọi đến, nó sẽ thực hiện cơ chế để hủy việc thực thi.
+
+Lưu ý: nếu bạn tạo Observable bằng `create` hoặc `new` thì bạn phải tự thiết lập cơ chế để hủy.
+
+> When you subscribe, you get back a Subscription, which represents the ongoing execution. Just call unsubscribe() to cancel the execution.
+
+Ví dụ:
+
+```ts
+const observable = Rx.Observable.create(function subscribe(observer) {
+  
+  let value = 0;
+  // Keep track of the interval resource
+  const intervalID = setInterval(() => {
+    observer.next(value++);
+  }, 1000);
+
+  // Provide a way of canceling and disposing the interval resource
+  return function unsubscribe() {
+    clearInterval(intervalID);
+  };
+});
+
+const subscription = observable.subscribe(x => console.log(x));
+
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 5000);
+```
+
+## 6. Observer
+
+
 
