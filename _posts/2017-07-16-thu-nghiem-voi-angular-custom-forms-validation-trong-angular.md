@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 19 &#8211; Custom Forms Validation T
 date: 2017-07-16T10:00:00+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=1000
+guid: http://www.tiepphan.com/?p=1001
 permalink: /thu-nghiem-voi-angular-custom-forms-validation-trong-angular/
 description: 'Hướng dẫn tạo Custom Forms Validation trong Angular'
 image: /assets/uploads/2017/07/custom-forms-validation.jpg
