@@ -299,6 +299,10 @@ button.addEventListener('click', () => console.log('Clicked!'));
 ## 4. Observable
 {:#observable}
 
+**Lưu ý, để code theo các ví dụ trong bài học này, bạn có thể clone bin sau**:
+
+<a href="https://jsbin.com/zazacew/1/edit?js,console" target="_blank">Rxjs starter - jsbin</a>
+
 Vậy Observable là gì?
 
 **Observable** chỉ là một function (class) mà nó có một số yêu cầu đặc biệt. Nó nhận đầu vào là một Observer và trả về một function để có thể thực hiện việc cancel quá trình xử lý. Thông thường (Rxjs 5) chúng ta đặt tên function đó là `unsubscribe`.
@@ -2572,16 +2576,16 @@ export class AppComponent {
 ## 12. Link tham khảo
 {:#rxjs-references}
 
-[Rxjs Official Docs](http://reactivex.io/rxjs/manual/overview.html)
+<a href="http://reactivex.io/rxjs/manual/overview.html" target="_blank">Rxjs Official Docs</a>
 
-[learnrxjs.io](https://www.learnrxjs.io/)
+<a href="https://www.learnrxjs.io/" target="_blank">learnrxjs.io</a>
 
-[rxmarbles.com](http://rxmarbles.com/)
+<a href="http://rxmarbles.com/" target="_blank">rxmarbles.com</a>
 
-[Rx Visualizer](https://rxviz.com/)
+<a href="https://rxviz.com/" target="_blank">Rx Visualizer</a>
 
-[Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
+<a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339" target="_blank">Hot vs Cold Observables</a>
 
-[The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
+<a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank">The introduction to Reactive Programming you've been missing</a>
 
-[Rxjs Github Repo](https://github.com/ReactiveX/rxjs)
+<a href="https://github.com/ReactiveX/rxjs" target="_blank">Rxjs Github Repo</a>
