@@ -2190,9 +2190,9 @@ const subscribe = example.subscribe(val => console.log(val));
 
 ```
 
-**retry**: `retry(number: number): Observable`
+**retry**: `retry(num: number): Observable`
 
-Sử dụng để restart lại stream trong trường hợp stream bị văng ra lỗi. Có thể giới hạn số lần retry bằng cách truyền vào tham số. Nếu không truyền vào, sẽ retry luôn retry mỗi khi lỗi văng ra.
+Sử dụng để restart lại stream trong trường hợp stream bị văng ra lỗi. Có thể giới hạn số lần retry bằng cách truyền vào tham số. Nếu không truyền vào, sẽ  luôn retry mỗi khi lỗi văng ra.
 
 Chẳng hạn khi bạn reqest lên server để lấy dữ liệu, giả sử trong quá trình này bạn muốn request lại 2 lần nếu bị văng ra lỗi.
 
