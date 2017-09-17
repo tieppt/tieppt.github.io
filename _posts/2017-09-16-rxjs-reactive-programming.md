@@ -175,7 +175,31 @@ console.log(arr, amp);
 [2, 5]
 ```
 
-### 2.4 Flatten Array
+### 2.4 Array reduce
+{:#array-reduce}
+
+Method `reduce` cho phép chúng ta lặp qua tất cả các phần tử và áp dụng một function nào đó vào mỗi phần tử, function này có các tham số:
+
+* `accumulator`: giá trị trả về từ các lần call callback trước.
+* `currentValue`: giá trị của phần tử hiện tại trong array.
+* `currentIndex`: index của phần tử hiện tại.
+* `array`: chính là mảng hiện tại.
+
+Ngoài ra, chúng ta còn có thể cung cấp giá trị ban đầu `initialValue` sau tham số function đầu tiên.
+
+```ts
+const arr = [1, 2, 3, 4, 5];
+
+const val = arr.reduce((acc, current) => acc * current, 1);
+
+console.log(val);
+
+// result
+120
+
+```
+
+### 2.5 Flatten Array
 {:#flatten-array}
 
 Trong nhiều tình huống, chúng ta có các array, bên trong mỗi phần tử có thể là các array khác, lúc này chúng ta có nhiệm vụ làm giảm số chiều (flatten) đi chẳng hạn, chúng ta có thể có đoạn code xử lý sau trong Javascript.
@@ -750,7 +774,7 @@ const foo = Rx.Observable.interval(500).take(5);
 
 const observerB = {
   observers: [],
-  add: function(observer) {
+  addObserver: function(observer) {
     this.observers.push(observer);
   },
   
@@ -778,16 +802,18 @@ const observerBar = {
   complete: _ => console.log('second done')
 };
 
-observerB.add(observerBaz);
+observerB.addObserver(observerBaz);
 
 // only subscribe bridge observer
 foo.subscribe(observerB);
 
 setTimeout(() => {
-  observerB.add(observerBar);
+  observerB.addObserver(observerBar);
 }, 1500);
 
 ```
+
+Object `observerB` có chưa method `addObserver` đây chính là khuôn mẫu của "Observer-Pattern".
 
 Giờ đây chúng ta có thể có được kết quả như mong muốn.
 
@@ -915,9 +941,9 @@ observable.subscribe(subject);
 
 Với phương pháp kể trên, chúng ta đã cơ bản chuyển đổi từ một unicast Observable execution sang multicast, bằng cách sử dụng Subject.
 
-unicast: giống như bạn vào Youtube, mở video nào đó đã được thu sẵn và xem, nó play từ đầu đến cuối video. Một người khác vào xem, Youtube cũng sẽ phát từ đầu đến cuối như thế, hai người không có liên quan gì về thời gian hiện tại của video mà mình đang xem.
+**unicast**: giống như bạn vào Youtube, mở video nào đó đã được thu sẵn và xem, nó play từ đầu đến cuối video. Một người khác vào xem, Youtube cũng sẽ phát từ đầu đến cuối như thế, hai người không có liên quan gì về thời gian hiện tại của video mà mình đang xem.
 
-multicast: cũng là hai người (có thể nhiều hơn) vào xem video ở Youtube, nhưng video đó đang phát Live (theo dõi một show truyền hình, hay một trận bóng đá Live chẳng hạn). Lúc này Youtube sẽ phát video Live, và những người vào xem video đó sẽ có cùng một thời điểm của video đó (cùng thời điểm của trận đấu đang diễn ra chẳng hạn).
+**multicast**: cũng là hai người (có thể nhiều hơn) vào xem video ở Youtube, nhưng video đó đang phát Live (theo dõi một show truyền hình, hay một trận bóng đá Live chẳng hạn). Lúc này Youtube sẽ phát video Live, và những người vào xem video đó sẽ có cùng một thời điểm của video đó (cùng thời điểm của trận đấu đang diễn ra chẳng hạn).
 
 ### 9.1 BehaviorSubject
 {:#rxjs-BehaviorSubject}
@@ -966,6 +992,7 @@ Một ReplaySubject tương tự như một BehaviorSubject khi nó có thể g�
 Tham số đầu vào của ReplaySubject có thể là:
 
 buffer: là số lượng phần tử tối đa có thể lưu trữ.
+
 windowTime: (ms) thời gian tối đa tính đến thời điểm gần nhất emit value.
 
 
@@ -1182,4 +1209,160 @@ subject.subscribe({
 
 ```
 
+## 10. Operators
+{:#rxjs-Operators}
+
+Trong Rxjs chúng ta thấy có vô số các method/static method được cung cấp, khiến nó trở nên vô cùng mạnh mẽ và hữu dụng.
+
+Vậy Operator là gì?
+
+> An Operator is a function which creates a new Observable based on the current Observable. This is a pure operation: the previous Observable stays unmodified.
+
+Operator là một pure function. Với cùng một giá trị đầu vào, chúng ta sẽ luôn có cùng một giá trị ở đầu ra.
+
+Ví dụ:
+
+```ts
+// pure function
+function add(a, b) {
+  return a + b;
+}
+
+add(5, 6); // 11
+add(5, 6); // 11
+
+// impure function
+
+let x = 0;
+function addImpure(a, b) {
+  x++;
+  return a + b + x;
+}
+
+add(5, 6); // 12
+add(5, 6); // 13
+
+```
+
+Operation nhận đầu vào là một Observable, sau đó xử lý và tạo mới mội Observable để trả về, và giữ Observable đầu vào không bị thay đổi gì.
+
+Ví dụ, chúng ta tạo một Operator nhận đầu vào là một function, giống như Array `map` chẳng hạn.
+
+```ts
+function map(observable, fn) {
+  const output = Rx.Observable.create(observer => {
+    observable.subscribe({
+      next: x => observer.next(fn(x)),
+      error: err => observer.error(err),
+      complete: () => observer.complete()
+    });
+  });
+  
+  return output;
+}
+```
+
+Bây giờ chúng ta có thể tạo một Observable như sau:
+
+```ts
+const foo = Rx.Observable.interval(500).take(5);
+
+const amap = map(foo, val => val * 5);
+
+const observerM = {
+  next: x => console.log('next: ' + x),
+  error: err => console.log('error: ' + err),
+  complete: _ => console.log('done')
+};
+
+amap.subscribe(observerM);
+
+// result
+"next: 0"
+"next: 5"
+"next: 10"
+"next: 15"
+"next: 20"
+"done"
+
+```
+
+### 9.1 Instance operators vs static operators
+{:#InstancevsStaticOperators}
+
+Thông thường **static operators** là các operators được gắn với `class` Observable, chúng được dùng phổ biến để tạo mới Observable.
+
+Ví dụ như các operator `of`, `from`, `interval`, `fromPromise`, `empty`, etc.
+
+**Instance operators**: các operators này gắn với một instance của `class` Observable.
+
+Giả sử chúng ta tạo operator `mmap` như sau, thì kết quả cũng được tương tự như trên:
+
+```ts
+Rx.Observable.prototype.mmap = function map(fn) {
+  const observable = this;
+  const output = Rx.Observable.create(observer => {
+    observable.subscribe({
+      next: x => observer.next(fn(x)),
+      error: err => observer.error(err),
+      complete: () => observer.complete()
+    });
+  });
+  
+  return output;
+}
+
+// invoke
+
+const amap = foo.mmap(val => val * 5);
+
+const observerM = {
+  next: x => console.log('next: ' + x),
+  error: err => console.log('error: ' + err),
+  complete: _ => console.log('done')
+};
+
+amap.subscribe(observerM);
+
+```
+
+> Instance operators are functions that use the this keyword to infer what is the input Observable.
+> 
+> Static operators are pure functions attached to the Observable class, and usually are used to create Observables from scratch.
+
+Operators được chia vào nhiều nhóm khác nhau, mỗi nhóm có một mục đích sử dụng:
+
+* Creation Operators.
+* Transformation Operators.
+* Filtering Operators.
+* Combination Operators.
+* Error Handling Operators.
+* Utility Operators.
+* Multicasting Operators.
+* Conditional and Boolean Operators.
+* Mathematical and Aggregate Operators
+{:.tpc__list}
+
+Sau đây chúng ta sẽ tìm hiểu một số operators chính hay dùng đến.
+
+### 9.2 Creation Operators
+{:#rxjs-CreationOperators}
+
+Từ đầu đến giờ chúng ta đã quen với sử dụng `create` operator để tạo ra Observable, ngoài ra chúng ta còn có một số operators khác để tạo Observable từ những common usecase.
+
+Ví dụ để tạo Observable từ một số static values, chúng ta có thể dùng `of`:
+
+```ts
+const foo = Rx.Observable.of(100);
+
+foo.subscribe(x => console.log(x)); // 100
+
+```
+
+Hoặc có thể dùng `of` với nhiều tham số đầu vào:
+
+```ts
+const foo = Rx.Observable.of(100, 200, 400);
+
+```
 
