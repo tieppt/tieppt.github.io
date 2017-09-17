@@ -2489,6 +2489,7 @@ foo$.subscribe(val => console.log(val));
 Lưu ý: Trong hầu hết các trường hợp nếu bạn không có ý định gì đặc biệt thì nên dùng `switchMap` thay vì `mergeMap`.
 
 ## 11. Tổng kết
+{:#rxjs-summary}
 
 Trong bài này chúng ta đã tìm hiểu rất nhiều vấn đề về Reactive Programming với Rxjs, nhưng vẫn còn thiếu phần **Multicasting**, hi vọng mình sẽ làm xong phần đó trong thời gian tới.
 
@@ -2560,6 +2561,7 @@ export class AppComponent {
 ```
 
 ## 12. Link tham khảo
+{:#rxjs-references}
 
 [Rxjs Official Docs](http://reactivex.io/rxjs/manual/overview.html)
 
