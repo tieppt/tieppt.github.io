@@ -1287,7 +1287,7 @@ amap.subscribe(observerM);
 
 ```
 
-### 9.1 Instance operators vs static operators
+### 10.1 Instance operators vs static operators
 {:#InstancevsStaticOperators}
 
 Thông thường **static operators** là các operators được gắn với `class` Observable, chúng được dùng phổ biến để tạo mới Observable.
@@ -1345,7 +1345,7 @@ Operators được chia vào nhiều nhóm khác nhau, mỗi nhóm có một m�
 
 Sau đây chúng ta sẽ tìm hiểu một số operators chính hay dùng đến.
 
-### 9.2 Creation Operators
+### 10.2 Creation Operators
 {:#rxjs-CreationOperators}
 
 Từ đầu đến giờ chúng ta đã quen với sử dụng `create` operator để tạo ra Observable, ngoài ra chúng ta còn có một số operators khác để tạo Observable từ những common usecase.
@@ -1458,7 +1458,7 @@ source.subscribe(x => console.log(x));
 
 Còn nhiều các operators khác nữa, các bạn vào trang chủ của ReactiveX để xem thêm.
 
-### 9.3 Transformation Operators
+### 10.3 Transformation Operators
 {:#rxjs-TransformationOperators}
 
 Transformation Operators dùng để chuyển đổi giá trị của Observable từ dạng này sang sang dạng khác.
@@ -1565,10 +1565,235 @@ const bufferTimeSub = bufferTime.subscribe(
 
 Ngoài ra còn rất nhiều operator khác, và một số Operators chúng ta sẽ tìm hiểu ở phần sau "Higher Order Observables".
 
-### 9.4 Filtering Operators
+### 10.4 Filtering Operators
 {:#rxjs-FilteringOperators}
 
 Filtering Operators mục đích để filter các giá trị được emit thỏa mãn điều kiện nào đó.
 
+**filter**: `filter(select: Function, thisArg: any): Observable`
+
+Giống như Array filter, operator này chỉ emit các value thỏa mãn `select` function. Nếu không có phần tử nào thỏa mãn thì không emit giá trị `next` nào cả.
+
+
+```ts
+const source = Rx.Observable.from([12, -22, -3, 45, 52]);
+
+const filter$ = source.filter(num => num > 0);
+
+const subscribe = filter$.subscribe(
+  val => console.log(`Positive number: ${val}`)
+);
+// output
+"Positive number: 12"
+"Positive number: 45"
+"Positive number: 52"
+
+```
+
+**take**: `take(count: number): Observable`
+
+Emit tối đa `count` giá trị, rồi complete.
+
+```ts
+const source = Rx.Observable.of(1,2,3,4,5);
+
+const take$ = source.take(3);
+
+const subscribe = take$.subscribe(val => console.log(val));
+
+// output
+1
+2
+3
+
+```
+
+**takeUntil**: `takeUntil(notifier: Observable): Observable`
+
+Emit value cho đến khi `notifier` emit thì dừng.
+
+Rất hữu ích khi làm việc với Angular, các bạn có thể sử dụng để tạo ra trình auto-unsubscribe cho Observable. Vì khi complete thì nó tự `unsubscribe`.
+
+```ts
+//emit value every 1s
+const source = Rx.Observable.interval(1000);
+//after 5 seconds, emit value
+const timer = Rx.Observable.timer(5000);
+//when timer emits after 5s, complete source
+const takeUntil$ = source.takeUntil(timer);
+
+const subscribe = takeUntil$.subscribe(
+  val => console.log(val)
+);
+
+// output
+0
+1
+2
+3
+
+```
+
+**takeWhile**: `takeWhile(predicate: function(value, index): boolean): Observable`
+
+Còn emit value khi mà `predicate` còn trả về `false`. Một khi `predicate` trả về `true` thì dừng lại, complete.
+
+```ts
+//emit value start from 0 each 500ms
+const source = Rx.Observable.interval(500);
+//allow values until value from source is greater than 4, then complete
+const takeWhile$ = source.takeWhile(val => val <= 4);
+
+const subscribe = takeWhile$.subscribe(
+  val => console.log(val)
+);
+
+// output
+0
+1
+2
+3
+4
+
+```
+
+**skip**: `skip(num: Number): Observable`
+
+Skip số lượng phần tử từ đầu stream đến `num`, các giá trị emit sau đó mới được emit.
+
+```ts
+//emit every 500ms
+const source = Rx.Observable.interval(500);
+//skip the first 5 emitted values, then take 4 values
+const skip$ = source.skip(5)
+  .take(4);
+
+const subscribe = skip$.subscribe(val => console.log(val));
+
+//output:
+5
+6
+7
+8
+
+```
+
+Tương tự như `takeUntil`, `takeWhile`, chúng ta cũng có `skipUntil`, `skipWhile`
+
+`take(1)` chúng ta có một cách viết khác `first`:
+
+`first(predicate: function, select: function)`
+
+Nếu không truyền vào `predicate` thì nó sẽ lấy phần tử đầu tiên, ngược lại sẽ lấy phần tử đầu tiên thỏa mãn `predicate`.
+
+```ts
+const source = Rx.Observable.from([1,2,3,4,5]);
+// no arguments, emit first value
+const first$ = source.first();
+
+const subscribe = first$.subscribe(
+  val => console.log(`First value: ${val}`)
+);
+
+// output
+"First value: 1"
+
+```
+
+Ngược lại với `first` chúng ta sẽ có `last`: `last(predicate: function): Observable`.
+
+```ts
+const source = Rx.Observable.from([1,2,3,4,5]);
+// no arguments, emit last value
+const last$ = source.last();
+
+const subscribe = last$.subscribe(
+  val => console.log(`Last value: ${val}`)
+);
+// output
+"Last value: 5"
+
+```
+
+
+**throttleTime**: `throttleTime(duration: number, scheduler: Scheduler): Observable`
+
+Emit giá trị mới nhất khi một khoảng thời gian `duration` trôi qua.
+
+```ts
+// emit value every 1 second
+const source = Rx.Observable.interval(1000);
+/*
+  throttle for five seconds
+  last value emitted before throttle ends will be emitted from source
+*/
+const example = source
+  .throttleTime(5000);
+
+const subscribe = example.subscribe(val => console.log(val));
+
+// output
+0
+6
+12
+...
+
+```
+
+Rất hữu ích khi làm việc với các event fire liên tục như `click`, hay `mousemove` chẳng hạn.
+
+```ts
+const mousemove$ = Rx.Observable.fromEvent(document, 'mousemove');
+
+const sub = mousemove$
+  .map(e => e.clientX)
+  .subscribe(x => console.log(x));
+
+```
+
+Sử dụng với `throttleTime` để hạn chế event fire quá nhiều. Cứ sau 300ms thì emit giá trị mới nhất có được.
+
+```ts
+const sub = mousemove$
+  .throttleTime(300)
+  .map(e => e.clientX)
+  .subscribe(x => console.log(x));
+
+```
+
+**debounceTime**: `debounceTime(dueTime: number, scheduler: Scheduler): Observable`
+
+> Discard emitted values that take less than the specified time between output
+> 
+
+Hay dùng khi bạn muốn đảm bảo người dùng thôi thao tác sau một khoảng thời gian `dueTime` thì emit giá trị. Giống như đảm bảo người dùng ngừng di chuyển chuột, hay ngừng gõ vào input chẳng hạn, để tránh phát sinh nhiều hành động không cần thiết.
+
+```ts
+const mousemove$ = Rx.Observable.fromEvent(document, 'mousemove');
+
+const sub = mousemove$
+  .debounceTime(300)
+  .map(e => e.clientX)
+  .subscribe(x => console.log(x));
+```
+
+**distinctUntilChanged**: `distinctUntilChanged(compare: function): Observable`
+
+Chỉ emit value khi giá trị hiện tại khác với giá trị đã emit trước đó. Hay dùng để đảm bảo dữ liệu phải khác nhau thì mới thực thi hành động. Kết hợp cùng `debounceTime` hoặc `throttleTime` để làm việc khi người dùng nhập vào input, sau đó xử lý giá trị, và chỉ xử lý khi dữ liệu hiện tại khác với dữ liệu đã xử lý trước đó.
+
+```ts
+const mousemove$ = Rx.Observable.fromEvent(document, 'click');
+
+const sub = mousemove$
+  .debounceTime(300)
+  .map(e => e.clientX)
+  .distinctUntilChanged()
+  .subscribe(x => console.log(x));
+
+```
+
+Khi bạn không di chuyển chuột mà click liên tục thì không có gì được emit cả.
+
+Trên đây chỉ là một số Filter Operators hay dùng, các bạn có thể vào trang chủ của ReactiveX để tìm hiểu thêm.
 
 
