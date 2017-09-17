@@ -2397,14 +2397,14 @@ Ví dụ, mình muốn lấy về tọa độ `X`, `Y` của stream `click$` kè
 ```ts
 
 const foo$ = click$
-  .mergeMap(x => interval, (outter, inner) => {
+  .mergeMap(x => interval, (outer, inner) => {
     const cord = {
-      x: outter.clientX,
-      y: outter.clientY
+      x: outer.clientX,
+      y: outer.clientY
     };
     
     return {
-      outter: cord,
+      outer: cord,
       inner: inner
     };
   }, 2);
@@ -2412,7 +2412,7 @@ const foo$ = click$
 // output
 {
   inner: 0,
-  outter: {
+  outer: {
     x: 132,
     y: 157
   }
