@@ -70,16 +70,16 @@ Và Rxjs giúp chúng ta có được **reactive** trong lập trình ứng dụ
 > ReactiveX combines the Observer pattern with the Iterator pattern and functional programming with collections to fill the need for an ideal way of managing sequences of events.
 > 
 
-Các Concepts nền tảng của Rxjs bao gồm:
+**Các Concepts nền tảng của Rxjs bao gồm:**
 
 > An Observable is a collection that arrives over time
 
-* Observable: đại diện cho khái niệm về một tập hợp các giá trị hoặc các sự kiện trong tương lai. Khi các giá trị hoặc sự kiện phát sinh trong tương lai, Observable sẽ điều phối nó đến Observer.
-* Observer: là một tập hợp các callbacks tương ứng cho việc lắng nghe các giá trị (`value`, `error`, hay `complete`) được gửi đến bởi Observable.
-* Subscription: là kết quả có được sau khi thực hiện một Observable, nó thường dùng cho việc hủy việc tiếp tục xử lý.
-* Operators: là các pure functions cho phép lập trình functional với Observable.
-* Subject: để thực hiện việc gửi dữ liệu đến nhiều Observers (multicasting).
-* Schedulers: một scheduler sẽ điều khiển khi nào một subscription bắt đầu thực thi, và khi nào sẽ gửi tín hiệu đi. (Trong bài này chúng ta sẽ không nói về phần này).
+* **Observable**: đại diện cho khái niệm về một tập hợp các giá trị hoặc các sự kiện trong tương lai. Khi các giá trị hoặc sự kiện phát sinh trong tương lai, Observable sẽ điều phối nó đến Observer.
+* **Observer**: là một tập hợp các callbacks tương ứng cho việc lắng nghe các giá trị (`next`, `error`, hay `complete`) được gửi đến bởi Observable.
+* **Subscription**: là kết quả có được sau khi thực hiện một Observable, nó thường dùng cho việc hủy việc tiếp tục xử lý.
+* **Operators**: là các pure functions cho phép lập trình functional với Observable.
+* **Subject**: để thực hiện việc gửi dữ liệu đến nhiều Observers (multicasting).
+* **Schedulers**: một scheduler sẽ điều khiển khi nào một subscription bắt đầu thực thi, và khi nào sẽ gửi tín hiệu đi. (Trong bài này chúng ta sẽ không nói về phần này).
 {:.tpc__list}
 
 ## 2. Array Trong Javascript
@@ -186,6 +186,7 @@ Method `reduce` cho phép chúng ta lặp qua tất cả các phần tử và á
 * `currentValue`: giá trị của phần tử hiện tại trong array.
 * `currentIndex`: index của phần tử hiện tại.
 * `array`: chính là mảng hiện tại.
+{:.tpc__list}
 
 Ngoài ra, chúng ta còn có thể cung cấp giá trị ban đầu `initialValue` sau tham số function đầu tiên.
 
@@ -262,7 +263,7 @@ Ví dụ:
 **Pull**
 
 ```ts
-const arr = [1,2,3,4];
+const arr = [1, 2, 3, 4];
 const iter = arr[Symbol.iterator]();
 
 iter.next();
@@ -290,8 +291,9 @@ iter.next();
 **Push**
 
 ```ts
-var button = document.querySelector('button');
+const button = document.querySelector('button');
 button.addEventListener('click', () => console.log('Clicked!'));
+
 ```
 
 ## 4. Observable
@@ -1379,6 +1381,7 @@ Một số operators tương tự:
 * throw: để bắn ra error.
 * empty: không gửi gì khác ngoài `complete` signal.
 * never: không gửi bất kỳ loại signals nào.
+{:.tpc__list}
 
 **Tổng quát cho các loại event** thì chúng ta có `fromEventPattern`:
 
