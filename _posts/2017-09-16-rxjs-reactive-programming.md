@@ -2504,6 +2504,8 @@ Trong bài này chúng ta đã tìm hiểu rất nhiều vấn đề về Reacti
 
 **Marble diagrams** các bạn có thể theo dõi trên trang chủ ReactiveX.
 
+**Observable vs Promise**: Khả năng mở rộng của Observable là rất lớn, nó bao quát được nhiều vấn đề mà Promise còn thiếu, như emit multiple values, hay cancel execution. Hơn nữa, nó đang trong giai đoạn phát triển để trở thành standard của EcmaScript (hiện tại đang ở stage-1), nên việc sử dụng Observable thay vì Promise có lẽ là điều chúng ta nên cân nhắc.
+
 Các bạn quan tâm về Rxjs có thể theo dõi thêm các phần khác ở trong link tham khảo cuối bài.
 
 Sau đây là một phần bonus để các bạn tạo ra một `Decorator` mà nó chịu trách nhiệm tự `unsubscribe` các subscription trong ứng dụng của bạn.
@@ -2522,7 +2524,7 @@ export function Destroy() {
       if (oldNgOnDestroy) {
         oldNgOnDestroy();
       }
-      target[key].next(true);
+      target[key].next(true); // any kind of value
     }
   }
 }
