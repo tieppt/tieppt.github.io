@@ -1456,7 +1456,25 @@ source.subscribe(x => console.log(x));
 
 ```
 
-Còn nhiều các operators khác nữa, các bạn vào trang chủ của ReactiveX để xem thêm.
+**repeat**: `repeat(count: number): Observable`
+Repeat khi nào Observable complete, có thể giới hạn số lần repeat.
+
+```ts
+const array = [5, 10, 15];
+const source = Rx.Observable.from(array).repeat(2);
+source.subscribe(x => console.log(x));
+
+// result
+5
+10
+15
+5
+10
+15
+
+```
+
+Còn nhiều các operators khác nữa như `repeatWhen`, các bạn vào trang chủ của ReactiveX để xem thêm.
 
 ### 10.3 Transformation Operators
 {:#rxjs-TransformationOperators}
@@ -1563,7 +1581,7 @@ const bufferTimeSub = bufferTime.subscribe(
 
 ```
 
-Ngoài ra còn rất nhiều operator khác, và một số Operators chúng ta sẽ tìm hiểu ở phần sau "Higher Order Observables".
+Ngoài ra còn rất nhiều operators khác như `buffer`, và một số Operators chúng ta sẽ tìm hiểu ở phần sau "Higher Order Observables".
 
 ### 10.4 Filtering Operators
 {:#rxjs-FilteringOperators}
@@ -1794,7 +1812,7 @@ const sub = mousemove$
 
 Khi bạn không di chuyển chuột mà click liên tục thì không có gì được emit cả.
 
-Trên đây chỉ là một số Filter Operators hay dùng, các bạn có thể vào trang chủ của ReactiveX để tìm hiểu thêm.
+Trên đây chỉ là một số Filter Operators hay dùng, các bạn có thể vào trang chủ của ReactiveX để tìm hiểu thêm những operators như `debounce`, `throttle`, etc.
 
 ### 10.5 Combination Operators
 {:#rxjs-CombinationOperators}
@@ -2142,3 +2160,417 @@ const sub = source
 "complete"
 
 ```
+
+### 10.5 Error Handling Operators
+{:#rxjs-ErrorHandlingOperators}
+
+Error Handling Operators sử dụng để handle error trong ứng dụng của bạn.
+
+**catch**: `catch(project : function): Observable`
+
+Thường được sử dụng rộng rãi để handle error.
+
+Ví dụ:
+
+```ts
+//emit error
+const source = Rx.Observable.throw('This is an error!');
+//gracefully handle error, returning observable with error message
+const example = source.catch(val => Rx.Observable.of(`I caught: ${val}`));
+
+const subscribe = example.subscribe(val => console.log(val));
+
+//output:
+'I caught: This is an error'
+
+```
+
+**retry**: `retry(number: number): Observable`
+
+Sử dụng để restart lại stream trong trường hợp stream bị văng ra lỗi. Có thể giới hạn số lần retry bằng cách truyền vào tham số. Nếu không truyền vào, sẽ retry luôn retry mỗi khi lỗi văng ra.
+
+Chẳng hạn khi bạn reqest lên server để lấy dữ liệu, giả sử trong quá trình này bạn muốn request lại 2 lần nếu bị văng ra lỗi.
+
+```ts
+//emit value every 1s
+const source = Rx.Observable.interval(1000);
+const example = source
+  .mergeMap(val => {
+    //throw error for demonstration
+    if(val > 5){
+      return Rx.Observable.throw('Error!');
+    }
+    return Rx.Observable.of(val);
+  })
+  //retry 2 times on error
+  .retry(2);
+const subscribe = example
+  .subscribe({
+     next: val => console.log(val),
+     error: val => console.log(`${val}: Retried 2 times then quit!`)
+});
+
+// output: 
+"0..1..2..3..4..5..."
+"0..1..2..3..4..5..."
+"0..1..2..3..4..5..."
+"Error!: Retried 2 times then quit!"
+
+```
+
+**retryWhen**: `retryWhen(receives: (errors: Observable) => Observable, the: scheduler): Observable`
+
+Retry một Observable dựa vào một `errors` Observable emit value. `errors` Observable này chỉ emit `next` khi `source` Observable văng ra error, khi đó chúng ta có thể xác định khi nào lại subscribe vào `source` Observable lần nữa.
+
+```ts
+const source = Rx.Observable.interval(1000);
+const retryWhen$ = source
+  .map(val => {
+    if(val > 5){
+     //error will be picked up by retryWhen
+     throw val;
+    }
+    return val;
+  })
+  .retryWhen(errors => errors.delay(500));
+
+const subscribe = retryWhen$.subscribe(
+  val => console.log(val)
+);
+
+// output
+0
+1
+2
+3
+4
+5
+// error then wait 500ms
+0
+1
+2
+3
+...
+
+```
+
+### 10.6 Utility Observables
+{:#rxjs-UtilityOperators}
+
+**do**: `do(nextOrObserver: function, error: function, complete: function): Observable`
+
+Dùng để thực hiện một hành động nào đó, và đảm bảo side-effect không ảnh hưởng tới source. Như ví dụ dưới đây, chúng ta đã thực hiện update value cho `val` trong `do`, nhưng không bị ảnh hưởng gì.
+
+```ts
+const source = Rx.Observable.of(1, 2, 3);
+
+const foo$ = source
+  .do(function(val) {
+    console.log(`BEFORE: ${val}`);
+    
+    // do some stuff
+    val++;
+    return val;
+  })
+  .map(
+    val => val + 10
+  );
+
+const subscribe = foo$.subscribe(val => console.log(val));
+
+// output
+"BEFORE MAP: 1"
+11
+"BEFORE MAP: 2"
+12
+"BEFORE MAP: 3"
+13
+
+```
+
+**delay**: `delay(delay: number | Date, scheduler: Scheduler): Observable`
+
+Delay emit value theo một khoảng thời gian cho trước.
+
+Ví dụ chúng ta muốn delay 1s rồi mới bắt đầu emit value cho stream sau:
+
+```ts
+
+const source = Rx.Observable.of(1, 2, 3);
+
+const foo$ = source.delay(1000);
+
+foo$.subscribe(x => console.log(x));
+
+```
+
+Và còn nhiều operators khác như `toPromise` trên trang chủ của ReactiveX.
+
+### 10.7 Higher Order Observables
+{:#rxjs-HigherOrderOperators}
+
+Higher Order Observable (HOO) là một Observable trả về một Observable, nó giống như mảng nhiều chiều vậy - mảng 2 chiều chứa trong nó các mảng 1 chiều.
+
+Ví dụ:
+
+```ts
+
+const interval = Rx.Observable.interval(500).take(4);
+const source = Rx.Observable.of(1, 2, 3);
+
+const foo$ = interval.map(x => source);
+
+foo$.subscribe(result => {
+  result.subscribe(val => console.log(val));
+});
+
+```
+
+Oh, nhìn thế này không ổn, phải có cách nào khác. Hãy quay lại ví dụ flatten Array ở trên, Observable cũng cung cấp cho chúng ta giải pháp để thực hiện flatten HOO.
+
+**mergeMap**: `mergeMap(project: function: Observable, resultSelector: function: any, concurrent: number): Observable`
+
+```ts
+const interval = Rx.Observable.interval(500).take(4);
+const source = Rx.Observable.of(1, 2, 3);
+
+const foo$ = interval
+  .map(x => source)
+  .mergeAll();
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+Hay có một cách viết ngắn gọn hơn, là alias của cách viết ở trên:
+
+```ts
+const foo$ = interval
+  .mergeMap(x => source);
+
+```
+
+Bây giờ chúng ta thay đổi 1 chút, cứ mỗi lần click vào `document`, chúng ta sẽ start stream `interval`:
+
+```ts
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500).take(4);
+
+const foo$ = click$
+  .mergeMap(x => interval);
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+Khi bạn click 3 lần chẳng hạn, sẽ tạo ra 3 stream chạy đồng thời (nếu cái trước chưa complete thì cái mới vẫn start), lúc này tương tự như `merge`, chúng ta có thể control có bao nhiêu stream được chạy đồng thời.
+
+Ví dụ chúng ta giới hạn có 2 stream chạy đồng thời.
+
+```ts
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500).take(4);
+
+const foo$ = click$
+  .mergeMap(x => interval, null, 2);
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+Tham số thứ 2 của `mergeMap` được đặt tên là `resultSelector`, tham số này cho phép chúng ta truyền vào 1 hàm để xử lý inner và outer Observable value.
+
+Ví dụ, mình muốn lấy về tọa độ `X`, `Y` của stream `click$` kèm theo giá trị emit của `interval`:
+
+
+```ts
+
+const foo$ = click$
+  .mergeMap(x => interval, (outter, inner) => {
+    const cord = {
+      x: outter.clientX,
+      y: outter.clientY
+    };
+    
+    return {
+      outter: cord,
+      inner: inner
+    };
+  }, 2);
+
+// output
+{
+  inner: 0,
+  outter: {
+    x: 132,
+    y: 157
+  }
+}
+...
+
+```
+
+Lưu ý: `flatMap` là một alias cho `mergeMap`
+
+
+**concatMap**: `concatMap(project: function, resultSelector: function): Observable`
+
+Khi chỉ cho phép 1 stream được chạy, các stream khác phải đợi stream trước complete mới được chạy - tương tự `concat` thì chúng ta có operator `concatMap`.
+
+
+```ts
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500).take(4);
+
+const foo$ = click$
+  .concatMap(x => interval);
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+Khi bạn click vào document nhiều lần thì chỉ có 1 stream `interval` chạy tại 1 thời điểm, những stream khác phải đợi stream trước complete mới thực thi.
+
+Tham số `resultSelector` cũng giống như `mergeMap`.
+
+**switchMap**: `switchMap(project: function: Observable, resultSelector: function(outerValue, innerValue, outerIndex, innerIndex): any): Observable`
+
+Chỉ cho phép 1 stream được chạy, nếu stream trước chưa `complete` thì `unsubscribe`.
+
+`switchMap` rất hữu ích khi làm việc với HTTP request, giả sử request cũ chưa trả về giá trị mà người dùng đã request dữ liệu mới thì chúng ta có thể cancel để tránh việc dư thừa hoặc xử lý sai dữ liệu (dữ liệu cũ hơn response sau dữ liệu mới hơn). Khi cần đảm bảo chỉ có stream mới nhất đang chạy.
+
+
+```ts
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500).take(4);
+
+const foo$ = click$
+  .switchMap(x => interval);
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+Khi bạn click vào document nhiều lần, nếu để ý bạn sẽ thấy những stream trước đó chưa complete sẽ bị cancel và start stream mới.
+
+Ngoài ra nó còn hữu ích để tránh việc bị leak. Giả sử stream `interval` kia chạy vô hạn, nếu bạn không cancel trước đó thì chẳng mấy chốc ứng dụng của bạn sẽ crash khi người dùng click càng ngày càng nhiều lần.
+
+
+```ts
+
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500);
+
+const foo$ = click$
+  .switchMap(x => interval);
+
+foo$.subscribe(val => console.log(val));
+
+// vs mergeMap
+
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const interval = Rx.Observable.interval(500);
+
+const foo$ = click$
+  .mergeMap(x => interval);
+
+foo$.subscribe(val => console.log(val));
+
+```
+
+`switchMap` cũng có `resultSelector` cho phép chúng ta tùy chọn dữ liệu cần emit.
+
+Lưu ý: Trong hầu hết các trường hợp nếu bạn không có ý định gì đặc biệt thì nên dùng `switchMap` thay vì `mergeMap`.
+
+## 11. Tổng kết
+
+Trong bài này chúng ta đã tìm hiểu rất nhiều vấn đề về Reactive Programming với Rxjs, nhưng vẫn còn thiếu phần **Multicasting**, hi vọng mình sẽ làm xong phần đó trong thời gian tới.
+
+Các bạn quan tâm về Rxjs có thể theo dõi thêm các phần khác ở trong link tham khảo cuối bài.
+
+Sau đây là một phần bonus để các bạn tạo ra một `Decorator` mà nó chịu trách nhiệm tự `unsubscribe` các subscription trong ứng dụng của bạn.
+
+```ts
+
+// `decorators.ts`
+import { Subject } from 'rxjs/Subject';
+
+export function Destroy() {
+  return function (target: any, key: string) {
+    target[key] = new Subject();
+    const oldNgOnDestroy = target.ngOnDestroy;
+    target.ngOnDestroy = () => {
+      if (oldNgOnDestroy) {
+        oldNgOnDestroy();
+      }
+      target[key].next(true);
+    }
+  }
+}
+
+// `app.component.ts`
+
+import { Component, OnDestroy } from '@angular/core';
+import { Destroy } from './decorators';
+
+// alway import Observable, Subject, etc this way
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/takeUntil';
+
+@Component({
+  selector: 'some-component',
+  template: `Tick: {{ tick }}`,
+})
+export class SomeComponent {
+  @Destroy() destroy$: Subject<any>;
+
+  tick: number;
+  constructor() {
+    Observable.interval(500)
+      .takeUntil(this.destroy$)
+      .subscribe(e => {
+        console.log(e);
+        this.tick = e;
+      });
+  }
+}
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button (click)="show = !show">Toggle</button>
+
+    <some-component *ngIf="show"></some-component>
+  `,
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'app';
+  show = true;
+}
+
+```
+
+## 12. Link tham khảo
+
+[Rxjs Official Docs](http://reactivex.io/rxjs/manual/overview.html)
+
+[learnrxjs.io](https://www.learnrxjs.io/)
+
+[rxmarbles.com](http://rxmarbles.com/)
+
+[Rx Visualizer](https://rxviz.com/)
+
+[Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
+
+[The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
+
+[Rxjs Github Repo](https://github.com/ReactiveX/rxjs)
