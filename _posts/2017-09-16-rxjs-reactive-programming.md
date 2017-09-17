@@ -719,7 +719,7 @@ Lần này, sau 1s thì cả 2 execution đều in ra giá trị là 15.
 
 Giả sử chúng ta có đoạn code sau đây:
 
-Ở đây mình mong muốn sau khi observerBaz chạy 1.5s thì observerBar sẽ nhận được giá trị hiện tại mà observerBaz đang nhận.
+Ở đây mình mong muốn sau khi `observerBaz` chạy 1.5s thì `observerBar` sẽ nhận được giá trị hiện tại mà `observerBaz` đang nhận.
 
 ```ts
 const foo = Rx.Observable.interval(500).take(5);
@@ -762,7 +762,7 @@ Kết quả khi chạy chương trình:
 
 ```
 
-Oh well, observerBaz và observerBar tạo ra các execution khác nhau của riêng chúng, chúng ta không kết nối chúng đến với nhau theo cách trên được.
+Oh well, `observerBaz` và `observerBar` tạo ra các execution khác nhau của riêng chúng, chúng ta không kết nối chúng đến với nhau theo cách trên được.
 
 Có cách nào để share execution giữa nhiều Observers không?
 
