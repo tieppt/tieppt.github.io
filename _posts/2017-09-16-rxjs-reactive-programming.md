@@ -2498,6 +2498,8 @@ Lưu ý: Trong hầu hết các trường hợp nếu bạn không có ý địn
 
 Trong bài này chúng ta đã tìm hiểu rất nhiều vấn đề về Reactive Programming với Rxjs, nhưng vẫn còn thiếu phần **Multicasting**, hi vọng mình sẽ làm xong phần đó trong thời gian tới.
 
+**marble diagrams** các bạn có thể theo dõi trên trang chủ ReactiveX.
+
 Các bạn quan tâm về Rxjs có thể theo dõi thêm các phần khác ở trong link tham khảo cuối bài.
 
 Sau đây là một phần bonus để các bạn tạo ra một `Decorator` mà nó chịu trách nhiệm tự `unsubscribe` các subscription trong ứng dụng của bạn.
