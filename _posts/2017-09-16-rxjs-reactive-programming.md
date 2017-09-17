@@ -1678,7 +1678,7 @@ const subscribe = skip$.subscribe(val => console.log(val));
 
 ```
 
-Tương tự như `takeUntil`, `takeWhile`, chúng ta cũng có `skipUntil`, `skipWhile`
+Tương tự như `takeUntil`, `takeWhile`, nhưng hành động skip thay vì take, chúng ta cũng có `skipUntil`, `skipWhile`
 
 `take(1)` chúng ta có một cách viết khác `first`:
 
@@ -1796,4 +1796,349 @@ Khi bạn không di chuyển chuột mà click liên tục thì không có gì �
 
 Trên đây chỉ là một số Filter Operators hay dùng, các bạn có thể vào trang chủ của ReactiveX để tìm hiểu thêm.
 
+### 10.5 Combination Operators
+{:#rxjs-CombinationOperators}
 
+Combination Operators: sử dụng để kết hợp các Observables lại với nhau.
+
+**merge**: có thể sử dụng cả instance và static operator. Dùng để merge nhiều Observables thành một Observable.
+
+`Rx.Observable.merge(observables: ...ObservableInput, concurrent: number): Observable`
+
+`merge(input: Observable, concurrent: number): Observable`
+
+`concurrent`: số lượng stream được phép chạy đồng thời.
+
+![rxjs merge](/assets/uploads/2017/09/rxjs-merge.png){:class="img-responsive"}
+{:class="text-center"}
+
+```ts
+const s1 = Rx.Observable.interval(300).take(5)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(3)
+  .map(x => `s2: ${x}`);
+
+const s3 = Rx.Observable.interval(700).take(2)
+  .map(x => `s3: ${x}`);
+
+const source = Rx.Observable.merge(
+  s1,
+  s2,
+  s3
+);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+// output
+"s1: 0"
+"s2: 0"
+"s1: 1"
+"s3: 0"
+"s1: 2"
+"s2: 1"
+"s1: 3"
+"s3: 1"
+"s1: 4"
+"s2: 2"
+
+```
+
+Lúc này cả 3 cùng chạy đồng thời, nếu bạn muốn dùng instance operator thì thay như sau:
+
+```ts
+const source = s1.merge(s2, s3);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+```
+
+Giả sử bạn muốn chỉ 2 stream được chạy đồng thời:
+
+```ts
+const s1 = Rx.Observable.interval(300).take(5)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(3)
+  .map(x => `s2: ${x}`);
+
+const s3 = Rx.Observable.interval(700).take(2)
+  .map(x => `s3: ${x}`);
+
+const source = Rx.Observable.merge(
+  s1,
+  s2,
+  s3,
+  2
+);
+
+// const source = s1.merge(s2, s3, 2);
+
+const sub = source
+  .subscribe(x => console.log(x));
+// output
+"s1: 0"
+"s2: 0"
+"s1: 1"
+"s1: 2"
+"s2: 1"
+"s1: 3"
+"s1: 4"
+"s2: 2"
+"s3: 0"
+"s3: 1"
+
+```
+
+`s3` sẽ đợi cho `s1`, `s2` complete rồi mới bắt đầu chạy.
+
+**concat**: trong trường hợp bạn chỉ muốn 1 stream được chạy, các stream khác phải đợi stream trước complete.
+
+Tương đương với `merge(...observables, 1)`. Giống như Array `concat` vậy.
+
+```ts
+const source = Rx.Observable.merge(
+  s1,
+  s2,
+  s3,
+  1
+);
+
+const csource = Rx.Observable.concat(
+  s1,
+  s2,
+  s3
+);
+
+// output
+"s1: 0"
+"s1: 1"
+"s1: 2"
+"s1: 3"
+"s1: 4"
+"s2: 0"
+"s2: 1"
+"s2: 2"
+"s3: 0"
+"s3: 1"
+
+```
+
+Trong nhiều trường hợp bạn muốn tạo ra 1 Observable cho 1 giá trị, rồi dùng nó `concat` với một số Observables khác, lúc này chúng ta có một cách viết gọn hơn sử dụng `startWith` với cú pháp `startWith(an: Values): Observable`.
+
+```ts
+
+//emit (1,2,3)
+const source = Rx.Observable.of(1, 2, 3);
+//start with 0
+const stream =  source.startWith(0);
+
+const subscribe = stream.subscribe(val => console.log(val));
+
+//output: 0,1,2,3
+
+```
+
+**combineLatest**: `combineLatest(observables: ...Observable, project: function): Observable`
+
+combineLatest Operator có thể dùng cả static và instance.
+
+Mỗi khi một Observable emit value, emit giá trị mới nhất từ tất cả `observables`, nhưng phải thỏa mãn các Observable khác cũng đã emit value.
+
+Như trong ví dụ sau, khi `source` emit value, nó emit giá trị của `s1` lúc này là `2`, nhưng `s3` lúc này mới emit value đầu tiên.
+
+```ts
+const s1 = Rx.Observable.interval(300).take(5)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(3)
+  .map(x => `s2: ${x}`);
+
+const s3 = Rx.Observable.interval(1000).take(2)
+  .map(x => `s3: ${x}`);
+
+
+const source = Rx.Observable.combineLatest(
+  s1,
+  s2,
+  s3
+);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+// output
+["s1: 2", "s2: 1", "s3: 0"]
+["s1: 3", "s2: 1", "s3: 0"]
+["s1: 4", "s2: 1", "s3: 0"]
+["s1: 4", "s2: 2", "s3: 0"]
+["s1: 4", "s2: 2", "s3: 1"]
+
+```
+
+Hoặc trường hợp bạn muốn xử lý giá trị trước bằng `project` function:
+
+```ts
+const source = Rx.Observable.combineLatest(
+  s1,
+  s2,
+  s3,
+  (a, b, c) => (a + '|' + b + '|' + c)
+);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+// output
+"s1: 2|s2: 1|s3: 0"
+"s1: 3|s2: 1|s3: 0"
+"s1: 4|s2: 1|s3: 0"
+"s1: 4|s2: 2|s3: 0"
+"s1: 4|s2: 2|s3: 1"
+
+```
+
+![rxjs combineLatest](/assets/uploads/2017/09/rxjs-combineLatest.png){:class="img-responsive"}
+{:class="text-center"}
+
+**withLatestFrom**: `withLatestFrom(other: Observable, project: Function): Observable`
+
+Lưu ý: chỉ có thể sử dụng instance operator với **withLatestFrom**.
+
+Sử dụng để emit value của Observable này `this` kết hợp với latest value của `other` Observable, nếu `other` chưa emit gì thì `this` có emit value cũng không emit gì cả.
+
+![rxjs withLatestFrom](/assets/uploads/2017/09/rxjs-withLatestFrom.png){:class="img-responsive"}
+{:class="text-center"}
+
+```ts
+
+const s1 = Rx.Observable.interval(200).take(10)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(4)
+  .map(x => `s2: ${x}`);
+
+
+const source = s1.withLatestFrom(
+  s2,
+  (a, b) => (a + '|' + b)
+);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+// output
+"s1: 2|s2: 0"
+"s1: 3|s2: 0"
+"s1: 4|s2: 1"
+"s1: 5|s2: 1"
+"s1: 6|s2: 1"
+"s1: 7|s2: 2"
+"s1: 8|s2: 2"
+"s1: 9|s2: 3"
+
+```
+
+Stream `s1` bị phụ thuộc vào `s2` trong giai đoạn đầu tiên, vì khi đó `s2` chưa emit gì, nên `s1` cũng không emit, đến khi `s2` bắt đầu emit thì những lần emit sau đó của `s1` sẽ kết hợp với giá trị mới nhất của `s2`.
+
+Nếu bạn muốn mỗi khi có giá trị của stream emit thì emit giá trị mới nhất của các stream khác, lúc này bạn nên dùng `combineLatest`.
+Chẳng hạn, bạn có search box với `n` fields để thiết lập điều kiện, và khi mỗi field thay đổi thì sẽ lấy danh sách mới dựa theo list các điều kiện kia chẳng hạn.
+
+**forkJoin**: `forkJoin(...observables, selector : function): Observable`
+
+Khi tất cả các Observables complete, emit giá trị cuối cùng của mỗi Observable.
+
+Lưu ý: nếu còn một stream không complete, hoặc 1 stream không emit value nào `empty` thì không có gì được emit cả.
+
+Chỉ có thể sử dụng static operator.
+
+```ts
+const s1 = Rx.Observable.interval(200).take(10)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(4)
+  .map(x => `s2: ${x}`);
+
+
+const source = Rx.Observable.forkJoin(
+  s1,
+  s2,
+  (a, b) => (a + '|' + b)
+);
+
+const sub = source
+  .subscribe(x => console.log(x));
+
+// output
+"s1: 9|s2: 3"
+
+```
+
+Không emit gì cả ngoài `complete`:
+
+```ts
+const s1 = Rx.Observable.interval(200).take(10)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(2)
+  .map(x => `s2: ${x}`);
+const s3 = Rx.Observable.empty();
+
+
+const source = Rx.Observable.forkJoin(
+  s1,
+  s2,
+  s3,
+  (a, b) => (a + '|' + b)
+);
+
+const sub = source
+  .subscribe(
+    x => console.log(x),
+    null,
+    () => console.log('complete')
+);
+
+// output
+"complete"
+
+```
+
+**zip**: `zip(observables: *): Observable`
+
+Sau khi tất cả Observables emit value, thì emit 1 mảng các giá trị tương ứng (cùng index). Nếu một phần tử không emit gì cả `never`, hoặc complete ngay `empty`, thì không có gì emit cả. Trường hợp `empty` thì chỉ send `complete` signal.
+
+> The zip operator will subscribe to all inner observables, waiting for each to emit a value. Once this occurs, all values with the corresponding index will be emitted. This will continue until at least one inner observable completes.
+
+![rxjs zip](/assets/uploads/2017/09/rxjs-zip.png){:class="img-responsive"}
+{:class="text-center"}
+
+```ts
+const s1 = Rx.Observable.interval(200).take(10)
+  .map(x => `s1: ${x}`);
+
+const s2 = Rx.Observable.interval(500).take(3)
+  .map(x => `s2: ${x}`);
+
+
+const source = Rx.Observable.zip(
+  s1,
+  s2,
+);
+
+const sub = source
+  .subscribe(
+    x => console.log(x),
+    null,
+    () => console.log('complete')
+  );
+
+// output
+["s1: 0", "s2: 0"]
+["s1: 1", "s2: 1"]
+["s1: 2", "s2: 2"]
+"complete"
+
+```
