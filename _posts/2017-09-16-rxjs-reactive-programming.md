@@ -1366,3 +1366,209 @@ const foo = Rx.Observable.of(100, 200, 400);
 
 ```
 
+Lưu ý: với các static values như ví dụ trên, chúng được gửi đi sync. (mặc đinh nếu không có tác động của Scheduler).
+
+Sau khi gửi đi hết dữ liệu, nó sẽ gửi `complete` signal.
+
+Một số operators tương tự:
+
+* interval: thay vì tự tạo interval với setInterval, chúng ta dùng operator này cho mục đích tương tự.
+* timer: giống như setTimeout, sau một khoảng thời gian nào đó thì emit value.
+* throw: để bắn ra error.
+* empty: không gửi gì khác ngoài `complete` signal.
+* never: không gửi bất kỳ loại signals nào.
+
+**Tổng quát cho các loại event** thì chúng ta có `fromEventPattern`:
+
+> Converts any addHandler/removeHandler API to an Observable.
+
+Ví dụ:
+
+```ts
+
+function addClickHandler(handler) {
+  document.addEventListener('click', handler);
+}
+
+function removeClickHandler(handler) {
+  document.removeEventListener('click', handler);
+}
+
+var clicks = Rx.Observable.fromEventPattern(
+  addClickHandler,
+  removeClickHandler
+);
+clicks.subscribe(x => console.log(x));
+
+```
+
+**Để làm việc với DOM event** chúng ta có `fromEvent` operator, nó là bản chi tiết của `fromEventPattern`:
+
+```ts
+const source = Rx.Observable.fromEvent(document, 'click');
+
+const foo = source.map(event => event.clientX)
+
+const subscribe = foo.subscribe(val => console.log(val));
+
+```
+
+Khi click vào trang web, chúng ta có thể thấy console hiển thị tọa độ X ra.
+
+**Để convert từ Promise sang Observable** chúng ta có `fromPromise` operator:
+
+```ts
+
+function getInfo() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        site: 'tiepphan.com',
+        post: 'Rxjs và Reactive Programming'
+      });
+    }, 300);
+  });
+}
+
+const source = Rx.Observable.fromPromise(getInfo());
+
+const subscribe = source.subscribe(val => console.log(val));
+
+// result after 300ms
+[object Object] {
+  post: "Rxjs và Reactive Programming",
+  site: "tiepphan.com"
+}
+
+```
+
+**Tạo mới một Observable từ Array, array-like object, Promise, iterable object, hoặc Observable-like object** chúng ta dùng `from` operator:
+
+```ts
+const array = [5, 10, 15];
+const source = Rx.Observable.from(array);
+source.subscribe(x => console.log(x));
+
+// result
+5
+10
+15
+
+```
+
+Còn nhiều các operators khác nữa, các bạn vào trang chủ của ReactiveX để xem thêm.
+
+### 9.3 Transformation Operators
+{:#rxjs-TransformationOperators}
+
+Transformation Operators dùng để chuyển đổi giá trị của Observable từ dạng này sang sang dạng khác.
+
+Hay gặp nhất có lẽ là `map`, nó tương tự như `mmap` operator mà chúng ta đã tạo ở trên (tạo để tìm hiểu cơ chế hoạt động).
+
+```ts
+//emit (1,2,3,4,5)
+const source = Rx.Observable.from([1,2,3,4,5]);
+//add 10 to each value
+const example = source.map(val => val + 10);
+//output: 11,12,13,14,15
+const subscribe = example.subscribe(val => console.log(val));
+
+```
+
+Các bạn có thể dùng `map` để chuyển đổi theo bất kỳ yêu cầu nào của các bạn. Ví dụ khi làm việc với Response object của HTTP, lúc này các bạn có thể convert từ JSON thành object như sau:
+
+```ts
+this.http.get(API_ENDPOINT) // return Observable
+  .map(res => res.json());
+
+```
+
+Khi bạn muốn luôn luôn trả về 1 giá trị cho các giá trị được emit, lúc này bạn có thể dùng `mapTo` operator.
+
+```ts
+//emit every click on document
+const source = Rx.Observable.fromEvent(document, 'click');
+//map all emissions to one value
+const example = source.mapTo(10);
+//output: (click) 10...10...
+const subscribe = example.subscribe(val => console.log(val));
+
+```
+
+**scan**: `scan(accumulator: function, seed: any): Observable`
+
+Giống như Array `scan`.
+
+```ts
+//emit array as a sequence of values
+const arraySource = Rx.Observable.from([1,2,3,4,5]);
+
+const source = arraySource.scan( (acc, current) => acc + current, 0);
+
+const subscribe = source.subscribe(val => console.log(val));
+
+// result
+1
+3
+6
+10
+15
+
+```
+
+**buffer**: `buffer(closingNotifier: Observable): Observable`
+
+Lưu trữ giá trị được emit ra và đợi đến khi `closingNotifier` emit thì emit những giá trị đó thành 1 array.
+
+```ts
+const interval$ = Rx.Observable.interval(1000);
+
+const click$ = Rx.Observable.fromEvent(document, 'click');
+
+const buffer$ = interval$.buffer(click$);
+
+
+const subscribe = buffer$.subscribe(
+  val => console.log('Buffered Values: ', val)
+);
+
+// output có dạng
+"Buffered Values: "
+[0, 1]
+"Buffered Values: "
+[2, 3, 4, 5, 6]
+
+```
+
+**bufferTime**: `bufferTime(bufferTimeSpan: number, bufferCreationInterval: number, scheduler: Scheduler): Observable`
+
+Tương tự như `buffer`, nhưng emit values mỗi khoảng thời gian `bufferTimeSpan` ms.
+
+```ts
+const source = Rx.Observable.interval(500);
+
+const bufferTime = source.bufferTime(2000);
+
+const bufferTimeSub = bufferTime.subscribe(
+  val => console.log('Buffered with Time:', val)
+);
+// output
+"Buffered with Time:"
+[0, 1]
+"Buffered with Time:"
+[2, 3]
+"Buffered with Time:"
+[4, 5]
+...
+
+```
+
+Ngoài ra còn rất nhiều operator khác, và một số Operators chúng ta sẽ tìm hiểu ở phần sau "Higher Order Observables".
+
+### 9.4 Filtering Operators
+{:#rxjs-FilteringOperators}
+
+Filtering Operators mục đích để filter các giá trị được emit thỏa mãn điều kiện nào đó.
+
+
+
