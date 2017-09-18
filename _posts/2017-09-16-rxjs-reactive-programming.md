@@ -140,7 +140,7 @@ ref.forEach((item, index) => {
 ### 2.2 Array map
 {:#array-map}
 
-Array `map` cho phép chúng ta lặp qua tất cả các phần tử trong mảng, áp dụng một function nào đó lên các phần tử để biến đổi, sau đó trả về một mảng các giá trị sau khi thực hiện và giữ nguyên mảng cũ không bị ảnh hưởng.
+Array `map` cho phép chúng ta lặp qua tất cả các phần tử trong mảng, áp dụng một function nào đó lên các phần tử để biến đổi, sau đó trả về một mảng các giá trị sau khi thực hiện function.
 
 ```ts
 const arr = [1, 2, 3, 4, 5];
