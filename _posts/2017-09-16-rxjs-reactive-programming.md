@@ -305,7 +305,7 @@ button.addEventListener('click', () => console.log('Clicked!'));
 
 Vậy Observable là gì?
 
-**Observable** chỉ là một function (class) mà nó có một số yêu cầu đặc biệt. Nó nhận đầu vào là một Observer và trả về một function để có thể thực hiện việc cancel quá trình xử lý. Thông thường (Rxjs 5) chúng ta đặt tên function đó là `unsubscribe`.
+**Observable** chỉ là một function (class) mà nó có một số yêu cầu đặc biệt. Nó nhận đầu vào là một Function, mà Function này nhận đầu vào là một Observer và trả về một function để có thể thực hiện việc cancel quá trình xử lý. Thông thường (Rxjs 5) chúng ta đặt tên function đó là `unsubscribe`.
 
 **Observer**: một object có chứa các phương thức `next`, `error` và `complete` để xử lý dữ liệu tương ứng với các `signals` được gửi từ Observable.
 
