@@ -95,3 +95,27 @@ iframe {
   left: 0px;
   top: 5px;
 }
+
+.tp-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.pagination-item {
+  display: inline-block;
+  padding: 10px;
+}
+
+.pagination-item:first-child,
+.pagination-item:last-child {
+  padding: 10px 0;
+}

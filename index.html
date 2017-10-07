@@ -34,27 +34,27 @@ pagination:
       </div>
       {% endfor %}
       {% if paginator.total_pages > 1 %}
-      <div class="pagination">
+      <div class="tp-pagination">
         {% if paginator.previous_page %}
-          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}">&laquo; Prev</a>
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}" class="pagination-item">&laquo; Prev</a>
         {% else %}
-          <span>&laquo; Prev</span>
+          <span class="pagination-item">&laquo; Prev</span>
         {% endif %}
 
         {% for page in (1..paginator.total_pages) %}
           {% if page == paginator.page %}
-            <em>{{ page }}</em>
+            <em class="pagination-item">{{ page }}</em>
           {% elsif page == 1 %}
-            <a href="/">{{ page }}</a>
+            <a href="/" class="pagination-item">{{ page }}</a>
           {% else %}
-            <a href="/page/{{ page }}/">{{ page }}</a>
+            <a href="/page/{{ page }}/" class="pagination-item">{{ page }}</a>
           {% endif %}
         {% endfor %}
 
         {% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}">Next &raquo;</a>
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}" class="pagination-item">Next &raquo;</a>
         {% else %}
-          <span>Next &raquo;</span>
+          <span class="pagination-item">Next &raquo;</span>
         {% endif %}
       </div>
       {% endif %}
