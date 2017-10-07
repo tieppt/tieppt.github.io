@@ -2,7 +2,7 @@ language: ruby
 # only run CI-builds on master branch
 branches:
   only:
-  - master
+  - develop
 rvm:
 - 2.4.2
 # set execution permission on our build script
