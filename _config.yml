@@ -12,10 +12,11 @@ keep_files:
   - ".git"
   - ".gitignore"
 # deps
-gems:
+plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-archives
+  - jekyll-paginate-v2
 
 # Site settings
 title: "Lập Trình Thật Kỳ Diệu"
@@ -55,6 +56,9 @@ pagination:
   enabled: true
   per_page: 5
   collection: 'posts'
+  permalink: '/page/:num/'
+  sort_field: 'date'
+  sort_reverse: true
 
 # Archives
 jekyll-archives:

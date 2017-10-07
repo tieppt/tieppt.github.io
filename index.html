@@ -2,6 +2,9 @@
 layout: page
 title: Tiep Phan
 permalink: /
+pagination: 
+  enabled: true
+
 ---
 
 <!-- Slider Start -->
@@ -21,7 +24,7 @@ permalink: /
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
       <div class="post-area">
         <a href="{{ post.url | prepend: site.baseurl }}" class="bold">{{ post.title }}</a>
         <p class="post-date">{{ post.date | date_to_long_string }}</p>
@@ -33,7 +36,7 @@ permalink: /
       {% if paginator.total_pages > 1 %}
       <div class="pagination">
         {% if paginator.previous_page %}
-          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}">&laquo; Prev</a>
         {% else %}
           <span>&laquo; Prev</span>
         {% endif %}
@@ -42,14 +45,14 @@ permalink: /
           {% if page == paginator.page %}
             <em>{{ page }}</em>
           {% elsif page == 1 %}
-            <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+            <a href="/">{{ page }}</a>
           {% else %}
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+            <a href="/page/{{ page }}/">{{ page }}</a>
           {% endif %}
         {% endfor %}
 
         {% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}">Next &raquo;</a>
         {% else %}
           <span>Next &raquo;</span>
         {% endif %}
