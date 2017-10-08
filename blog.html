@@ -5,6 +5,31 @@ permalink: /blog/
 pagination: 
   enabled: true
 ---
+
+{% assign first_page = 1 %}
+{% assign last_page = paginator.total_pages %}
+{% assign p_page = 5 %}
+{% assign window = p_page | divided_by: 2 %}
+{% assign p_range = p_page | minus: 1 %}
+
+{% if paginator.total_pages > p_page %}
+  {% assign first_page = paginator.page | minus: window %}
+  {% if first_page < 1 %}
+    {% assign first_page = 1 %}
+  {% endif %}
+
+  {% assign last_page = first_page | plus: p_range %}
+  {% if last_page > paginator.total_pages %}
+    {% assign last_page = paginator.total_pages %}
+  {% endif %}
+
+  {% assign first_page = last_page | minus: p_range %}
+  
+  {% if first_page < 1 %}
+    {% assign first_page = 1 %}
+  {% endif %}
+{% endif %}
+
 <!-- Slider Start -->
 <section id="global-header">
   <div class="container">
@@ -27,14 +52,14 @@ pagination:
       </div>
       {% endfor %}
       {% if paginator.total_pages > 1 %}
-      <div class="pagination">
+      <div class="tp-pagination">
         {% if paginator.previous_page %}
           <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' | replace: 'index.html', '' }}" class="pagination-item">&laquo; Prev</a>
         {% else %}
           <span class="pagination-item">&laquo; Prev</span>
         {% endif %}
 
-        {% for page in (1..paginator.total_pages) %}
+        {% for page in (first_page..last_page) %}
           {% if page == paginator.page %}
             <em class="pagination-item">{{ page }}</em>
           {% elsif page == 1 %}
