@@ -4,7 +4,7 @@ title: 'Angular 2 &#8211; Bạn Đã Sẵn Sàng Thử Nghiệm'
 date: 2016-12-03T00:00:32+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=131
+guid: https://www.tiepphan.com/?p=131
 permalink: /angular-2-ban-da-san-sang-thu-nghiem/
 description: 'Angular 2đã phát hành chính thức, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa?'
 image: /assets/uploads/2016/11/angular-2.png
@@ -28,7 +28,7 @@ tags:
 <a href="https://angular.io/" target="_blank">Angular 2</a> đã phát hành chính thức, tính tới thời điểm viết bài này, nó đã ra đến phiên bản 2.2.x, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa? Hãy cùng mình thử nghiệm với nó nhé.
 
 
-<a href="http://www.tiepphan.com/assets/uploads/2016/12/angular-angular.png" target="_blank"><img class="img-responsive" src="http://www.tiepphan.com/assets/uploads/2016/12/angular-angular.png" alt="Angular 2 repository Github"/></a>
+<a href="/assets/uploads/2016/12/angular-angular.png" target="_blank"><img class="img-responsive" src="/assets/uploads/2016/12/angular-angular.png" alt="Angular 2 repository Github"/></a>
 {:class="text-center"}
 
 _Hình 1: Repository của Angular 2 trên Github_
@@ -113,7 +113,7 @@ Quá trình khởi tạo lần đầu tiên có thể mất vài (chục) phút,
 
 Sau khi hoàn thành việc khởi tạo project, chúng ta sẽ có một project với cấu trúc dạng như sau:
 
-![Angular project structure](http://www.tiepphan.com/assets/uploads/2016/12/1-project-structure.png){:class="img-responsive"}
+![Angular project structure](/assets/uploads/2016/12/1-project-structure.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 2: Project structure_
@@ -128,7 +128,7 @@ Một ứng dụng Angular 2 xây dựng trên vô số Component.
 
 Để dễ hiểu thì Component là tất cả những gì mà end-user có thể nhận biết, nó có thể được sử dụng lại nhiều lần trong một ứng dụng. Sau khi tạo xong một project với Angular CLI, chúng ta đã có một Component có tên: `AppComponent` trong file `src/app/app.component.ts`.
 
-![AppComponent](http://www.tiepphan.com/assets/uploads/2016/12/2-app-comp.png){:class="img-responsive"}
+![AppComponent](/assets/uploads/2016/12/2-app-comp.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 3: AppComponent_
@@ -142,7 +142,7 @@ _Hình 3: AppComponent_
 
 Nó là một khai báo (Decorator) cho class ngay sau đó, để chỉ ra rằng class đó là một Angular component, bên cạnh đó nó còn cung cấp các configuration metadata để Angular 2 biết cách tạo ra Component tương ứng.
 
-![@Component](http://www.tiepphan.com/assets/uploads/2016/12/3-at-component.png){:class="img-responsive"}
+![@Component](/assets/uploads/2016/12/3-at-component.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 4: `@Component`_
@@ -152,7 +152,7 @@ _Hình 4: `@Component`_
 
 Dòng 4: là `selector` hay mục đích chỉ ra rằng, khi trong template có một thẻ dạng như thẻ HTML có tên `app-root` thì Angular sẽ hiển thị Component khai báo bên dưới vào đó. Bạn có thể nhìn thấy thẻ này trong file `src/index.html`. Trong trường hợp component này, khi render sẽ thay thế phần Text Node `Loading&#8230`.
 
-![app-root](http://www.tiepphan.com/assets/uploads/2016/12/app-root.png){:class="img-responsive"}
+![app-root](/assets/uploads/2016/12/app-root.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 5: Custom tag `<app-root>` &#8211; selector_
@@ -162,13 +162,13 @@ Dòng 5: `templateUrl` sử dụng để link đến phần template tương �
 
 > Lưu ý, nếu bạn dùng property `template`, bạn có thể sử dụng `multi-line string` bằng việc bao đóng string trong cặp dấu <code>``</code>.
 
-![templateUrl](http://www.tiepphan.com/assets/uploads/2016/12/templateUrl.png){:class="img-responsive"}
+![templateUrl](/assets/uploads/2016/12/templateUrl.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 6: templateUrl content_
 {:class="text-center"}
 
-![template](http://www.tiepphan.com/assets/uploads/2016/12/template.png){:class="img-responsive"}
+![template](/assets/uploads/2016/12/template.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 7: inline template content_
@@ -221,7 +221,7 @@ Mỗi ứng dụng Angular đều có ít nhất một Module đó là root Modu
 
 Thông thường nó được đặt tên là `AppModule`, nhưng bạn hoàn toàn có thể đặt bất kỳ tên nào nếu muốn. Bạn có thể tìm thấy Module đó trong file `src/app/app.module.ts`.
 
-![NgModule root Module](http://www.tiepphan.com/assets/uploads/2016/12/NgModule-root-Module-1.png){:class="img-responsive"}
+![NgModule root Module](/assets/uploads/2016/12/NgModule-root-Module-1.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 8: `AppModule` &#8211; root Module_
@@ -268,7 +268,7 @@ Ngoài ra còn có **`exports` array** là list các component mà Module này 
 
 Các bạn có thể tìm thấy câu trả lời trong file `src/main.ts`.
 
-![Angular 2 main](http://www.tiepphan.com/assets/uploads/2016/12/main-1.png){:class="img-responsive"}
+![Angular 2 main](/assets/uploads/2016/12/main-1.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 9: `main.ts`_
@@ -280,7 +280,7 @@ Vậy là tất cả đã rõ, chúng ta có Component, có root Module, có nơ
 
 Các bạn vào Command Prompt/Terminal sau đó gõ lệnh `ng serve` và nhấn enter để Angular CLI thực hiện công việc của nó.
 
-![ng serve](http://www.tiepphan.com/assets/uploads/2016/12/ng-serve.png){:class="img-responsive"}
+![ng serve](/assets/uploads/2016/12/ng-serve.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 10: ng serve_
@@ -288,7 +288,7 @@ _Hình 10: ng serve_
 
 Sau đó, các bạn mở trình duyệt vào truy cập vào địa chỉ <a href="http://localhost:4200/" target="_blank">http://localhost:4200/</a>. Kết quả có dạng như sau.
 
-![first app](http://www.tiepphan.com/assets/uploads/2016/12/first-app.png){:class="img-responsive"}
+![first app](/assets/uploads/2016/12/first-app.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 11: first app_
@@ -296,13 +296,13 @@ _Hình 11: first app_
 
 Bây giờ, chúng ta thay đổi chút, mình sẽ thay đổi title trong AppComponent thành một chuỗi khác, và xem kết quả.
 
-![Change AppComponent](http://www.tiepphan.com/assets/uploads/2016/12/change-app-component.png){:class="img-responsive"}
+![Change AppComponent](/assets/uploads/2016/12/change-app-component.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 12: edit AppComponent_
 {:class="text-center"}
 
-![result](http://www.tiepphan.com/assets/uploads/2016/12/result.png){:class="img-responsive"}
+![result](/assets/uploads/2016/12/result.png){:class="img-responsive"}
 {:class="text-center"}
 
 _Hình 13: result_

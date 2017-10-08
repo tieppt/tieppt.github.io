@@ -4,7 +4,7 @@ title: ES2015 var, let và const keywords
 date: 2016-09-23T01:59:20+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=9
+guid: https://www.tiepphan.com/?p=9
 permalink: /es2015-var-let-const-keywords/
 description: 'Giới thiệu chi tiết về đặc điểm của let, var, const trong ES2015'
 image: /assets/uploads/2016/09/es2015-logo.png

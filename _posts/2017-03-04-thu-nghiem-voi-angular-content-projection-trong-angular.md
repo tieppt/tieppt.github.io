@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 12: Content Projection Trong Angular
 date: 2017-03-04T13:50:01+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=323
+guid: https://www.tiepphan.com/?p=323
 permalink: /thu-nghiem-voi-angular-content-projection-trong-angular/
 description: 'Làm thế nào để sử dụng lại các component trong Angular 2+, hay làm sao để có thể nhúng content của một component cho một component khác. Content Projection trong Angular sẽ giải quyết bài toán này.'
 image: /assets/uploads/2017/03/angular2-12.jpg

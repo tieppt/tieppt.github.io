@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 11: Template Variable Trong Angular'
 date: 2017-02-19T16:39:00+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=299
+guid: https://www.tiepphan.com/?p=299
 permalink: /thu-nghiem-voi-angular-template-variable-trong-angular/
 description: 'Bài học này sẽ giới thiệu cho các bạn về cách sử dụng Template Variable trong Angular và ngOnInit, ngAfterViewInit lifecycle.'
 image: /assets/uploads/2017/02/angular2-11.jpg

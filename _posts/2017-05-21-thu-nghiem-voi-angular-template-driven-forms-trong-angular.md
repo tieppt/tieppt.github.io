@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 17 &#8211; Template-Driven Forms Tro
 date: 2017-05-21T09:47:50+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=437
+guid: https://www.tiepphan.com/?p=437
 permalink: /thu-nghiem-voi-angular-template-driven-forms-trong-angular/
 description: 'Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template. Chúng ta thực hiện việc thêm các directives và hành vi vào template.'
 image: /assets/uploads/2017/05/angular-p17.jpg
@@ -22,7 +22,7 @@ tags:
 # Template-Driven Forms Trong Angular
 {:.no_toc}
 
-Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là [Reactive forms hay Model-driven forms](http://www.tiepphan.com/thu-nghiem-voi-angular-reactive-forms-trong-angular/).
+Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là [Reactive forms hay Model-driven forms](/thu-nghiem-voi-angular-reactive-forms-trong-angular/).
 
 Trong bài này chúng ta sẽ cùng tìm hiểu cách tạo forms trong Angular, và để bắt đầu chúng ta sẽ tìm hiểu Template-driven forms.
 

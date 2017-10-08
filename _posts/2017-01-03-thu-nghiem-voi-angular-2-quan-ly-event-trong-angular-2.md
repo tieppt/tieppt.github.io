@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 6: Quản Lý Event Trong Angular 
 date: 2017-01-03T17:08:05+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=245
+guid: https://www.tiepphan.com/?p=245
 permalink: /thu-nghiem-voi-angular-2-quan-ly-event-trong-angular-2/
 description: 'Bài học này sẽ củng cố một số kiến thức về Event trong Angular 2 như $event object hay key event filtering.'
 image: /assets/uploads/2017/01/angular2-PHAN6.jpg
@@ -28,7 +28,7 @@ tags:
 # Quản Lý Event Trong Angular 2
 {:.no_toc}
 
-Trong <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series **Thử Nghiệm Với Angular 2** chúng ta đã làm quen với **Event Binding** trong Angular 2. Bài học này sẽ củng cố một số kiến thức về Event trong Angular 2 như `$event` object hay **key event filtering**.
+Trong <a href="/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series **Thử Nghiệm Với Angular 2** chúng ta đã làm quen với **Event Binding** trong Angular 2. Bài học này sẽ củng cố một số kiến thức về Event trong Angular 2 như `$event` object hay **key event filtering**.
 
 * ToC
 {:toc}

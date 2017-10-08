@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 15 &#8211; Pipe Trong Angular'
 date: 2017-04-10T02:53:51+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=384
+guid: https://www.tiepphan.com/?p=384
 permalink: /thu-nghiem-voi-angular-pipe-trong-angular/
 description: 'Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular &#8211; một thành phần cơ bản của Angular.'
 image: /assets/uploads/2017/04/angular15.jpg

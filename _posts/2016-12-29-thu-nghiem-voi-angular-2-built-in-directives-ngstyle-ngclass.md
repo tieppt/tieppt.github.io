@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 4: Built-in Directives NgStyle, Ng
 date: 2016-12-29T06:38:51+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=225
+guid: https://www.tiepphan.com/?p=225
 permalink: /thu-nghiem-voi-angular-2-built-in-directives-ngstyle-ngclass/
 description: 'Trong bài học này, chúng ta sẽ tìm hiểu về những Attribute Directives như NgStyle NgClass và property binding cho class, style'
 image: /assets/uploads/2016/12/angular2-PHAN4.jpg
@@ -28,7 +28,7 @@ tags:
 # Built-in Directives NgStyle, NgClass
 {:.no_toc}
 
-Trong những bài trước của series **Thử Nghiệm Với Angular 2** mình đã giới thiệu một số <a href="https://angular.io/docs/ts/latest/guide/structural-directives.html" target="_blank">Structual Directives</a> và hướng dẫn <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-style-component-view-encapsulation/" target="_blank">Style cho Component, View Encapsulation</a>. Trong bài học này, chúng ta sẽ tìm hiểu về những Attribute Directives như <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngStyle" target="_blank">NgStyle</a>, <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngClass" target="_blank">NgClass </a>và property binding cho class, style.
+Trong những bài trước của series **Thử Nghiệm Với Angular 2** mình đã giới thiệu một số <a href="https://angular.io/docs/ts/latest/guide/structural-directives.html" target="_blank">Structual Directives</a> và hướng dẫn <a href="/thu-nghiem-voi-angular-2-style-component-view-encapsulation/" target="_blank">Style cho Component, View Encapsulation</a>. Trong bài học này, chúng ta sẽ tìm hiểu về những Attribute Directives như <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngStyle" target="_blank">NgStyle</a>, <a href="https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngClass" target="_blank">NgClass </a>và property binding cho class, style.
 
 * ToC
 {:toc}

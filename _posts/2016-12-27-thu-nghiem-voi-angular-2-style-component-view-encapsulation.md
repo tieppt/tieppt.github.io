@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 3: Style Cho Component và View En
 date: 2016-12-27T15:51:00+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=215
+guid: https://www.tiepphan.com/?p=215
 permalink: /thu-nghiem-voi-angular-2-style-component-view-encapsulation/
 description: 'Trong bài học này chúng ta cùng tìm hiểu cách để Style cho Component trong Angular 2 cũng như View Encapsulation được cài đặt trong Angular 2 như thế nào.'
 image: /assets/uploads/2016/12/angular2-PHAN3.jpg
@@ -31,7 +31,7 @@ Xin chào các bạn, sau khi tìm hiểu phần 2 trong series **Thử Nghiệm
 
 <blockquote>
   <p>
-    <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/">Thử Nghiệm Với Angular 2 Phần 2: Built-in Directives NgIf, NgFor, NgSwitchCase</a>
+    <a href="/thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/">Thử Nghiệm Với Angular 2 Phần 2: Built-in Directives NgIf, NgFor, NgSwitchCase</a>
   </p>
 </blockquote>
 

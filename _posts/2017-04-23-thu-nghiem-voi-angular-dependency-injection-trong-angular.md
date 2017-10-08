@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 16 &#8211; Dependency Injection Tron
 date: 2017-04-23T09:59:27+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=401
+guid: https://www.tiepphan.com/?p=401
 permalink: /thu-nghiem-voi-angular-dependency-injection-trong-angular/
 description: 'Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI.'
 image: /assets/uploads/2017/04/angular-16-Dependency-Injection.jpg

@@ -4,7 +4,7 @@ title: 'Rxjs Và Reactive Programming'
 date: 2017-09-16T10:00:00+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=1002
+guid: https://www.tiepphan.com/?p=1002
 permalink: /rxjs-reactive-programming/
 description: 'Giới thiệu Rxjs và Reactive Programming và ứng dụng trong Angular'
 image: /assets/uploads/2017/09/rxjs-reactive-programming.jpg

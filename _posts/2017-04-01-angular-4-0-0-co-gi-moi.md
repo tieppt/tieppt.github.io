@@ -4,7 +4,7 @@ title: Angular 4.0.0 Có Gì Mới?
 date: 2017-04-01T14:10:17+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=362
+guid: https://www.tiepphan.com/?p=362
 permalink: /angular-4-0-0-co-gi-moi/
 description: 'Tháng 3-2017, Angular team đã phát hành Angular 4, vậy Angular 4 có gì mới, có những gì thay đổi mà chúng ta cần lưu ý. Bài này sẽ giới thiệu cho các bạn những điểm mới trong Angular 4.'
 image: /assets/uploads/2017/03/angular-v4.jpg

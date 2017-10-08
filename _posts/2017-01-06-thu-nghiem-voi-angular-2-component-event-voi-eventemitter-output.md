@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 8: Component Event Với EventEmit
 date: 2017-01-06T16:53:27+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=268
+guid: https://www.tiepphan.com/?p=268
 permalink: /thu-nghiem-voi-angular-2-component-event-voi-eventemitter-output/
 description: 'Bài học sẽ giới thiệu cách để Component phát sinh Event để tương tác từ Component con với Component cha.'
 image: /assets/uploads/2017/01/angular2-PHAN8-Componen-Event-Voi-EventEmitter-Va-Output.jpg
@@ -28,7 +28,7 @@ tags:
 # Component Event Với EventEmitter Và `@Output`
 {:.no_toc}
 
-Sau khi tìm hiểu bài học <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">Truyền Dữ Liệu Cho Component Với `@Input`</a> trong series **Thử Nghiệm Với Angular 2**, chúng ta đã biết cách để Component có thể nhận dữ liệu đầu vào. Bài học &#8220;Component Event Với `EventEmitter` Và `@Output`&#8221; sẽ giới thiệu cách để Component phát sinh Event để tương tác từ Component con với Component cha.
+Sau khi tìm hiểu bài học <a href="/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">Truyền Dữ Liệu Cho Component Với `@Input`</a> trong series **Thử Nghiệm Với Angular 2**, chúng ta đã biết cách để Component có thể nhận dữ liệu đầu vào. Bài học &#8220;Component Event Với `EventEmitter` Và `@Output`&#8221; sẽ giới thiệu cách để Component phát sinh Event để tương tác từ Component con với Component cha.
 
 * ToC
 {:toc}

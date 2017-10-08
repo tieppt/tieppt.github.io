@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 7: Truyền Dữ Liệu Cho Compon
 date: 2017-01-05T11:32:34+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=253
+guid: https://www.tiepphan.com/?p=253
 permalink: /thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/
 description: 'Trong bài học này chúng ta sẽ tìm hiểu việc truyền dữ liệu cho Component trong Angular với @Input decorator.'
 image: /assets/uploads/2017/01/angular2-PHAN7.jpg

@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Pr
 date: 2017-02-19T10:36:03+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=293
+guid: https://www.tiepphan.com/?p=293
 permalink: /thu-nghiem-voi-angular-su-dung-angular-cli-trong-project-cool/
 description: 'Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI.'
 image: /assets/uploads/2017/02/angular2-10.jpg
@@ -23,7 +23,7 @@ tags:
 # Sử Dụng Angular CLI Trong Project Thật Cool
 {:.no_toc}
 
-Trong <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series Thử Nghiệm Với Angular, chúng ta đã tạo project để thực hành với sự trợ giúp của Angular CLI. Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI.
+Trong <a href="/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series Thử Nghiệm Với Angular, chúng ta đã tạo project để thực hành với sự trợ giúp của Angular CLI. Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI.
 
 * ToC
 {:toc}

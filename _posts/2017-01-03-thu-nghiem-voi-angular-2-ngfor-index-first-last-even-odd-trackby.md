@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính In
 date: 2017-01-03T16:27:03+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=242
+guid: https://www.tiepphan.com/?p=242
 permalink: /thu-nghiem-voi-angular-2-ngfor-index-first-last-even-odd-trackby/
 description: 'Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: index, first, last, even, odd hay việc tối ưu performance với trackBy function.'
 image: /assets/uploads/2017/01/angular2-PHAN5.jpg
@@ -26,7 +26,7 @@ tags:
 # NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy
 {:.no_toc}
 
-Trong bài học số 2, chúng ta đã tìm hiểu về một số <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/" target="_blank">Structual Directives</a> trong đó có NgFor. Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: `index`, `first`, `last`, `even`, `odd` hay việc tối ưu performance với `trackBy` function.
+Trong bài học số 2, chúng ta đã tìm hiểu về một số <a href="/thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/" target="_blank">Structual Directives</a> trong đó có NgFor. Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: `index`, `first`, `last`, `even`, `odd` hay việc tối ưu performance với `trackBy` function.
 
 * ToC
 {:toc}

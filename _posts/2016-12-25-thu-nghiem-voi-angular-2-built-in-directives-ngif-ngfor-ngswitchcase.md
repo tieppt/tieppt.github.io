@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 2: Built-in Directives NgIf, NgFor
 date: 2016-12-25T16:38:39+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=206
+guid: https://www.tiepphan.com/?p=206
 permalink: /thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/
 description: 'Thử Nghiệm Với Angular 2 Phần 2: Built-in Directives NgIf, NgFor, NgSwitchCase'
 image: /assets/uploads/2016/12/angular2-PHAN2.jpg
@@ -32,7 +32,7 @@ Xin chào các bạn, đây là bài học thứ hai trong series **Thử Nghi�
 
 <blockquote>
   <p>
-    <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/">Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding</a>
+    <a href="/thu-nghiem-voi-angular-2-component-va-data-binding/">Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding</a>
   </p>
 </blockquote>
 

@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular 2 Phần 9: Angular 2 Two-way Binding Và T
 date: 2017-01-08T12:19:29+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=273
+guid: https://www.tiepphan.com/?p=273
 permalink: /thu-nghiem-voi-angular-2-two-way-binding-custom-two-way-data-binding/
 description: 'Bài học này chúng ta sẽ cùng tìm hiểu về Two-way Binding và cách tạo Custom Two-way Data Binding trong Angular 2.'
 image: /assets/uploads/2017/01/angular-2-Two-way-Binding-Va-Tao-Custom-Two-way-Data-Binding.jpg
@@ -31,7 +31,7 @@ tags:
 # Angular 2 Two-way Binding Và Tạo Custom Two-way Data Binding
 {:.no_toc}
 
-Angular 2 Component có thể <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">truyền vào data với `@Input`</a> hoặc <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-2-component-event-voi-eventemitter-output/" target="_blank" rel="noopener noreferrer">gửi event ra ngoài với `@Output`</a>, chúng đều là **unidirectional data flow** hay one-way binding. Angular 2 Two-way Binding không là built-in trong Angular 2. Tuy vậy chúng ta vẫn có thể áp dụng Two-way Binding bằng cách sử dụng directive `ngModel` trong Angular 2. Bài học này chúng ta sẽ cùng tìm hiểu về Two-way Binding và cách tạo Custom Two-way Data Binding trong Angular 2.
+Angular 2 Component có thể <a href="/thu-nghiem-voi-angular-2-truyen-du-lieu-cho-component-voi-input/" target="_blank" rel="noopener noreferrer">truyền vào data với `@Input`</a> hoặc <a href="/thu-nghiem-voi-angular-2-component-event-voi-eventemitter-output/" target="_blank" rel="noopener noreferrer">gửi event ra ngoài với `@Output`</a>, chúng đều là **unidirectional data flow** hay one-way binding. Angular 2 Two-way Binding không là built-in trong Angular 2. Tuy vậy chúng ta vẫn có thể áp dụng Two-way Binding bằng cách sử dụng directive `ngModel` trong Angular 2. Bài học này chúng ta sẽ cùng tìm hiểu về Two-way Binding và cách tạo Custom Two-way Data Binding trong Angular 2.
 
 * ToC
 {:toc}

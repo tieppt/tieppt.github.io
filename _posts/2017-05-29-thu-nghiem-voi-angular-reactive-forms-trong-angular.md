@@ -4,7 +4,7 @@ title: 'Thử Nghiệm Với Angular Phần 18 &#8211; Reactive Forms Trong Angu
 date: 2017-05-29T10:00:00+00:00
 author: Tiep Phan
 layout: post
-guid: http://www.tiepphan.com/?p=1000
+guid: https://www.tiepphan.com/?p=1000
 permalink: /thu-nghiem-voi-angular-reactive-forms-trong-angular/
 description: 'Reactive Forms hay Model-Driven Forms, là một phương pháp để tạo form trong Angular, phương pháp này tránh việc sử dụng các directive ví dụ như ngModel, required, etc, thay vào đó tạo các Object Model ở trong các Component.'
 image: /assets/uploads/2017/05/angular-p18.jpg
@@ -47,7 +47,7 @@ Bạn có thể tham khảo thêm tại document sau: <a href="https://angular.i
 
 ## 2. Template
 
-Cũng giống như trong <a href="http://www.tiepphan.com/thu-nghiem-voi-angular-template-driven-forms-trong-angular/" target="_blank" rel="noopener noreferrer">Template-driven forms</a>, chúng ta sẽ sử dụng một template giống thế.
+Cũng giống như trong <a href="/thu-nghiem-voi-angular-template-driven-forms-trong-angular/" target="_blank" rel="noopener noreferrer">Template-driven forms</a>, chúng ta sẽ sử dụng một template giống thế.
 
 ```html
 <form novalidate (ngSubmit)="onSubmit()"
