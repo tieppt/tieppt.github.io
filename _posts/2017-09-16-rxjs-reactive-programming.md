@@ -1247,8 +1247,8 @@ function addImpure(a, b) {
   return a + b + x;
 }
 
-add(5, 6); // 12
-add(5, 6); // 13
+addImpure(5, 6); // 12
+addImpure(5, 6); // 13
 
 ```
 
