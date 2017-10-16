@@ -1252,7 +1252,7 @@ addImpure(5, 6); // 13
 
 ```
 
-Operation nhận đầu vào là một Observable, sau đó xử lý và tạo mới mội Observable để trả về, và giữ Observable đầu vào không bị thay đổi gì.
+Operator nhận đầu vào là một Observable, sau đó xử lý và tạo mới mội Observable để trả về, và giữ Observable đầu vào không bị thay đổi gì.
 
 Ví dụ, chúng ta tạo một Operator nhận đầu vào là một function, giống như Array `map` chẳng hạn.
 
@@ -1524,7 +1524,7 @@ const subscribe = example.subscribe(val => console.log(val));
 
 **scan**: `scan(accumulator: function, seed: any): Observable`
 
-Giống như Array `scan`.
+Giống như Array `reduce`.
 
 ```ts
 //emit array as a sequence of values
