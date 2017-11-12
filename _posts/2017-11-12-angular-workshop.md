@@ -31,3 +31,9 @@ Với việc Angular vừa released v5 (Angular 5), chúng ta sẽ cùng tìm hi
 <figure class="video_container">
   <iframe src="https://www.youtube.com/embed/2-b2sByFJsg" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
+
+## Link tham khảo
+
+<a href="https://github.com/tieppt/ng5-workshop" target="_blank">Sample Code</a>
+
+<a href="https://angular.io/" target="_blank">Angular Docs</a>
