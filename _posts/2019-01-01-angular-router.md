@@ -7,7 +7,7 @@ layout: post
 guid: https://www.tiepphan.com/?p=1010
 permalink: /angular-router-series/
 description: 'Series giới thiệu Angular Router'
-image: /assets/uploads/2019/01/angular-router-p1.png
+image: /assets/uploads/2019/01/angular-router-p1.jpg
 categories:
   - Javascript
   - Lập Trình Angular
