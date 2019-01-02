@@ -48,6 +48,12 @@ tags:
   <iframe src="https://www.youtube.com/embed/9ywvpgmWN1s" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
+## Angular Router Phần 5: Lazy Loading
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/3l5NN0TrfrQ" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
 ## Link tham khảo
 
 <a href="https://github.com/tieppt/ng-router-training" target="_blank">Sample Code</a>
