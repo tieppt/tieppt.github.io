@@ -2525,7 +2525,8 @@ export function Destroy() {
         oldNgOnDestroy();
       }
       target[key].next(true); // any kind of value
-    }
+      target[key].complete();
+    };
   }
 }
 
