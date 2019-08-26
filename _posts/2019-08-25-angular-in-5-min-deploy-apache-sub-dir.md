@@ -67,7 +67,7 @@ Các bạn nhớ thay đổi `app-name` theo tên app của bạn.
 </figure>
 
 ## 4. Link Tham Khảo
-{:#rxjs-references}
+{:#doc-references}
 
 <a href="https://angular.io/guide/deployment" target="_blank">Hướng dẫn deploy từ Angular.io</a>
 
