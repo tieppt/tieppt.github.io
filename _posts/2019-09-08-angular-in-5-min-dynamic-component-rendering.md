@@ -1,7 +1,7 @@
 ---
 id: 1013
 title: 'Angular Trong 5 Phút: Dynamic Component Rendering'
-date: 2019-09-08T15:00:00+00:00
+date: 2019-09-08T10:00:00+00:00
 author: Tiep Phan
 layout: post
 guid: https://www.tiepphan.com/?p=1013
@@ -24,7 +24,7 @@ tags:
 # Angular Trong 5 Phút: Dynamic Component Rendering
 {:.no_toc}
 
-Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Rendering.
+Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Rendering trong Angular như thế nào.
 
 * ToC
 {:toc}
