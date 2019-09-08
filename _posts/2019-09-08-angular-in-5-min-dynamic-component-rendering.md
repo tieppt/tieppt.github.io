@@ -24,6 +24,10 @@ tags:
 # Angular Trong 5 Phút: Dynamic Component Rendering
 {:.no_toc}
 
+Trong nhiều trường hợp, chúng ta không biết trước phải render component nào, mà sẽ được render lúc runtime.
+
+Ví dụ như Dialog, Snackbar của Angular Material chẳng hạn. Là người viết lib, chúng ta chỉ tạo ra phần khung, còn người dùng lib sẽ tự định nghĩa component và trigger việc render khi nào họ muốn.
+
 Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Rendering trong Angular như thế nào.
 
 * ToC
@@ -33,22 +37,26 @@ Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Renderi
 ## 1. Create Angular Application
 {:#create-app}
 
-Các bạn tạo mới ứng dụng Angular bằng lệnh sau và trả lời các câu hỏi (có thể để mặc định):
+Để bắt đầu chúng ta sẽ tạo một project mới bằng Angular CLI, các bạn có thể để chọn default bằng cách nhấn enter vài lần.
 
 ```bash
 $ ng new dynamic-component
 ```
 
+Sau đó mở project bằng editor tùy thích, rồi khởi chạy project bằng câu lệnh `ng serve` và mở app ở http://localhost:4200 để xem.
+
 ## 2. Create Angular Components
 {:#create-angular-components}
 
-Chúng ta sẽ lần lượt tạo 2 component để demo.
+Chúng ta sẽ lần lượt tạo 2 component đặt tên lần lượt là alert-container và alert-content; để demo.
 
 ```bash
 $ ng g c alert-container
 
 $ ng g c alert-content
 ```
+
+Thêm selector của alert-container vào `app.component.html` và xem kết quả.
 
 ## 3. Thiết lập phần container
 {:#setup-view-container}
@@ -369,15 +377,19 @@ export class DynamicContainerDirective implements OnInit {
 {:#5min-video}
 
 <figure class="video_container">
-  <iframe src="https://www.youtube.com/embed/mU6nT7SDiOM" frameborder="0" allowfullscreen="true"> </iframe>
+  <iframe src="https://www.youtube.com/embed/Z5axQKnT0VU" frameborder="0" allowfullscreen="true"> </iframe>
 </figure>
 
 ## 7. Link Tham Khảo
 {:#doc-references}
 
-<a href="https://angular.io/api/core/ViewChild" target="_blank">ViewChild</a>
-<a href="https://angular.io/api/core/ComponentRef" target="_blank">ComponentRef</a>
-<a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>
-<a href="https://material.angular.io/cdk/portal/overview" target="_blank">Angular CDK Portal</a>
+Code demo: <a href="https://github.com/tieppt/dynamic-component-demo" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/dynamic-component-demo</a>
 
+<a href="https://angular.io/api/core/ViewChild" target="_blank">ViewChild</a>
+
+<a href="https://angular.io/api/core/ComponentRef" target="_blank">ComponentRef</a>
+
+<a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>
+
+<a href="https://material.angular.io/cdk/portal/overview" target="_blank">Angular CDK Portal</a>
 
