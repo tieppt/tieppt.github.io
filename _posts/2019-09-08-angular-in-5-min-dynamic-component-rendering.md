@@ -82,6 +82,7 @@ export class AlertContainerComponent implements OnInit {
 ```
 
 ### 3.1 `ViewContainerRef` là gì?
+{:.no_toc}
 
 Nó là một cái container từ đó có thể tạo ra Host View (component khi được khởi tạo sẽ tạo ra view tương ứng), và Embedded View  (được tạo từ TemplateRef). Với các view được tạo đó sẽ có nơi để gắn vào (container).
 
@@ -89,6 +90,7 @@ Container có thể chứa các container khác (`ng-container` chẳng hạn) t
 Hay hiểu đơn giản thì nó giống như 1 DOM Element, khi đó có thể add thêm các view khác (`Component`, `Template`) vào đó.
 
 ### 3.2 `static` property có ý nghĩa gì?
+{:.no_toc}
 
 `static: true` resolve query results before change detection runs
 
@@ -172,7 +174,7 @@ export class AlertContainerComponent implements OnInit, AfterViewInit {
 Chúng ta cần một số bước như sau để dynamic render component:
 
 
-1. Lấy ra `ComponentFactoryResolver` service để có thể tạo ra `ComponentFactory`.
+**Bước 1:** Lấy ra `ComponentFactoryResolver` service để có thể tạo ra `ComponentFactory`.
 
 ```ts
 const cfr: ComponentFactoryResolver = injector.get(ComponentFactoryResolver);
@@ -180,13 +182,14 @@ const cfr: ComponentFactoryResolver = injector.get(ComponentFactoryResolver);
 const componentFactory = cfr.resolveComponentFactory(AlertContentComponent);
 ```
 
-2. Từ `ComponentFactory` sẽ dùng `ViewContainerRef` để tạo ra component.
+**Bước 2:** Từ `ComponentFactory` sẽ dùng `ViewContainerRef` để tạo ra component.
 
 ```ts
 const componentRef = container.createComponent(componentFactory, 0, injector);
 ```
 
 ### Fix lỗi Error No component factory found for
+{:.no_toc}
 
 > Error: No component factory found for AlertContentComponent. Did you add it to @NgModule.entryComponents?
 
@@ -205,6 +208,7 @@ export class YourModule { }
 {:#dynamic-comp-communication}
 
 ### 5.1 Gửi dữ liệu cho dynamic component:
+{:.no_toc}
 
 ```ts
 export class AlertContentComponent implements OnInit {
@@ -220,6 +224,7 @@ componentRef.instance.data = 'Data from container';
 ```
 
 ### 5.2 Emit Event để close bằng service
+{:.no_toc}
 
 Tạo service và sử dụng RxJS Subject để làm Event Bus, giúp dễ dàng gửi Event qua lại giữa các componnent.
 
@@ -276,6 +281,7 @@ export class AlertContentComponent {
 }
 ```
 ### 5.3 Fix lỗi Error ExpressionChangedAfterItHasBeenCheckedError
+{:.no_toc}
 
 > Error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'XXX'. Current value: 'YYY'. It seems like the view has been created after its parent and its children have been dirty checked. Has it been created in a change detection hook ?
 
