@@ -351,7 +351,7 @@ export class DynamicContainerDirective implements OnInit {
     const componentFactory = cfr.resolveComponentFactory(AlertContentComponent);
 
     const componentRef = container.createComponent(componentFactory, 0, injector);
-    componentRef.instance.data = 'Data from appDynamicContainer';
+    componentRef.instance.data = 'Data from appDynamicContainer directive';
     this.componentRef = componentRef;
   }
 
