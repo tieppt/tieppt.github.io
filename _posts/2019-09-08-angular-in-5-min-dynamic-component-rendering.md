@@ -1,5 +1,5 @@
 ---
-id: 1012
+id: 1013
 title: 'Angular Trong 5 Phút: Dynamic Component Rendering'
 date: 2019-09-08T15:00:00+00:00
 author: Tiep Phan
