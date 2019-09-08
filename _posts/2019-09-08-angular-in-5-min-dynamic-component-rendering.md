@@ -43,7 +43,7 @@ Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Renderi
 $ ng new dynamic-component
 ```
 
-Sau đó mở project bằng editor tùy thích, rồi khởi chạy project bằng câu lệnh `ng serve` và mở app ở http://localhost:4200 để xem.
+Sau đó mở project bằng editor tùy thích, rồi khởi chạy project bằng câu lệnh `ng serve` và mở app ở <a href="http://localhost:4200" target="_blank">http://localhost:4200</a> để xem.
 
 ## 2. Create Angular Components
 {:#create-angular-components}
@@ -236,6 +236,10 @@ componentRef.instance.data = 'Data from container';
 
 Tạo service và sử dụng RxJS Subject để làm Event Bus, giúp dễ dàng gửi Event qua lại giữa các componnent.
 
+```bash
+$ ng g s alert
+```
+
 ```ts
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -383,7 +387,7 @@ export class DynamicContainerDirective implements OnInit {
 ## 7. Link Tham Khảo
 {:#doc-references}
 
-Code demo: <a href="https://github.com/tieppt/dynamic-component-demo" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/dynamic-component-demo</a>
+Code demo: <a href="https://github.com/tieppt/dynamic-component-demo" target="_blank">https://github.com/tieppt/dynamic-component-demo</a>
 
 <a href="https://angular.io/api/core/ViewChild" target="_blank">ViewChild</a>
 
