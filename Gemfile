@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 gemspec
+gem 'sassc'
 gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
 gem 'jekyll-paginate-v2'
