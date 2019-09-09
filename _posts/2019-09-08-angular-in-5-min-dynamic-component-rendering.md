@@ -272,11 +272,18 @@ export class AlertContainerComponent {
 
   ngOnInit() {
     this.alertService.close$.subscribe(reason => {
+      this.container.clear();
+
       if (this.componentRef) {
         this.componentRef.destroy();
       }
-      this.container.clear();
     });
+  }
+
+  ngOnDestroy() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
   }
 }
 ```
@@ -321,10 +328,11 @@ export class AlertContainerComponent implements OnInit {
 
   ngOnInit() {
     this.alertService.close$.subscribe(reason => {
+      this.container.clear();
+
       if (this.componentRef) {
         this.componentRef.destroy();
       }
-      this.container.clear();
     });
     this.renderComponent();
   }
@@ -351,10 +359,11 @@ export class DynamicContainerDirective implements OnInit {
 
   ngOnInit() {
     this.alertService.close$.subscribe(reason => {
+      this.container.clear();
+
       if (this.componentRef) {
         this.componentRef.destroy();
       }
-      this.container.clear();
     });
     this.renderComponent();
   }
