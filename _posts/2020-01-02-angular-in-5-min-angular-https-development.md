@@ -1,7 +1,7 @@
 ---
 id: 2020
 title: 'Angular Trong 5 Phút: Angular HTTPS Development Environment'
-date: 2020-01-02T10:00:00+00:00
+date: 2020-01-02T00:00:00+00:00
 author: Tiep Phan
 layout: post
 guid: https://www.tiepphan.com/?p=2020
