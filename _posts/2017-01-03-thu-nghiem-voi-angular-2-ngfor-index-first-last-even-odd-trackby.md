@@ -13,7 +13,7 @@ categories:
   - Lập Trình
   - Lập Trình Angular
   - Programming
-  - Web
+  - Web Development
 tags:
   - Angular
   - Angular 2 Directives

@@ -12,7 +12,7 @@ categories:
   - Javascript
   - Lập Trình Angular
   - Programming
-  - Web
+  - Web Development
 tags:
   - Angular
   - Angular Component
