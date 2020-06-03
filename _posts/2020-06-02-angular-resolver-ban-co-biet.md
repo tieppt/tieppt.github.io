@@ -35,11 +35,11 @@ Trong bài này, chúng ta sẽ tìm hiểu xem Resolver là gì và cách sử 
 ## 1. Giới thiệu
 {:#post-intro}
 Resolver là service được sử dụng trong Angular router để thực hiện 1 task vụ không đồng bộ trong quá trình điều hướng. Khi tác vụ không đồng bộ đó resolve data. component tương ứng với router đó sẽ được init.  
-![Video Gif](https://media.giphy.com/media/ZeKy4eyaStg3ucsAEI/giphy.gif)  
+<img class="img-responsive" src="//media.giphy.com/media/ZeKy4eyaStg3ucsAEI/giphy.gif" alt="Video Gif"/>  
   
 Hãy nhìn router khi bấm vào link. Tác vụ bất đồng bộ xong thì component blog detail mới được init.
 
-![Resolver Flow](/assets/uploads/2020/06/resolver-diagram.png)  
+<img class="img-responsive" src="/assets/uploads/2020/06/resolver-diagram.png" alt="Resolver Flow"/>  
   
 Đây là flow của một lần navigation sử dụng resolver.  
 
@@ -109,7 +109,7 @@ Và đây là component cho chi tiết bài viết:
 
 Đây là component khi resolve xong. Hãy để ý tới `console.log("Go here")` ở trong ngOnInit nhé.  
 Và đây là kết quả:  
-![Video Console](https://media.giphy.com/media/QtvNKPx7Ogucu7fdMS/giphy.gif)  
+<img class="img-responsive" src="//media.giphy.com/media/QtvNKPx7Ogucu7fdMS/giphy.gif" alt="Video Console"/>  
   
 Khi mình bấm vào title của post để vào router detail. phải chờ resolver xong thì component mới init.  
 Bây giờ hãy tưởng tượng một HTTP  request response data trong 5 giây. Sau khi nhấp vào một liên kết trong ứng dụng, HTTP request bắt đầu. Việc định tuyến sẽ không được hoàn thành trước khi HTTP request đó response dữ liệu. Do đó, nếu HTTP mất 5 giây, thì cũng sẽ mất 5 giây để quá trình định tuyến hoàn tất.  
@@ -162,10 +162,10 @@ Lúc này. Điều hướng sẽ chạy ngay qua trang chi tiết blog mà khôn
 Và kết quả là: Mình đợi get dữ liệu từ API xong rồi hiển thị ra cho người dùng. Để cho họ biết là mình đang lấy dữ liệu lên, mình sẽ hiển thị một dòng text `Loading....`  
 Không nên để trang trắng nhé. Người dùng cữ ngỡ là trang này đang bị lỗi mà không hề hay biết mình đang get dữ liệu ở dưới.  
 
-![Video No Resolver](https://media.giphy.com/media/S3tsS08K8ub0TkTIed/giphy.gif)  
+<img class="img-responsive" src="//media.giphy.com/media/S3tsS08K8ub0TkTIed/giphy.gif" alt="Video No Resolver"/>  
 
 Flow khi không có Resolver:  
-![Resolver Flow](/assets/uploads/2020/06/no-resolver-diagram.png)  
+<img class="img-responsive" src="/assets/uploads/2020/06/no-resolver-diagram.png" alt="Resolver Flow"/>  
 
 Đấy. Độ trễ khi navigation gần như không có. Trải nghiệm người dùng tốt hơn nhiều so với đợi 1 khoảng thời gian rồi mới navigation (tưởng bị lỗi chứ :3)
 
