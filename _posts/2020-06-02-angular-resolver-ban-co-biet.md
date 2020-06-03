@@ -70,6 +70,42 @@ Một Resolver đơn giản để fetch chi tiết của một bài viết:
     }
   }
 ```  
+
+Tiếp theo, chúng ta config routing cho blog module  
+
+```typescript  
+  import { NgModule } from '@angular/core';
+  import { Routes, RouterModule } from '@angular/router';
+  import { BlogListComponent } from './pages/blog-list/blog-list.component';
+  import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
+  import { BlogDetailResolveComponent } from './pages/blog-detail-resolve/blog-detail-resolve.component';
+  import { BlogDetailResolver } from './resolvers/blog-detail.resolve';
+
+  const routes: Routes = [
+    {
+      path: '',
+      component: BlogListComponent
+    },
+    {
+      path: ':id',
+      component: BlogDetailComponent
+    },
+    {
+      path: 'resolve/:id',
+      component: BlogDetailResolveComponent,
+      resolve: {
+        blog: BlogDetailResolver
+      }
+    }
+  ];
+
+  @NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+  })
+  export class BlogRoutingModule { }
+```  
+ 
 Và đây là component cho chi tiết bài viết: 
 ```typescript
   import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -177,4 +213,10 @@ Một trang SPA theo mình nghĩ là nên luôn luôn phải react fast và dữ
 
 Bản thân mình không phải fan của Resolver và cũng không xài Resolver trong các dự án của mình. Mình viết lên đây nhằm mục đích chia sẻ kiến thức và được học hỏi, nhận những comment góp ý của mọi người. Xin cảm ơn.
 
-Đây là github repo cho bài viết này nhé. Các bạn có thể clone về và trải nghiệm. -> [Resolver Angular](https://github.com/tuananhitoct/angular-resolver)
+Đây là github repo cho bài viết này nhé. Các bạn có thể clone về và trải nghiệm. -> [Resolver Angular](https://github.com/tuananhitoct/angular-resolver)  
+  
+Link tham khảo:  
+    + <a href="https://angular.io/api/router/Resolve">https://angular.io/api/router/Resolve</a>  
+    + <a href="https://www.digitalocean.com/community/tutorials/angular-route-resolvers">https://www.digitalocean.com/community/tutorials/angular-route-resolvers</a>  
+    + <a href="https://codeburst.io/understanding-resolvers-in-angular-736e9db71267">https://codeburst.io/understanding-resolvers-in-angular-736e9db71267</a>  
+    + <a href="https://dzone.com/articles/understanding-angular-route-resolvers-by-example">https://dzone.com/articles/understanding-angular-route-resolvers-by-example</a>  
