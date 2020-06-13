@@ -1,10 +1,10 @@
 ---
-id: 2020
+id: 2022
 title: 'Angular HTTP Client Module - P1. Giới thiệu'
 date: 2020-06-12T00:00:00+00:00
 author: Tuan Anh
 layout: post
-guid: https://www.tiepphan.com/?p=2020
+guid: https://www.tiepphan.com/?p=2022
 permalink: /angular-http-client-module-introduction/
 description: 'Cùng nhau khám phá về Http Client Module trong Angular. Giới thiệu về HTTP Client Module'
 image: https://res.cloudinary.com/tuananh-asia/image/upload/v1591951988/HTTP%20CLIENT%20MODULE/angular-http-client_t5qody.png
@@ -22,7 +22,7 @@ tags:
 # Mở đầu
 {:.no_toc}
 
-Khi lập trình ứng dụng với Angular, chúng ta thường tương tác dữ liệu qua lại bằng các gọi API tới 1 server khác. Vậy làm cách nào chúng ta có thể handle việc đó ? Angular đã cung cấp cho chúng ta một module tên là `HTTPClientModule`.  
+Khi lập trình ứng dụng với Angular, chúng ta thường tương tác dữ liệu qua lại bằng các gọi API tới 1 server khác. Vậy làm cách nào chúng ta có thể handle việc đó? Angular đã cung cấp cho chúng ta một module tên là `HTTPClientModule`.  
 
 Trong bài này, chúng ta sẽ tìm hiểu xem `HttpClientModule` là gì và lợi ích của nó mang lại khi lập trình ứng dụng với Angular như thế nào nhé.  
 
@@ -46,52 +46,52 @@ Bản chất nó được gọi là <strong>Service Module</strong> vì nó ch�
 Go go:
 
 ```typescript
-    import { Injectable } from "@angular/core";
-    import { HttpClient } from '@angular/common/http';
-    import { Observable } from 'rxjs';
-    import { PostEntityModel } from '../models/post.entity.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { PostEntityModel } from '../models/post.entity.model';
 
-    @Injectable({
-        providedIn: 'root'
-    })
-    export class PostService {
-        constructor(private httpClient: HttpClient) { }
+@Injectable({
+    providedIn: 'root'
+})
+export class PostService {
+    constructor(private httpClient: HttpClient) { }
 
-        getListPosts(): Observable<PostEntityModel[]> {
-            return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts');
-        }
+    getListPosts(): Observable<PostEntityModel[]> {
+        return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts');
     }
+}
 ```  
   
 Tạo model cho post.
 ```typescript
-    export interface PostEntityModel {
-        userId: number;
-        id: number;
-        title: string;
-        body: string;
-    }
+export interface PostEntityModel {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
 ```  
 
 Inject vào compoent để gọi lấy danh sách bài viết  
 ```typescript
-    import { Component, OnInit } from '@angular/core';
-    import { PostService } from '../../services/post.service';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../../services/post.service';
 
-    @Component({
-        selector: 'app-post',
-        templateUrl: './post.component.html',
-        styleUrls: ['./post.component.scss']
-    })
-    export class PostComponent implements OnInit {
-        constructor(
-            private postService: PostService
-        ) { }
+@Component({
+    selector: 'app-post',
+    templateUrl: './post.component.html',
+    styleUrls: ['./post.component.scss']
+})
+export class PostComponent implements OnInit {
+    constructor(
+        private postService: PostService
+    ) { }
 
-        ngOnInit(): void {
-            this.postService.getListPosts().subscribe(console.log);
-        }
+    ngOnInit(): void {
+        this.postService.getListPosts().subscribe(console.log);
     }
+}
 ```  
 Và kết quả là: 
 <img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592040243/HTTP%20CLIENT%20MODULE/no-import-http-client-module_zzorzz.png" />  
@@ -100,25 +100,25 @@ Uầy. Lỗi rồi. Lý do gì đây ??
 Lí do là chưa import `HttpClientModule` haha. -> Mình sẽ import `HttpClientModule` vào `AppModule` nhé. (Còn import vào `AppModule` hay import vào Feature Module thì mình sẽ nói thật chi tiết trong bài sau nhé)
   
 ```typescript
-    import { BrowserModule } from '@angular/platform-browser';
-    import { NgModule } from '@angular/core';
-    import { AppRoutingModule } from './app-routing.module';
-    import { AppComponent } from './app.component';
-    import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
-    @NgModule({
-        declarations: [
-            AppComponent
-        ],
-        imports: [
-            BrowserModule,
-            AppRoutingModule,
-            HttpClientModule // --> import here
-        ],
-        providers: [],
-        bootstrap: [AppComponent]
-    })
-    export class AppModule { }
+@NgModule({
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule // --> import here
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
 ``` 
 
 Kết quả đây:  
@@ -136,32 +136,32 @@ Mình xin giải thích chút xíu về lỗi phía trên. Khi import `HttpClien
   
 Chúng ta cùng điểm qua một số method của `HttpClient` mà mình thường xài nhé.  
 ```typescript
-    @Injectable({
-        providedIn: 'root'
-    })
-    export class PostService {
-        constructor(private httpClient: HttpClient) { }
+@Injectable({
+    providedIn: 'root'
+})
+export class PostService {
+    constructor(private httpClient: HttpClient) { }
 
-        getListPosts(): Observable<PostEntityModel[]> {
-            return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts');
-        }
-
-        createPost(post: PostEntityModel): Observable<PostEntityModel> {
-            return this.httpClient.post<PostEntityModel>('https://jsonplaceholder.typicode.com/posts', post);
-        }
-
-        updatePost(postId: number, post: PostEntityModel): Observable<PostEntityModel> {
-            return this.httpClient.put<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
-        }
-
-        updateOptionPost(postId: number, post: Partial<PostEntityModel>): Observable<PostEntityModel> {
-            return this.httpClient.patch<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
-        }
-
-        deletePost(postId: number): Observable<any> {
-            return this.httpClient.delete(`https://jsonplaceholder.typicode.com/posts/${ postId }`);
-        }
+    getListPosts(): Observable<PostEntityModel[]> {
+        return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts');
     }
+
+    createPost(post: PostEntityModel): Observable<PostEntityModel> {
+        return this.httpClient.post<PostEntityModel>('https://jsonplaceholder.typicode.com/posts', post);
+    }
+
+    updatePost(postId: number, post: PostEntityModel): Observable<PostEntityModel> {
+        return this.httpClient.put<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
+    }
+
+    updateOptionPost(postId: number, post: Partial<PostEntityModel>): Observable<PostEntityModel> {
+        return this.httpClient.patch<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
+    }
+
+    deletePost(postId: number): Observable<any> {
+        return this.httpClient.delete(`https://jsonplaceholder.typicode.com/posts/${ postId }`);
+    }
+}
 ```  
 Như các bạn đã thấy rồi đấy. Nó cung cấp đủ cho chúng ta những method cần thiết để làm việc với API (get, post, put, patch, delete, jsonb). Hơn nữa, các method của `HttpClient` đều trả về `Observable`, các `Observable` này thường chỉ emit 1 lần rồi complete (trừ 1 số options đặc biệt mình sẽ giới thiệu trong các bài sau).  
 Đây là toàn bộ method của `HttpClient`. Các bạn có thể xem qua -> <a href="https://angular.io/api/common/http/HttpClient#methods">HttpClient Methods</a>  
@@ -178,7 +178,7 @@ Series `HttpClientModule` sẽ còn rất nhiều điều hay ho phía sau. Hi v
 Cảm ơn mọi người đã đọc bài viết.
 
 Link tham khảo:  
-    + <a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a>  
-    + <a href="https://angular.io/api/common/http/HttpClient">https://angular.io/api/common/http/HttpClient</a>  
-    + <a href="https://angular.io/api/common/http">https://angular.io/api/common/http</a>  
-    + <a href="https://blog.angular-university.io/angular-http/">https://blog.angular-university.io/angular-http/</a>  
+    1. <a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a>  
+    2. <a href="https://angular.io/api/common/http/HttpClient">https://angular.io/api/common/http/HttpClient</a>  
+    3. <a href="https://angular.io/api/common/http">https://angular.io/api/common/http</a>  
+    4. <a href="https://blog.angular-university.io/angular-http/">https://blog.angular-university.io/angular-http/</a>  
