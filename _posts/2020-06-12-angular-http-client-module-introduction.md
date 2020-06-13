@@ -163,7 +163,7 @@ export class PostService {
     }
 }
 ```  
-Như các bạn đã thấy rồi đấy. Nó cung cấp đủ cho chúng ta những method cần thiết để làm việc với API (get, post, put, patch, delete, jsonb). Hơn nữa, các method của `HttpClient` đều trả về `Observable`, các `Observable` này thường chỉ emit 1 lần rồi complete (trừ 1 số options đặc biệt mình sẽ giới thiệu trong các bài sau).  
+Như các bạn đã thấy rồi đấy. Nó cung cấp đủ cho chúng ta những method cần thiết để làm việc với API (get, post, put, patch, delete, jsonp). Hơn nữa, các method của `HttpClient` đều trả về `Observable`, các `Observable` này thường chỉ emit 1 lần rồi complete (trừ 1 số options đặc biệt mình sẽ giới thiệu trong các bài sau).  
 Đây là toàn bộ method của `HttpClient`. Các bạn có thể xem qua -> <a href="https://angular.io/api/common/http/HttpClient#methods">HttpClient Methods</a>  
   
 ## 4. Kết luận
@@ -177,8 +177,10 @@ Series `HttpClientModule` sẽ còn rất nhiều điều hay ho phía sau. Hi v
 
 Cảm ơn mọi người đã đọc bài viết.
 
-Link tham khảo:  
-    1. <a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a>  
-    2. <a href="https://angular.io/api/common/http/HttpClient">https://angular.io/api/common/http/HttpClient</a>  
-    3. <a href="https://angular.io/api/common/http">https://angular.io/api/common/http</a>  
-    4. <a href="https://blog.angular-university.io/angular-http/">https://blog.angular-university.io/angular-http/</a>  
+Link tham khảo: 
+<ol>
+    <li><a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a></li>
+    <li><a href="https://angular.io/api/common/http/HttpClient">https://angular.io/api/common/http/HttpClient</a></li>
+    <li><a href="https://angular.io/api/common/http">https://angular.io/api/common/http</a></li>
+    <li><a href="https://blog.angular-university.io/angular-http/">https://blog.angular-university.io/angular-http/</a></li>
+</ol>
