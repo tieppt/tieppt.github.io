@@ -94,7 +94,7 @@ export class PostComponent implements OnInit {
 }
 ```  
 Và kết quả là: 
-<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592040243/HTTP%20CLIENT%20MODULE/no-import-http-client-module_zzorzz.png" />  
+<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592072438/HTTP%20CLIENT%20MODULE/no-import-http-client-module_zzorzz.png" />  
 Uầy. Lỗi rồi. Lý do gì đây ??  
 <img class="img-responsive" alt="Shocked Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592045179/GIFS/shocked_l5ezs0.gif" />
 Lí do là chưa import `HttpClientModule` haha. -> Mình sẽ import `HttpClientModule` vào `AppModule` nhé. (Còn import vào `AppModule` hay import vào Feature Module thì mình sẽ nói thật chi tiết trong bài sau nhé)
@@ -169,7 +169,7 @@ Như các bạn đã thấy rồi đấy. Nó cung cấp đủ cho chúng ta nh�
 ## 4. Kết luận
 {:#conclusion}
 
-Vậy là mình đã giới thiệu xong về `HttpClientModule`. Hi vọng các bạn đọc xong bài này đều nắm được `HttpClientModule` là gì, tạo service gọi API các kiểu. etc
+Vậy là mình đã giới thiệu xong về `HttpClientModule`. Hi vọng các bạn đọc xong bài này đều nắm được `HttpClientModule` là gì, tạo service gọi API các kiểu. etc  
 Một trang SPA chúng ta thường làm chắc không thể thiếu việc tương tác dữ liệu giữa API server và App Client mình đúng không?  
 Vậy hãy cùng mình đi sâu về HttpClientModule và mổ xẻ xem nó có gì trong các bài tiếp theo nhé.  
 Series `HttpClientModule` sẽ còn rất nhiều điều hay ho phía sau. Hi vọng mọi người vẫn đủ kiên nhẫn để theo dõi :))
