@@ -97,7 +97,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 }
 ```  
 Kết quả:  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
 
 Các bạn nên nhớ. Instance của một `HttpHeaders` là immutable nhé. Nghĩa là mỗi lần modify là trả về 1 `cloned instance` kèm thèm giá trị vừa modify nhé.  
 Ví dụ:  
@@ -112,7 +112,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 }
 ```
 Kết quả:
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901768/HTTP%20CLIENT%20MODULE/request-header-is-not-append-key_dhydwg.png" alt="Not working" />  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901768/HTTP%20CLIENT%20MODULE/request-header-is-not-append-key_dhydwg.png" alt="Not working" />  
 
 Ở đây `Request Header` không có key `angularVN`. Như đã nói ở trên. `mỗi lần modify là trả về 1 cloned instance kèm thèm giá trị vừa modify`. Giải quyết bằng cách:  
 ```typescript
@@ -126,7 +126,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 }
 ```
 Và kết quả là:  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
   
 ### 1.2 Observe
 `observe` là một giá trị kiểu string thuộc enum `'body' | 'events' | 'response'`. Nó báo cho `HttpClient` biết mình muốn lấy response ở mức độ nào. Mặc định nếu không set trong options thì sẽ lấy observe là `'body'`.  
@@ -150,7 +150,7 @@ getListPosts(): Observable<HttpResponse<PostEntityModel[]>> {
 }
 ```  
 Kết quả:  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592907735/HTTP%20CLIENT%20MODULE/observe-response-result_fgwn81.png" alt="Observe Response" />  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592907735/HTTP%20CLIENT%20MODULE/observe-response-result_fgwn81.png" alt="Observe Response" />  
 Chúng ta đã có thêm thông tin để xử lý tiếp rồi:)
 
 #### 1.2.3 Observe 'events'
@@ -165,7 +165,7 @@ createPost(post: Partial<PostEntityModel>): Observable<HttpEvent<PostEntityModel
     );
 }
 ```  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592910602/HTTP%20CLIENT%20MODULE/http-obser-event-angular_zaspdq.png" alt="Observer events" />
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592910602/HTTP%20CLIENT%20MODULE/http-obser-event-angular_zaspdq.png" alt="Observer events" />
 Các bạn thấy đấy, từ `{type: 0}` cho đến `{type: 4}` là lúc request hoàn thành rồi. Lát nữa chúng ta sẽ demo có sự góp mặt của `Observe` này
 
 ### 1.3 Params
@@ -201,7 +201,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 ```
 Vì hàm `set` trả về chính instance của `HttpParams` đó nên chúng ta có thể chain.  
 Cả 3 đều có chung kết quả:  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592929968/HTTP%20CLIENT%20MODULE/from-string-params-option_vtwjaj.png" alt="Query params" />
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592929968/HTTP%20CLIENT%20MODULE/from-string-params-option_vtwjaj.png" alt="Query params" />
 
 `Http Params` có một số method khác các bạn tự tìm hiểu nhé. Vì phần này cũng dễ nên mình không đi sâu thêm
 ```typescript
@@ -233,7 +233,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 }
 ```
 Và kết quả là đã có thông tin Cookies rồi nhé:  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592932622/HTTP%20CLIENT%20MODULE/http-request-with-credentials_gaa2ig.png" alt="withCredentials">  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592932622/HTTP%20CLIENT%20MODULE/http-request-with-credentials_gaa2ig.png" alt="withCredentials">  
 <strong>Note:</strong> Hãy đảm bảo `Allow-Origin-With-Credentials` được set trong `CORS` trên server nhé. Nếu không sẽ bị chặn bởi `CORS`  
 <hr>
 <strong>Ok vậy là chúng ta đi xong Http Request Options. Tiếp theo chúng ta sẽ làm một demo nhỏ nhỏ upload, download file kèm progress nhé. Let's go !</strong>
@@ -249,7 +249,7 @@ Chúng ta cùng đi qua một ứng dụng upload đơn giản nhé.
         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}"></div> <!--Show percentage ở đây-->
 </div>
 <label for="fileUpload" class="default-upload" *ngIf="arrayFileUpload.length < 1;else localImage">
-    <img src="/assets/no-image.webp" class="default-image">
+    <img class="img-responsive" src="/assets/no-image.webp" class="default-image">
 </label>
 <ng-template #localImage>
     <div class="image-col" *ngFor="let img of arrayFileUpload; let i = index">
@@ -362,7 +362,7 @@ export class UploadComponent implements OnInit {
 }
 ```
 Và kết quả chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
-<img src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592938027/HTTP%20CLIENT%20MODULE/upload-progress_ponftf.gif" alt="Upload progress">
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592938027/HTTP%20CLIENT%20MODULE/upload-progress_ponftf.gif" alt="Upload progress">
 
 Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:)  
 
@@ -398,7 +398,8 @@ private saveFile(data: Blob, fileName: string): void {
     link.click();
 }
 ```
-
+Kết quả:  
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592941221/HTTP%20CLIENT%20MODULE/download-progress_xfdmua.gif" alt="Download Progress">
 Vậy là đã xong 2 demo rồi. Các bạn code theo mình đã chạy được chưa:)? Code chưa được thì code lại nhé :) không hiểu thì comment hỏi nha.  
 Chung quy lại. `Angular HttpClient` cung cấp cho chúng ta những options bá đạo, giúp ích cho chúng ta rất nhiều trong công việc. Còn chờ gì nữa, hãy áp dụng những kiến thức này vào những case thực tế ngay khi có thể nhé.  
 Bài viết hôm nay đến đây là kết thúc. Bài sau mình sẽ đi về `Interceptor`. `Interceptor` là một bài rất quan trọng, các bạn chú ý theo dõi nhé. Cảm ơn mọi người  
