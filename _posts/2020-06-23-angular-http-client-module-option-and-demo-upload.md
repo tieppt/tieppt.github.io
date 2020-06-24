@@ -228,7 +228,7 @@ Sử dụng như sau:
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
     return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
-        {withCredentials: false}
+        {withCredentials: true}
     );
 }
 ```
