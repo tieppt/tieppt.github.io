@@ -228,7 +228,7 @@ Sử dụng như sau:
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
     return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
-        {withCredentials: false}
+        {withCredentials: true}
     );
 }
 ```
@@ -239,14 +239,13 @@ Và kết quả là đã có thông tin Cookies rồi nhé:
 <strong>Ok vậy là chúng ta đi xong Http Request Options. Tiếp theo chúng ta sẽ làm một demo nhỏ nhỏ upload, download file kèm progress nhé. Let's go !</strong>
 
 ## 2. Demo cùng Author
-### 2. Upload with Progress
+### 2.1 Upload with Progress
 
 Chúng ta cùng đi qua một ứng dụng upload đơn giản nhé.  
 ```html
 // Upload component html
 <div *ngIf="arrayFileUpload.length > 0 && progress.percentage != -1" class="progress">
-    <div class="progress-bar" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-        aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}"></div> <!--Show percentage ở đây-->
+    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}"></div> <!--Show percentage ở đây-->
 </div>
 <label for="fileUpload" class="default-upload" *ngIf="arrayFileUpload.length < 1;else localImage">
     <img class="img-responsive" src="/assets/no-image.webp" class="default-image">
@@ -362,11 +361,11 @@ export class UploadComponent implements OnInit {
 }
 ```
 Và kết quả chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
-<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592938027/HTTP%20CLIENT%20MODULE/upload-progress_ponftf.gif" alt="Upload progress">
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592987729/HTTP%20CLIENT%20MODULE/ezgif.com-optimize_sldo9g.gif" alt="Upload progress">
 
 Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:)  
 
-### 2. Download with Progress
+### 2.2 Download with Progress
 ```html
 <div class="progress" *ngIf="progress >= 0" [ngStyle]="{width: progress + '%'}"></div>
 <button (click)="downloadFile()">Download File</button>
@@ -399,7 +398,7 @@ private saveFile(data: Blob, fileName: string): void {
 }
 ```
 Kết quả:  
-<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592941221/HTTP%20CLIENT%20MODULE/download-progress_xfdmua.gif" alt="Download Progress">
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592988548/HTTP%20CLIENT%20MODULE/download-progress_rqn7fb.gif" alt="Download Progress">
 Vậy là đã xong 2 demo rồi. Các bạn code theo mình đã chạy được chưa:)? Code chưa được thì code lại nhé :) không hiểu thì comment hỏi nha.  
 Chung quy lại. `Angular HttpClient` cung cấp cho chúng ta những options bá đạo, giúp ích cho chúng ta rất nhiều trong công việc. Còn chờ gì nữa, hãy áp dụng những kiến thức này vào những case thực tế ngay khi có thể nhé.  
 Bài viết hôm nay đến đây là kết thúc. Bài sau mình sẽ đi về `Interceptor`. `Interceptor` là một bài rất quan trọng, các bạn chú ý theo dõi nhé. Cảm ơn mọi người  
