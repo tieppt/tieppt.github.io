@@ -7,12 +7,12 @@ Gem::Specification.new do |spec|
   spec.email         = ["LuminousRubyist@users.noreply.github.com"]
 
   spec.summary       = %q{A port of ThemeFisher's Airspace theme. https://github.com/themefisher/airspace-free-html5-agency-template}
-  spec.homepage      = "http://example.com"
+  spec.homepage      = "https://www.tiepphan.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^(_layouts|_includes|_sass|LICENSE|README)/i}) }
 
-  spec.add_development_dependency "jekyll", "~> 3.8"
-  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "jekyll", "~> 4.2"
+  spec.add_development_dependency "bundler", "~> 2.1"
   spec.add_development_dependency "rake", "~> 12.3"
 end
