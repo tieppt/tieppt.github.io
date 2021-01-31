@@ -1,11 +1,11 @@
 ---
 id: 2024
-title: 'Advanced layout with CSS Grid Area'
+title: 'Advanced Layout with CSS Grid Area'
 date: 2021-01-31T00:00:00+00:00
 author: Tuan Le
 layout: post
 guid: https://www.tiepphan.com/?p=2024
-permalink: /angular-http-client-module-option/
+permalink: /advanced-layout-css-grid-area/
 description: 'Cùng nhau thử nghiệm cách dựng layout với CSS Grid Area'
 image: /assets/uploads/2021/01/1_grid_area.png
 categories:
@@ -13,6 +13,7 @@ categories:
 
 tags:
   - CSS
+  - CSS Grid
 
 ---
 
@@ -189,6 +190,6 @@ Như vậy, thông qua "bàn cờ" ta có thể thực hiện việc chỉ đị
 ```
 
 ## Tổng kết
-Qua 2 ví dụ trên, mình đã cùng mọi người đi qua 2 ví dụ dựng layout tùy biến với CSS Grid Area. Cách diễn giãi có thể chưa dễ hiểu với tất cả mọi người, tuy nhiên, để có thể sử dụng thành thạo và hình thành được "phản xạ" với các layout này không có cách nào khác là các bạn hãy code thật nhiều để quen tay hơn.
+Qua 2 ví dụ trên, mình đã cùng mọi người đi qua 2 ví dụ dựng layout tùy biến với CSS Grid Area. Cách diễn giải có thể chưa dễ hiểu với tất cả mọi người, tuy nhiên, để có thể sử dụng thành thạo và hình thành được "phản xạ" với các layout này không có cách nào khác là các bạn hãy code thật nhiều để quen tay hơn.
 
 Chúc các bạn nhiều sức khỏe và thành công.
