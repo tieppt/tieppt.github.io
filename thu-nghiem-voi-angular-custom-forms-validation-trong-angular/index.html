@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 19 &#8211; Custom Forms Validation Trong Angular</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 19 – Custom Forms Validation Trong Angular | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 19 – Custom Forms Validation Trong Angular" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hướng dẫn tạo Custom Forms Validation trong Angular" />
+<meta property="og:description" content="Hướng dẫn tạo Custom Forms Validation trong Angular" />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-custom-forms-validation-trong-angular/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-custom-forms-validation-trong-angular/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/07/custom-forms-validation.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-07-16T10:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/07/custom-forms-validation.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 19 – Custom Forms Validation Trong Angular" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Hướng dẫn tạo Custom Forms Validation trong Angular","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-custom-forms-validation-trong-angular/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/07/custom-forms-validation.jpg","headline":"Thử Nghiệm Với Angular Phần 19 – Custom Forms Validation Trong Angular","dateModified":"2017-07-16T10:00:00+00:00","datePublished":"2017-07-16T10:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-custom-forms-validation-trong-angular/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 19 &#8211; Custom Forms Validation Trong Angular</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">July 16, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="custom-forms-validation-trong-angular">Custom Forms Validation Trong Angular</h1>
+
+<p>Trong các bài học trước của series <strong>Thử Nghiệm Với Angular</strong> chúng ta đã tìm hiểu về Forms trong Angular. Trong bài viết này chúng ta sẽ tìm hiểu về Custom Forms Validation trong Angular như thế nào.</p>
+
+<p>Như các bạn cũng đã biết, Angular Forms là một tính năng rất mạnh mẽ. Bạn có thể dễ dàng tạo các form để thu thập dữ liệu của người dùng nhập vào. Cũng giống như các vấn đề của một form thông thường, chúng ta phải thực hiện xác minh xem người dùng có nhập vào <em>đủ</em> và <em>đúng</em> thông tin chúng ta yêu cầu không. Lúc này Forms Validation sẽ được sử dụng đến để thực hiện công việc xác minh này.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#1-built-in-validators" id="markdown-toc-1-built-in-validators">1. Built-in Validators</a></li>
+  <li><a href="#2-register-form" id="markdown-toc-2-register-form">2. Register Form</a></li>
+  <li><a href="#3-tạo-custom-validator-function" id="markdown-toc-3-tạo-custom-validator-function">3. Tạo Custom Validator Function</a>    <ul>
+      <li><a href="#31-simple-format" id="markdown-toc-31-simple-format">3.1 Simple Format</a></li>
+      <li><a href="#32-generic-format" id="markdown-toc-32-generic-format">3.2 Generic Format</a></li>
+      <li><a href="#33-formgroup-custom-validator" id="markdown-toc-33-formgroup-custom-validator">3.3 FormGroup Custom Validator</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-validation-cho-template-driven-forms" id="markdown-toc-4-validation-cho-template-driven-forms">4. Validation Cho Template-driven Forms</a>    <ul>
+      <li><a href="#41-implementation" id="markdown-toc-41-implementation">4.1 Implementation</a></li>
+      <li><a href="#42-register-validator-onchange" id="markdown-toc-42-register-validator-onchange">4.2 Register Validator OnChange</a></li>
+    </ul>
+  </li>
+  <li><a href="#5-bonus---validator-directive-confirm-password" id="markdown-toc-5-bonus---validator-directive-confirm-password">5. Bonus - Validator Directive Confirm Password</a></li>
+  <li><a href="#6-video-bài-học" id="markdown-toc-6-video-bài-học">6. Video bài học</a></li>
+  <li><a href="#7-tham-khảo" id="markdown-toc-7-tham-khảo">7. Tham khảo</a></li>
+</ul>
+
+<h2 id="1-built-in-validators">1. Built-in Validators</h2>
+<p>Angular Forms đã cung cấp đi kèm với các thành phần quan trọng khác như các models, directives là một số các Validators để thực hiện Validation như sau:</p>
+
+<ul>
+  <li><strong>required</strong> - Yêu cầu form control không được phép bỏ trống.</li>
+  <li><strong>minlength</strong> - Yêu cầu form control phải có value có length ít nhất bằng một giá trị nào đó.</li>
+  <li><strong>maxlength</strong> - Yêu cầu form control phải có value có length không vượt quá một giá trị nào đó.</li>
+  <li><strong>pattern</strong> - Yêu cầu form control phải có value thỏa mãn một pattern nào đó (Regex).</li>
+  <li><strong>nullvalidator</strong> - là một validator để dùng trong trường hợp bạn muốn luôn trả về form valid (được sử dụng trong trường hợp như thay đổi validator theo điều kiện nào đó).</li>
+</ul>
+
+<p><strong>Angular v4+</strong></p>
+
+<ul>
+  <li><strong>email</strong> - Yêu cầu form control phải có value thỏa mãn định dạng của một email.</li>
+  <li><strong>requiredtrue</strong> - Yêu cầu form control value có <code class="language-plaintext highlighter-rouge">c.value === true</code>.</li>
+  <li><strong>min</strong> - Yêu cầu form control phải có value là số và nhỏ nhất bằng một giá trị nào đó.</li>
+  <li><strong>max</strong> - Yêu cầu form control phải có value là số và lớn nhất không vượt quá một giá trị nào đó.</li>
+</ul>
+
+<h2 id="2-register-form">2. Register Form</h2>
+
+<p>Trong bài này, chúng ta sẽ sử dụng một form để cho người dùng thực hiện tạo mới tài khoản vào hệ thống. Reactive Form Component sẽ có dạng như sau:</p>
+
+<p><strong>Template</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">[formGroup]=</span><span class="s">"form"</span> <span class="na">(ngSubmit)=</span><span class="s">"onSubmit()"</span>
+  <span class="na">class=</span><span class="s">"col-md-6 offset-md-3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+      Email
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span>
+        <span class="na">formControlName=</span><span class="s">"username"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+    <span class="na">*ngIf=</span><span class="s">"form.hasError('invalidusername', ['username']) &amp;&amp;
+      form.get('username').touched"</span><span class="nt">&gt;</span>
+    Invalid Username!
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">formGroupName=</span><span class="s">"pw"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+        Password
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span>
+          <span class="na">formControlName=</span><span class="s">"password"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+        Confirm Password
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span>
+          <span class="na">formControlName=</span><span class="s">"confirmPassword"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Component</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tpc-signup-rform</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./signup-rform.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./signup-rform.component.scss</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SignupRformComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">form</span><span class="p">:</span> <span class="nx">FormGroup</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">fb</span><span class="p">:</span> <span class="nx">FormBuilder</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+      <span class="na">username</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]],</span>
+      <span class="na">pw</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+        <span class="na">password</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
+        <span class="na">confirmPassword</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]</span>
+      <span class="p">})</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">onSubmit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p class="text-center"><img src="/assets/uploads/2017/07/register-form.png" alt="Register Form" class="img-responsive" /></p>
+
+<h2 id="3-tạo-custom-validator-function">3. Tạo Custom Validator Function</h2>
+
+<p>Custom Validator Function đơn giản là một function, nó nhận đầu vào là một đối tượng của abstract class <code class="language-plaintext highlighter-rouge">AbstractControl</code> sau đó sẽ tính toán để xem control đó có thỏa mãn điều kiện đưa ra hay không, và trả về:</p>
+<ul>
+  <li><strong>sync validator:</strong> một object thuộc type <code class="language-plaintext highlighter-rouge">ValidationErrors</code> hoặc <code class="language-plaintext highlighter-rouge">null</code> (viết theo TypeScript là <code class="language-plaintext highlighter-rouge">ValidationErrors|null</code>).</li>
+  <li><strong>async validator:</strong> một object thuộc type <code class="language-plaintext highlighter-rouge">Promise&lt;ValidationErrors|null&gt;</code> hoặc <code class="language-plaintext highlighter-rouge">Observable&lt;ValidationErrors|null&gt;</code>.</li>
+</ul>
+
+<blockquote>
+  <p>Trong các ví dụ tiếp theo chúng ta sẽ làm quen với <strong>sync validator</strong></p>
+</blockquote>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">type</span> <span class="nx">ValidationErrors</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="na">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span>
+<span class="p">};</span>
+
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">ValidatorFn</span> <span class="p">{</span> <span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">):</span> <span class="nx">ValidationErrors</span><span class="o">|</span><span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">AsyncValidatorFn</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ValidationErrors</span><span class="o">|</span><span class="kc">null</span><span class="o">&gt;|</span><span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">ValidationErrors</span><span class="o">|</span><span class="kc">null</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Bây giờ, chúng ta sẽ tạo một validator cho việc người dùng chọn một username bất kỳ, nhưng có một số username sẽ bị giới hạn, không cho phép họ chọn, ví dụ như <code class="language-plaintext highlighter-rouge">admin</code> hay <code class="language-plaintext highlighter-rouge">manager</code>, etc.</p>
+
+<h3 id="31-simple-format">3.1 Simple Format</h3>
+<p>Validator Function của chúng ta sẽ có dạng như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">forbiddenUsername</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">admin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">manager</span><span class="dl">'</span><span class="p">];</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span> <span class="p">?</span> <span class="p">{</span>
+    <span class="na">invalidusername</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Chúng ta kiểm tra xem username mà người dùng nhập vào có tồn tại trong danh sách giới hạn không, nếu có, chúng ta sẽ trả về 1 object chứa thông báo, ngược lại chúng ta trả về <code class="language-plaintext highlighter-rouge">null</code> để báo rằng người dùng nhập vào ok.</p>
+
+<p>Ngoài template chúng ta đã có một thông báo lỗi nếu người dùng nhập lỗi như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+  <span class="na">*ngIf=</span><span class="s">"form.hasError('invalidusername', ['username']) &amp;&amp;
+    form.get('username').touched"</span><span class="nt">&gt;</span>
+  Invalid Username!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Lưu ý khi sử dụng AoT build:</p>
+
+  <p><code class="language-plaintext highlighter-rouge">form.hasError('code', 'path.to.control')</code> AoT failure.</p>
+
+  <p><code class="language-plaintext highlighter-rouge">form.get('path.to.control').hasError('code')</code>
+ hoặc <code class="language-plaintext highlighter-rouge">form.hasError('code', ['path', 'to', 'control'])</code> AoT OK</p>
+</blockquote>
+
+<p>Ở đây chúng ta sử dụng <code class="language-plaintext highlighter-rouge">hasError</code> để kiểm tra xem control nào đó có bị error hay không, mô tả của nó như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+  * Returns true if the control with the given path has the error specified. Otherwise
+  * returns false.
+  *
+  * If no path is given, it checks for the error on the present control.
+  */</span>
+<span class="nx">hasError</span><span class="p">(</span><span class="nx">errorCode</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span> <span class="nx">path</span><span class="p">?:</span> <span class="kr">string</span><span class="p">[]):</span> <span class="nx">boolean</span> <span class="p">{</span> <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">getError</span><span class="p">(</span><span class="nx">errorCode</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Cuối cùng, chúng ta thêm vào phần khai báo danh sách validators cho control như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">username</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span> <span class="nx">forbiddenUsername</span><span class="p">]]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="text-center"><img src="/assets/uploads/2017/07/register-forbidden.png" alt="Validator Forbidden Username" class="img-responsive" /></p>
+
+<h3 id="32-generic-format">3.2 Generic Format</h3>
+
+<p>Ở trong ví dụ trước chúng ta đã fixed cứng danh sách các username không được phép sử dụng, nếu bạn muốn Validator Function (VF) trên trở nên flexiable hơn thì có cách nào không.</p>
+
+<p>Lúc này chúng ta có thể xây dựng một VF generic, nó cho phép người dùng nhập vào thêm đầu vào. Nhưng như trên chúng ta có nói đến format của function nhận <code class="language-plaintext highlighter-rouge">AbstractControl</code>, vậy phải làm thế nào để có thể truyển thêm đầu vào. Điều này dễ dàng có được với việc tạo <em>1 function trả về 1 function</em> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">forbiddenUsername</span><span class="p">(</span><span class="nx">users</span> <span class="o">=</span> <span class="p">[])</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span> <span class="p">?</span> <span class="p">{</span>
+      <span class="na">invalidusername</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+  <span class="na">username</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="p">[</span><span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span> <span class="nx">forbiddenUsername</span><span class="p">([</span><span class="dl">'</span><span class="s1">admin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">manager</span><span class="dl">'</span><span class="p">])]],</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Trong trường hợp này chúng ta dùng format của arrow function để nhìn gọn gàng hơn.</p>
+
+<h3 id="33-formgroup-custom-validator">3.3 FormGroup Custom Validator</h3>
+<p>Với việc sử dụng FormBuilder, chúng ta hoàn toàn có thể truyền tương tự VF cho FormArray, nhưng với FormGroup có chút đặc biệt hơn. Do nó nhận đầu vào là một object để tạo các control tương ứng, nên nếu muốn validation cho một group chúng ta sẽ pass vào tham số thứ 2 một object như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">extra</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span>
+<span class="p">}</span>
+
+<span class="nx">group</span><span class="p">(</span><span class="nx">controlsConfig</span><span class="p">:</span> <span class="p">{[</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span><span class="p">},</span> <span class="nx">extra</span><span class="p">:</span> <span class="p">{[</span><span class="nx">key</span><span class="p">:</span> <span class="kr">string</span><span class="p">]:</span> <span class="kr">any</span><span class="p">}</span><span class="o">|</span><span class="kc">null</span> <span class="o">=</span> <span class="kc">null</span><span class="p">):</span> <span class="nx">FormGroup</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_reduceControls</span><span class="p">(</span><span class="nx">controlsConfig</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">validator</span><span class="p">:</span> <span class="nx">ValidatorFn</span> <span class="o">=</span> <span class="nx">extra</span> <span class="o">!=</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">extra</span><span class="p">[</span><span class="dl">'</span><span class="s1">validator</span><span class="dl">'</span><span class="p">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">asyncValidator</span><span class="p">:</span> <span class="nx">AsyncValidatorFn</span> <span class="o">=</span> <span class="nx">extra</span> <span class="o">!=</span> <span class="kc">null</span> <span class="p">?</span> <span class="nx">extra</span><span class="p">[</span><span class="dl">'</span><span class="s1">asyncValidator</span><span class="dl">'</span><span class="p">]</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FormGroup</span><span class="p">(</span><span class="nx">controls</span><span class="p">,</span> <span class="nx">validator</span><span class="p">,</span> <span class="nx">asyncValidator</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Rõ ràng, chúng ta cần một object với 2 keys <code class="language-plaintext highlighter-rouge">validator</code> hoặc/và <code class="language-plaintext highlighter-rouge">asyncValidator</code>.</p>
+
+<p>Giả sử, chúng ta làm chức năng validate <code class="language-plaintext highlighter-rouge">password</code> và <code class="language-plaintext highlighter-rouge">confirmPassword</code> người dùng nhập vào phải giống nhau, lúc này validate cho cả group <code class="language-plaintext highlighter-rouge">pw</code> sẽ là một giải pháp đơn giản hơn.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">function</span> <span class="nx">comparePassword</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">password</span> <span class="o">===</span> <span class="nx">v</span><span class="p">.</span><span class="nx">confirmPassword</span><span class="p">)</span> <span class="p">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="na">passwordnotmatch</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="nl">pw</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">fb</span><span class="p">.</span><span class="nx">group</span><span class="p">({</span>
+  <span class="na">password</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">],</span>
+  <span class="na">confirmPassword</span><span class="p">:</span> <span class="p">[</span><span class="dl">''</span><span class="p">,</span> <span class="nx">Validators</span><span class="p">.</span><span class="nx">required</span><span class="p">]</span>
+<span class="p">},</span> <span class="p">{</span>
+  <span class="na">validator</span><span class="p">:</span> <span class="nx">comparePassword</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Và template sẽ giống như sau:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+  <span class="na">*ngIf=</span><span class="s">"form.hasError('passwordnotmatch', ['pw']) &amp;&amp;
+    form.get('pw').touched"</span><span class="nt">&gt;</span>
+  Password does not match!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p class="text-center"><img src="/assets/uploads/2017/07/register-compare-password.png" alt="Validator Compare Password" class="img-responsive" /></p>
+
+<h2 id="4-validation-cho-template-driven-forms">4. Validation Cho Template-driven Forms</h2>
+<p>Việc validation cho Reactive Form trong Angular rất dễ dàng, bạn chỉ cần tạo một VF là có thể sử dụng được. Vậy còn với Template-driven Forms thì sao.
+Câu trả lời là bạn sẽ phải tạo một <code class="language-plaintext highlighter-rouge">Directive</code> để thực hiện validation.</p>
+
+<p>Và Directive sẽ cần cài đặt interface như sau:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">Validator</span> <span class="p">{</span>
+    <span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">):</span> <span class="nx">ValidationErrors</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="nx">registerOnValidatorChange</span><span class="p">?(</span><span class="nx">fn</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">):</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// or</span>
+<span class="k">export</span> <span class="kr">interface</span> <span class="nx">AsyncValidator</span> <span class="kd">extends</span> <span class="nx">Validator</span> <span class="p">{</span>
+    <span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">):</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">ValidationErrors</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span> <span class="o">|</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">ValidationErrors</span> <span class="o">|</span> <span class="kc">null</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Nếu bạn dùng Angular CLI có thể chạy lệnh để tạo Directive, nó sẽ tạo directive và update NgModule để có thể sử dụng directive vừa tạo.</p>
+
+<p>Giả sử chúng ta tạo Validation cho forbidden username như ví dụ trước.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng g d forbidden-username
+</code></pre></div></div>
+
+<p>Directive mà chúng ta cần sẽ có dạng như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">FORBIDDEN_USERNAME_VALIDATOR</span><span class="p">:</span> <span class="nx">Provider</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="nx">NG_VALIDATORS</span><span class="p">,</span>
+  <span class="na">useExisting</span><span class="p">:</span> <span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">ForbiddenUsernameDirective</span><span class="p">),</span>
+  <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="p">@</span><span class="nd">Directive</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">[forbiddenUsername][ngModel]</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">FORBIDDEN_USERNAME_VALIDATOR</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ForbiddenUsernameDirective</span> <span class="k">implements</span> <span class="nx">Validator</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="nx">validate</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// logic here</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Đầu tiên, chúng ta phải đăng ký validator directive của chúng ta với Angular thông qua việc khai báo thêm directive vào token <code class="language-plaintext highlighter-rouge">NG_VALIDATORS</code>, lúc này Angular mới nhận biết được và thực hiện validate cho form control.</p>
+
+<p>Nếu bạn nào chưa tìm hiểu về Dependency Injection và Multi-provider trong Angular, bạn có thể trở lại <a href="/thu-nghiem-voi-angular-dependency-injection-trong-angular/" target="_blank">bài 16 trong series</a> để tìm hiểu thêm.</p>
+
+<p>Ở trong phần <code class="language-plaintext highlighter-rouge">selector</code> của directive, chúng ta sử dụng <code class="language-plaintext highlighter-rouge">property selector</code> giống như trong CSS, ở đây chúng ta đảm bảo rằng chúng ta đang thao tác trên form control nào đó, do đó chúng ta ghép thêm với <code class="language-plaintext highlighter-rouge">[ngModel]</code>.</p>
+
+<h3 id="41-implementation">4.1 Implementation</h3>
+
+<p>Bây giờ chúng ta sẽ cài đặt directive như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">private</span> <span class="nx">_users</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="p">@</span><span class="nd">Input</span><span class="p">()</span>
+<span class="kd">get</span> <span class="nx">forbiddenUsername</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_users</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// cho phép người dùng truyền vào rỗng, array, string</span>
+<span class="kd">set</span> <span class="nx">forbiddenUsername</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">|</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_users</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">?</span> <span class="p">{</span>
+    <span class="na">invalidusername</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">}</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sau khi có phần login xử lý, chúng ta chỉ việc thêm directive vào template:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">#form</span><span class="err">="</span><span class="na">ngForm</span><span class="err">"</span> <span class="na">(ngSubmit)=</span><span class="s">"onSubmit(form)"</span>
+  <span class="na">class=</span><span class="s">"col-md-6 offset-md-3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+      Email
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"username"</span>
+        <span class="na">forbiddenUsername=</span><span class="s">"admin manager"</span> <span class="na">#emailAdd</span><span class="err">="</span><span class="na">ngModel</span><span class="err">"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+    <span class="na">*ngIf=</span><span class="s">"emailAdd.errors?.invalidusername &amp;&amp; emailAdd.touched"</span><span class="nt">&gt;</span>
+    Email is invalid!
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">ngModelGroup=</span><span class="s">"pw"</span> <span class="na">#pw</span><span class="err">="</span><span class="na">ngModelGroup</span><span class="err">"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+        Password
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"password"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"col"</span><span class="nt">&gt;</span>
+        Confirm Password
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"confirmPassword"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+      <span class="na">*ngIf=</span><span class="s">"pw.errors?.confirmPassword &amp;&amp; pw.touched"</span><span class="nt">&gt;</span>
+      Password does not match!
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>Tận hưởng thành quả thôi nào.</p>
+
+<h3 id="42-register-validator-onchange">4.2 Register Validator OnChange</h3>
+
+<p>Sẽ thế nào nếu đầu vào của directive thay đổi, liệu nó còn validate đúng cho chúng ta, giờ hãy đổi một chút:</p>
+
+<p>Thêm 1 button để thêm hoặc xóa <code class="language-plaintext highlighter-rouge">admin</code> khỏi list không cho phép</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span> <span class="na">type=</span><span class="s">"button"</span>
+  <span class="na">(click)=</span><span class="s">"toggle()"</span>
+<span class="nt">&gt;</span>
+  Toggle validate admin
+<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"username"</span>
+        <span class="na">[forbiddenUsername]=</span><span class="s">"list"</span> <span class="na">#emailAdd</span><span class="err">="</span><span class="na">ngModel</span><span class="err">"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Và code trong Component:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">list</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">admin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">manager</span><span class="dl">'</span><span class="p">];</span>
+
+<span class="nx">toggle</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">admin</span><span class="dl">'</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!==</span> <span class="nx">el</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="p">[...</span><span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">,</span> <span class="nx">el</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Khi chạy thử chúng ta có thể thấy rằng, nếu người dùng nhập vào <code class="language-plaintext highlighter-rouge">admin</code> rồi focus sang một chỗ khác, error thông báo sẽ hiện ra, nếu người dùng click vào button để xóa admin khỏi list thì error không biến mất, điều tương tự khi người dùng tắt validate cho <code class="language-plaintext highlighter-rouge">admin</code>, sau đó nhập vào <code class="language-plaintext highlighter-rouge">admin</code> và bật validate trở lại thì error không hiện như chúng ta mong muốn. Vậy có phải chúng ta đã bỏ qua điều gì không.</p>
+
+<p>Câu trả lời là khi thực hiện thay đổi đầu vào, chúng ta cần update lại trạng thái của form/control. Có một phương pháp đó là bạn implement thêm method:</p>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">registerOnValidatorChange</span><span class="p">?(</span><span class="nx">fn</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">):</span> <span class="k">void</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Và phiên bản code cuối cùng của chúng ta sẽ có dạng:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">FORBIDDEN_USERNAME_VALIDATOR</span><span class="p">:</span> <span class="nx">Provider</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="nx">NG_VALIDATORS</span><span class="p">,</span>
+  <span class="na">useExisting</span><span class="p">:</span> <span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">ForbiddenUsernameDirective</span><span class="p">),</span>
+  <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="p">@</span><span class="nd">Directive</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">[forbiddenUsername][ngModel]</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="nx">FORBIDDEN_USERNAME_VALIDATOR</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ForbiddenUsernameDirective</span> <span class="k">implements</span> <span class="nx">Validator</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">_users</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">private</span> <span class="nx">_onChange</span><span class="p">:</span> <span class="nb">Function</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">Input</span><span class="p">()</span>
+  <span class="kd">get</span> <span class="nx">forbiddenUsername</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_users</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">set</span> <span class="nx">forbiddenUsername</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span> <span class="o">|</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_users</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_users</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">?</span> <span class="p">{</span>
+      <span class="na">invalidusername</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">registerOnValidatorChange</span><span class="p">(</span><span class="nx">fn</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Ý tưởng là đầu vào thay đổi, thì sẽ thực hiện chạy một hàm nào đó để thực hiện việc update state cho form/control.</p>
+
+<p>Bí mật ở đây là những directives này thực thi đoạn code sau đây:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// re-run validation when validator binding changes, e.g. minlength=3 -&gt; minlength=4</span>
+<span class="nx">dir</span><span class="p">.</span><span class="nx">_rawValidators</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">validator</span><span class="p">:</span> <span class="nx">Validator</span> <span class="o">|</span> <span class="nx">ValidatorFn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">((</span><span class="o">&lt;</span><span class="nx">Validator</span><span class="o">&gt;</span><span class="nx">validator</span><span class="p">).</span><span class="nx">registerOnValidatorChange</span><span class="p">)</span>
+    <span class="p">(</span><span class="o">&lt;</span><span class="nx">Validator</span><span class="o">&gt;</span><span class="nx">validator</span><span class="p">).</span><span class="nx">registerOnValidatorChange</span> <span class="o">!</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">control</span><span class="p">.</span><span class="nx">updateValueAndValidity</span><span class="p">());</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="5-bonus---validator-directive-confirm-password">5. Bonus - Validator Directive Confirm Password</h2>
+
+<p>Dưới đây là một directive để thực hiện kiểm tra password của người dùng nhập vào có giống nhau không. Logic sẽ được áp dụng cho <code class="language-plaintext highlighter-rouge">ngModelGroup</code> và có chút tùy biến để có thể cập nhật trạng thái của group.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CONFIRM_PASSWORD_VALIDATOR</span><span class="p">:</span> <span class="nx">Provider</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="nx">NG_VALIDATORS</span><span class="p">,</span>
+  <span class="na">useExisting</span><span class="p">:</span> <span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">ConfirmPasswordDirective</span><span class="p">),</span>
+  <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="p">@</span><span class="nd">Directive</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">[ngModelGroup][confpass]</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">CONFIRM_PASSWORD_VALIDATOR</span><span class="p">],</span>
+  <span class="na">host</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">[attr.confpass]</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">confpass ? "" : null</span><span class="dl">'</span><span class="p">}</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ConfirmPasswordDirective</span> <span class="k">implements</span> <span class="nx">Validator</span><span class="p">,</span> <span class="nx">OnChanges</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">_cfPassword</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="nx">_control</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">Input</span><span class="p">()</span>
+  <span class="kd">get</span> <span class="nx">confpass</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_cfPassword</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kd">set</span> <span class="nx">confpass</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_cfPassword</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">value</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="k">private</span> <span class="nx">_onChange</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_control</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_control</span><span class="p">.</span><span class="nx">updateValueAndValidity</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="nx">ngOnChanges</span><span class="p">(</span><span class="nx">changes</span><span class="p">:</span> <span class="nx">SimpleChanges</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="dl">'</span><span class="s1">confpass</span><span class="dl">'</span> <span class="k">in</span> <span class="nx">changes</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onChange</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">validate</span><span class="p">(</span><span class="nx">c</span><span class="p">:</span> <span class="nx">AbstractControl</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_control</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">confpass</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">password</span> <span class="o">==</span> <span class="nx">v</span><span class="p">.</span><span class="nx">confirmPassword</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="na">confirmPassword</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">notMatch</span><span class="p">:</span> <span class="kc">true</span>
+          <span class="p">}</span>
+        <span class="p">};</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="6-video-bài-học">6. Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/dKKEWL9qwpk" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<p><strong>Angular Form Validation - KARA ERICKSON - NgConf 2017</strong></p>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/kM5QBOWrUVI" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="7-tham-khảo">7. Tham khảo</h2>
+
+<p>Reactive Forms documentation: <a href="https://angular.io/docs/ts/latest/guide/reactive-forms.html" target="_blank">https://angular.io/docs/ts/latest/guide/reactive-forms.html</a></p>
+
+<p>Github Angular: <a href="https://github.com/angular/angular/blob/4.3.x/packages/forms/src/directives/validators.ts" target="_blank">https://github.com/angular/angular/blob/4.3.x/packages/forms/src/directives/validators.ts</a></p>
+
+<p>Git repo: <a href="https://github.com/tieppt/try-angular/tree/lesson-19" target="_blank">https://github.com/tieppt/try-angular/tree/lesson-19</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Đây là bài học đầu tiên trong series Thử Nghiệm Với Angular 2, trong bài học này chúng ta sẽ cùng tìm hiểu về Angular 2 Component và Data Binding trong Angular 2." />
+<meta property="og:description" content="Đây là bài học đầu tiên trong series Thử Nghiệm Với Angular 2, trong bài học này chúng ta sẽ cùng tìm hiểu về Angular 2 Component và Data Binding trong Angular 2." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2016/12/angular2-PHAN1.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-23T03:36:44+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2016/12/angular2-PHAN1.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Đây là bài học đầu tiên trong series Thử Nghiệm Với Angular 2, trong bài học này chúng ta sẽ cùng tìm hiểu về Angular 2 Component và Data Binding trong Angular 2.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2016/12/angular2-PHAN1.jpg","headline":"Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding","dateModified":"2016-12-23T03:36:44+00:00","datePublished":"2016-12-23T03:36:44+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-2-component-va-data-binding/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular 2 Phần 1: Component và Data Binding</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">December 23, 2016</span></p>
+            </div>
+            <hr />
+            <p><h1 id="angular-2-component-và-data-binding">Angular 2 Component và Data Binding</h1>
+
+<p>Xin chào các bạn, đây là bài học đầu tiên trong series <strong>Thử Nghiệm Với Angular 2</strong>, trong bài học này chúng ta sẽ cùng tìm hiểu về Angular 2 Component và Data Binding trong Angular 2.</p>
+
+<h2 id="nội-dung">Nội dung</h2>
+
+<p>Đây là bài kế tiếp bài giới thiệu lúc trước mình đã làm.</p>
+
+<blockquote data-secret="HnvnGsLN9y" class="wp-embedded-content">
+  <p>
+    <a href="https://www.tiepphan.com/angular-2-ban-da-san-sang-thu-nghiem/">Angular 2 &#8211; Bạn Đã Sẵn Sàng Thử Nghiệm</a>
+  </p>
+</blockquote>
+
+<p>Từ bài này trở đi mình sẽ tạo video để mô tả trực quan hơn. Các bạn có thể trở lại bài trước để tham khảo các phần mềm cần cài đặt, hay các chi tiết mà trong video mình có thể bỏ qua.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/component-hierarchy.png" alt="Angular 2 Component Hierarchy" class="img-responsive" /></p>
+
+<h2 id="video-bài-học">Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/eAYZVGhnYBg" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="tham-khảo">Tham khảo</h2>
+
+<p>Một số link hữu ích cho các bạn tham khảo về kiến trúc của Angular 2:</p>
+
+<p>Architecture Overview: kiến trúc tổng thể của ứng dụng Angular 2 như Component, NgModule, Data Binding, …</p>
+
+<p><a href="https://angular.io/docs/ts/latest/guide/architecture.html" target="_blank">https://angular.io/docs/ts/latest/guide/architecture.html</a></p>
+
+<p>Template Syntax: Các cú pháp để thao tác trên template.</p>
+
+<p><a href="https://angular.io/docs/ts/latest/guide/template-syntax.html" target="_blank">https://angular.io/docs/ts/latest/guide/template-syntax.html</a></p>
+
+<p>Cheat Sheet: từ điển tham khảo cho Angular 2 developer.</p>
+
+<p><a href="https://angular.io/docs/ts/latest/guide/cheatsheet.html" target="_blank">https://angular.io/docs/ts/latest/guide/cheatsheet.html</a></p>
+
+<p>Angular-CLI: tool để khởi tạo một app sử dụng Angular 2.</p>
+
+<p><a href="https://github.com/angular/angular-cli" target="_blank">https://github.com/angular/angular-cli</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

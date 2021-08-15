@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Angular HTTP Client Module - P1. Giới thiệu</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Angular HTTP Client Module - P1. Giới thiệu | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Angular HTTP Client Module - P1. Giới thiệu" />
+<meta name="author" content="Tuan Anh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cùng nhau khám phá về Http Client Module trong Angular. Giới thiệu về HTTP Client Module" />
+<meta property="og:description" content="Cùng nhau khám phá về Http Client Module trong Angular. Giới thiệu về HTTP Client Module" />
+<link rel="canonical" href="https://www.tiepphan.com/angular-http-client-module-introduction/" />
+<meta property="og:url" content="https://www.tiepphan.com/angular-http-client-module-introduction/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://res.cloudinary.com/tuananh-asia/image/upload/v1591951988/HTTP%20CLIENT%20MODULE/angular-http-client_t5qody.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://res.cloudinary.com/tuananh-asia/image/upload/v1591951988/HTTP%20CLIENT%20MODULE/angular-http-client_t5qody.png" />
+<meta property="twitter:title" content="Angular HTTP Client Module - P1. Giới thiệu" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Cùng nhau khám phá về Http Client Module trong Angular. Giới thiệu về HTTP Client Module","url":"https://www.tiepphan.com/angular-http-client-module-introduction/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tuan Anh"},"image":"https://res.cloudinary.com/tuananh-asia/image/upload/v1591951988/HTTP%20CLIENT%20MODULE/angular-http-client_t5qody.png","headline":"Angular HTTP Client Module - P1. Giới thiệu","dateModified":"2020-06-12T00:00:00+00:00","datePublished":"2020-06-12T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/angular-http-client-module-introduction/"},"author":{"@type":"Person","name":"Tuan Anh"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Angular HTTP Client Module - P1. Giới thiệu</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tuan Anh</span> on <span class="bold">June 12, 2020</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="mở-đầu">Mở đầu</h1>
+
+<p>Khi lập trình ứng dụng với Angular, chúng ta thường tương tác dữ liệu qua lại bằng các gọi API tới 1 server khác. Vậy làm cách nào chúng ta có thể handle việc đó? Angular đã cung cấp cho chúng ta một module tên là <code class="language-plaintext highlighter-rouge">HTTPClientModule</code>.</p>
+
+<p>Trong bài này, chúng ta sẽ tìm hiểu xem <code class="language-plaintext highlighter-rouge">HttpClientModule</code> là gì và lợi ích của nó mang lại khi lập trình ứng dụng với Angular như thế nào nhé.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#post-intro" id="markdown-toc-post-intro">1. Giới thiệu</a></li>
+  <li><a href="#import-in-angular-appp" id="markdown-toc-import-in-angular-appp">2. Sử dụng Http Client Module trong Angular project</a></li>
+  <li><a href="#implement-method-of-http-client" id="markdown-toc-implement-method-of-http-client">3. Implement các method của HttpClient</a></li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">4. Kết luận</a></li>
+</ul>
+
+<h2 id="post-intro">1. Giới thiệu</h2>
+<p>Http Client là một <strong>Service Module(*)</strong> được cung cấp bởi Angular giúp chúng ta thực hiện những yêu cầu Http, dễ dàng custom các request option và handle error một cách dễ dàng.<br />
+Bản chất nó được gọi là <strong>Service Module</strong> vì nó chỉ init các services (http client, http backend, etc) và không export bất cứ component hay directive nào.<br />
+<img class="img-responsive" alt="Video Gif" src="//res.cloudinary.com/tuananh-asia/image/upload/v1591952900/HTTP%20CLIENT%20MODULE/http-client-module-core_rbhuy6.png" /></p>
+
+<p>Đây là nơi khai báo <code class="language-plaintext highlighter-rouge">HttpClientModule</code> trong core của Angular.  -&gt; <a href="//github.com/angular/angular/blob/fe0782afa9d23b328315b07a65f79f5a4f23074e/packages/common/http/src/module.ts#L166">Refer here</a></p>
+
+<h2 id="import-in-angular-appp">2. Sử dụng Http Client Module trong Angular project</h2>
+
+<p>Đầu tiên, Mình sẽ tạo một service ở level <code class="language-plaintext highlighter-rouge">AppModule</code> nhé. Service này có method <code class="language-plaintext highlighter-rouge">getListPosts</code> để lấy danh sách bài viết từ 1 API endpoint.
+Go go:</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@angular/core</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClient</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">PostEntityModel</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../models/post.entity.model</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span>
+    <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">PostService</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">httpClient</span><span class="p">:</span> <span class="nx">HttpClient</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="nx">getListPosts</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://jsonplaceholder.typicode.com/posts</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Tạo model cho post.</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kr">interface</span> <span class="nx">PostEntityModel</span> <span class="p">{</span>
+    <span class="nl">userId</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+    <span class="nl">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+    <span class="nl">title</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+    <span class="nl">body</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Inject vào compoent để gọi lấy danh sách bài viết</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">PostService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../../services/post.service</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+    <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-post</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./post.component.html</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./post.component.scss</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">PostComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span>
+        <span class="k">private</span> <span class="nx">postService</span><span class="p">:</span> <span class="nx">PostService</span>
+    <span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="nx">ngOnInit</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">postService</span><span class="p">.</span><span class="nx">getListPosts</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Và kết quả là: 
+<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592072438/HTTP%20CLIENT%20MODULE/no-import-http-client-module_zzorzz.png" /><br />
+Uầy. Lỗi rồi. Lý do gì đây ??<br />
+<img class="img-responsive" alt="Shocked Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592045179/GIFS/shocked_l5ezs0.gif" />
+Lí do là chưa import <code class="language-plaintext highlighter-rouge">HttpClientModule</code> haha. -&gt; Mình sẽ import <code class="language-plaintext highlighter-rouge">HttpClientModule</code> vào <code class="language-plaintext highlighter-rouge">AppModule</code> nhé. (Còn import vào <code class="language-plaintext highlighter-rouge">AppModule</code> hay import vào Feature Module thì mình sẽ nói thật chi tiết trong bài sau nhé)</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BrowserModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/platform-browser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">NgModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AppRoutingModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app-routing.module</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AppComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./app.component</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">HttpClientModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/common/http</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+    <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">AppComponent</span>
+    <span class="p">],</span>
+    <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="nx">BrowserModule</span><span class="p">,</span>
+        <span class="nx">AppRoutingModule</span><span class="p">,</span>
+        <span class="nx">HttpClientModule</span> <span class="c1">// --&gt; import here</span>
+    <span class="p">],</span>
+    <span class="na">providers</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Kết quả đây:<br />
+<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592041530/HTTP%20CLIENT%20MODULE/result-after-import-http-client-module_bvektu.png" /><br />
+Kết quả trả về từ API và chúng ta đã log ra đây rồi. Yeah yeah.<br />
+<img class="img-responsive" alt="Greate Job Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592045443/GIFS/greate-job_pd94hi.gif" /></p>
+
+<p>Mình xin giải thích chút xíu về lỗi phía trên. Khi import <code class="language-plaintext highlighter-rouge">HttpClientModule</code>. Nó provide các dịch vụ có trong module như là <code class="language-plaintext highlighter-rouge">HttpClient</code>, <code class="language-plaintext highlighter-rouge">HttpBackend</code>,… Nên nãy quên import <code class="language-plaintext highlighter-rouge">HttpClientModule</code> thì chưa có instance của các service nên DI của Angular không biết lấy <code class="language-plaintext highlighter-rouge">HttpClient</code> ở đâu cả. Nên báo lỗi <code class="language-plaintext highlighter-rouge">NullInjector</code> ngay. <br />
+Đây là danh sách các service được provide trong <code class="language-plaintext highlighter-rouge">HttpClientModule</code>:<br />
+<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592042305/HTTP%20CLIENT%20MODULE/providers-of-http-client-module_wetzpm.png" /></p>
+
+<h2 id="implement-method-of-http-client">3. Implement các method của HttpClient</h2>
+
+<p>Chúng ta cùng điểm qua một số method của <code class="language-plaintext highlighter-rouge">HttpClient</code> mà mình thường xài nhé.</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span>
+    <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">PostService</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">httpClient</span><span class="p">:</span> <span class="nx">HttpClient</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="nx">getListPosts</span><span class="p">():</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="p">[]</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://jsonplaceholder.typicode.com/posts</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">createPost</span><span class="p">(</span><span class="nx">post</span><span class="p">:</span> <span class="nx">PostEntityModel</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">post</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://jsonplaceholder.typicode.com/posts</span><span class="dl">'</span><span class="p">,</span> <span class="nx">post</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">updatePost</span><span class="p">(</span><span class="nx">postId</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">post</span><span class="p">:</span> <span class="nx">PostEntityModel</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">put</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">`https://jsonplaceholder.typicode.com/posts/</span><span class="p">${</span> <span class="nx">postId</span> <span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">post</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">updateOptionPost</span><span class="p">(</span><span class="nx">postId</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">post</span><span class="p">:</span> <span class="nb">Partial</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">patch</span><span class="o">&lt;</span><span class="nx">PostEntityModel</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">`https://jsonplaceholder.typicode.com/posts/</span><span class="p">${</span> <span class="nx">postId</span> <span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">post</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">deletePost</span><span class="p">(</span><span class="nx">postId</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="nx">Observable</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">`https://jsonplaceholder.typicode.com/posts/</span><span class="p">${</span> <span class="nx">postId</span> <span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Như các bạn đã thấy rồi đấy. Nó cung cấp đủ cho chúng ta những method cần thiết để làm việc với API (get, post, put, patch, delete, jsonp). Hơn nữa, các method của <code class="language-plaintext highlighter-rouge">HttpClient</code> đều trả về <code class="language-plaintext highlighter-rouge">Observable</code>, các <code class="language-plaintext highlighter-rouge">Observable</code> này thường chỉ emit 1 lần rồi complete (trừ 1 số options đặc biệt mình sẽ giới thiệu trong các bài sau).<br />
+Đây là toàn bộ method của <code class="language-plaintext highlighter-rouge">HttpClient</code>. Các bạn có thể xem qua -&gt; <a href="https://angular.io/api/common/http/HttpClient#methods">HttpClient Methods</a></p>
+
+<h2 id="conclusion">4. Kết luận</h2>
+
+<p>Vậy là mình đã giới thiệu xong về <code class="language-plaintext highlighter-rouge">HttpClientModule</code>. Hi vọng các bạn đọc xong bài này đều nắm được <code class="language-plaintext highlighter-rouge">HttpClientModule</code> là gì, tạo service gọi API các kiểu. etc<br />
+Một trang SPA chúng ta thường làm chắc không thể thiếu việc tương tác dữ liệu giữa API server và App Client mình đúng không?<br />
+Vậy hãy cùng mình đi sâu về HttpClientModule và mổ xẻ xem nó có gì trong các bài tiếp theo nhé.<br />
+Series <code class="language-plaintext highlighter-rouge">HttpClientModule</code> sẽ còn rất nhiều điều hay ho phía sau. Hi vọng mọi người vẫn đủ kiên nhẫn để theo dõi :))
+<img class="img-responsive" alt="Image" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592044698/GIFS/tenor_x41afb.gif" /></p>
+
+<p>Cảm ơn mọi người đã đọc bài viết.</p>
+
+<p>Link tham khảo:</p>
+<ol>
+    <li><a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a></li>
+    <li><a href="https://angular.io/api/common/http/HttpClient">https://angular.io/api/common/http/HttpClient</a></li>
+    <li><a href="https://angular.io/api/common/http">https://angular.io/api/common/http</a></li>
+    <li><a href="https://blog.angular-university.io/angular-http/">https://blog.angular-university.io/angular-http/</a></li>
+</ol>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

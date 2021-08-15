@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: index, first, last, even, odd hay việc tối ưu performance với trackBy function." />
+<meta property="og:description" content="Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: index, first, last, even, odd hay việc tối ưu performance với trackBy function." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-2-ngfor-index-first-last-even-odd-trackby/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-2-ngfor-index-first-last-even-odd-trackby/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/01/angular2-PHAN5.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-03T16:27:03+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/01/angular2-PHAN5.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: index, first, last, even, odd hay việc tối ưu performance với trackBy function.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-2-ngfor-index-first-last-even-odd-trackby/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/01/angular2-PHAN5.jpg","headline":"Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy","dateModified":"2017-01-03T16:27:03+00:00","datePublished":"2017-01-03T16:27:03+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-2-ngfor-index-first-last-even-odd-trackby/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular 2 Phần 5: NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">January 3, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="ngfor-và-các-thuộc-tính-index-first-last-even-odd-trackby">NgFor Và Các Thuộc Tính Index, First, Last, Even, Odd, TrackBy</h1>
+
+<p>Trong bài học số 2, chúng ta đã tìm hiểu về một số <a href="/thu-nghiem-voi-angular-2-built-in-directives-ngif-ngfor-ngswitchcase/" target="_blank">Structual Directives</a> trong đó có NgFor. Trong bài học này chúng ta sẽ tìm hiểu một số thuộc tính mà Angular 2 NgFor cung cấp như các biến cục bộ: <code class="language-plaintext highlighter-rouge">index</code>, <code class="language-plaintext highlighter-rouge">first</code>, <code class="language-plaintext highlighter-rouge">last</code>, <code class="language-plaintext highlighter-rouge">even</code>, <code class="language-plaintext highlighter-rouge">odd</code> hay việc tối ưu performance với <code class="language-plaintext highlighter-rouge">trackBy</code> function.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#giới-thiệu" id="markdown-toc-giới-thiệu">Giới thiệu</a></li>
+  <li><a href="#update-từ-angular-4" id="markdown-toc-update-từ-angular-4">Update từ Angular 4+</a></li>
+  <li><a href="#video-bài-học" id="markdown-toc-video-bài-học">Video bài học</a></li>
+  <li><a href="#tham-khảo" id="markdown-toc-tham-khảo">Tham khảo</a></li>
+</ul>
+
+<h2 id="giới-thiệu">Giới thiệu</h2>
+
+<p>NgFor cung cấp các biến cục bộ, có thể tạo một alias cho các biến đó như:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">index</code> xác định chỉ số hiện tại của vòng lặp tương ứng.</li>
+  <li><code class="language-plaintext highlighter-rouge">first</code> xác định vòng lặp hiện tại có phải là vòng lặp đầu tiên không -&gt; true : false.</li>
+  <li><code class="language-plaintext highlighter-rouge">last</code> xác định vòng lặp hiện tại có phải là vòng lặp cuối cùng không -&gt; true : false.</li>
+  <li><code class="language-plaintext highlighter-rouge">even</code> xác định vòng lặp hiện tại có phải là vòng lặp có chỉ số chẵn không -&gt; true : false.</li>
+  <li><code class="language-plaintext highlighter-rouge">odd</code> xác định vòng lặp hiện tại có phải là vòng lặp có chỉ số lẻ không -&gt; true : false.</li>
+</ul>
+
+<p>NgFor trackBy function:</p>
+
+<p>Angular 2 NgFor khi thực hiện lặp qua một collection sẽ có thể tạo một template cho mỗi item (<strong>thao tác với các immutable object</strong>). Khi thực hiện thêm hoặc xóa item trong collection, nó sẽ tạo lại template vì nó không track được các item đó. Lúc này để cái thiện performance chúng ta có thể định nghĩa một phương thức để giúp Angular track được các items đó, đó là lý do ra đời của <code class="language-plaintext highlighter-rouge">trackBy</code> function.</p>
+
+<p>Cú pháp:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let item of items; let i = index; trackBy: trackByFn"</span><span class="nt">&gt;</span>
+  // do something
+<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">template=</span><span class="s">"ngFor let item of items; let i = index; trackBy: trackByFn"</span><span class="nt">&gt;</span>
+  // do something
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<p>Sử dụng với cú pháp thẻ <code class="language-plaintext highlighter-rouge">template</code> (sẽ có bài giới thiệu sau):</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;template</span> <span class="na">ngFor</span> <span class="na">let-item</span> <span class="na">[ngForOf]=</span><span class="s">"items"</span> <span class="na">let-i=</span><span class="s">"index"</span> <span class="na">[ngForTrackBy]=</span><span class="s">"trackByFn"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>...<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</code></pre></div></div>
+
+<h2 id="update-từ-angular-4">Update từ Angular 4+</h2>
+
+<p>Cho phép sử dụng <code class="language-plaintext highlighter-rouge">as</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">*ngFor=</span><span class="s">"let item of items; index as i; trackBy: trackByFn"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">template=</span><span class="s">"ngFor let item of items; index as i; trackBy: trackByFn"</span><span class="nt">&gt;</span>...<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<p>Thay <code class="language-plaintext highlighter-rouge">template</code> bằng <code class="language-plaintext highlighter-rouge">ng-template</code>:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ng-template</span> <span class="na">ngFor</span> <span class="na">let-item</span> <span class="na">[ngForOf]=</span><span class="s">"items"</span> <span class="na">let-i=</span><span class="s">"index"</span> <span class="na">[ngForTrackBy]=</span><span class="s">"trackByFn"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li&gt;</span>...<span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ng-template&gt;</span>
+</code></pre></div></div>
+
+<h2 id="video-bài-học">Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/5df6zJhycGs" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="tham-khảo">Tham khảo</h2>
+
+<p>Tìm hiểu thêm tại Angular NgFor Directive:</p>
+
+<p><a href="https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html" target="_blank">https://angular.io/docs/ts/latest/api/common/index/NgFor-directive.html</a></p>
+
+<p><a href="https://angular.io/docs/ts/latest/api/common/index/NgForOf-directive.html" target="_blank">https://angular.io/docs/ts/latest/api/common/index/NgForOf-directive.html</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

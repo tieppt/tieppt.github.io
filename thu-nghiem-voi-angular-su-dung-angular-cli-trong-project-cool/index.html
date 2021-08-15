@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI." />
+<meta property="og:description" content="Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-su-dung-angular-cli-trong-project-cool/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-su-dung-angular-cli-trong-project-cool/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/02/angular2-10.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-19T10:36:03+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/02/angular2-10.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-su-dung-angular-cli-trong-project-cool/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/02/angular2-10.jpg","headline":"Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool","dateModified":"2017-02-19T10:36:03+00:00","datePublished":"2017-02-19T10:36:03+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-su-dung-angular-cli-trong-project-cool/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 10: Sử Dụng Angular CLI Trong Project Thật Cool</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">February 19, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="sử-dụng-angular-cli-trong-project-thật-cool">Sử Dụng Angular CLI Trong Project Thật Cool</h1>
+
+<p>Trong <a href="/thu-nghiem-voi-angular-2-component-va-data-binding/" target="_blank">bài học đầu tiên</a> của series Thử Nghiệm Với Angular, chúng ta đã tạo project để thực hành với sự trợ giúp của Angular CLI. Trong bài này, chúng ta sẽ tìm hiểu cách sử dụng CLI để phát triển một ứng dụng bằng Angular và build một ứng dụng Angular với Angular CLI.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#các-phần-mềm-cần-thiết" id="markdown-toc-các-phần-mềm-cần-thiết">Các phần mềm cần thiết</a></li>
+  <li><a href="#cài-đặt-cli" id="markdown-toc-cài-đặt-cli">Cài đặt CLI</a></li>
+  <li><a href="#sử-dụng-cli" id="markdown-toc-sử-dụng-cli">Sử dụng CLI</a></li>
+  <li><a href="#video-bài-học" id="markdown-toc-video-bài-học">Video bài học</a></li>
+  <li><a href="#tham-khảo" id="markdown-toc-tham-khảo">Tham khảo</a></li>
+</ul>
+
+<h2 id="các-phần-mềm-cần-thiết">Các phần mềm cần thiết</h2>
+
+<p>Để bắt đầu cài đặt được Angular CLI – gọi tắt là CLI – gồm có</p>
+
+<ul>
+  <li><a href="https://nodejs.org/en/" target="_blank">Nodejs</a></li>
+  <li><a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a></li>
+  <li><a href="https://yarnpkg.com/en/docs/install" target="_blank">Yarn Package Manager</a></li>
+</ul>
+
+<h2 id="cài-đặt-cli">Cài đặt CLI</h2>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+<span class="c"># or</span>
+npm i <span class="nt">-g</span> @angular/cli
+<span class="c"># or sudo if need</span>
+<span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+<span class="c"># or</span>
+<span class="nb">sudo </span>npm i <span class="nt">-g</span> @angular/cli
+</code></pre></div></div>
+
+<h2 id="sử-dụng-cli">Sử dụng CLI</h2>
+
+<p>– List các options của CLI:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng <span class="nb">help</span>
+</code></pre></div></div>
+
+<p>– Tạo mới project với CLI:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng new &lt;app-name&gt;
+<span class="c"># example</span>
+ng new contact-app
+<span class="c"># use preprocessor instead of css: scss, sass, stylus, less</span>
+ng new contact-app <span class="nt">--style</span><span class="o">=</span>scss
+</code></pre></div></div>
+<p>Các options khác:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--routing</span>: tạo route
+<span class="nt">--skip-git</span>: không init và commit git
+<span class="nt">--skip-install</span>: không <span class="nb">install </span>package
+<span class="nt">--skip-commit</span>: init git nhưng không commit
+<span class="nt">--source-dir</span>: thư mục của <span class="nb">source </span>code, mặc định là src
+<span class="nt">--prefix</span>: prefix khi generate component, directive, mặc đinh là app
+<span class="nt">--inline-style</span>: sử dụng inline style thay vì external style file
+<span class="nt">--inline-template</span>: sử dụng inline template thay vì external template file
+<span class="nt">-is</span>: <span class="nb">alias </span>của <span class="nt">--inline-style</span>
+<span class="nt">-it</span>: <span class="nb">alias </span>của <span class="nt">--inline-template</span>
+<span class="nt">-si</span>: <span class="nb">alias </span>của <span class="nt">--skip-install</span>
+<span class="nt">-sg</span>: <span class="nb">alias </span>của <span class="nt">--skip-git</span>
+</code></pre></div></div>
+
+<p>– Generate các thành phần:</p>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Scaffold</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-component">Component</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g component my-new-component</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-directive">Directive</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g directive my-new-directive</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-pipe">Pipe</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g pipe my-new-pipe</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-service">Service</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g service my-new-service</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-class">Class</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g class my-new-class</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-guard">Guard</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g guard my-new-guard</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-interface">Interface</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g interface my-new-interface</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-enum">Enum</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g enum my-new-enum</code></td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/angular/angular-cli/wiki/generate-module">Module</a></td>
+      <td><code class="language-plaintext highlighter-rouge">ng g module my-module</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>– Serve ứng dụng:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng serve &lt;options...&gt;
+  Builds and serves your app, rebuilding on file changes.
+  aliases: server, s
+  <span class="nt">--target</span> <span class="o">(</span>String<span class="o">)</span> <span class="o">(</span>Default: development<span class="o">)</span>
+    aliases: <span class="nt">-t</span> &lt;value&gt;, <span class="nt">-dev</span> <span class="o">(</span><span class="nt">--target</span><span class="o">=</span>development<span class="o">)</span>, <span class="nt">-prod</span> <span class="o">(</span><span class="nt">--target</span><span class="o">=</span>production<span class="o">)</span>, <span class="nt">--target</span> &lt;value&gt;, <span class="nt">--target</span> &lt;value&gt;, <span class="nt">--target</span> &lt;value&gt;, <span class="nt">--target</span> &lt;value&gt;
+  <span class="nt">--environment</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-e</span> &lt;value&gt;, <span class="nt">--environment</span> &lt;value&gt;, <span class="nt">--environment</span> &lt;value&gt;, <span class="nt">--environment</span> &lt;value&gt;, <span class="nt">--environment</span> &lt;value&gt;
+  <span class="nt">--output-path</span> <span class="o">(</span>Path<span class="o">)</span>
+    aliases: <span class="nt">-op</span> &lt;value&gt;, <span class="nt">--outputPath</span> &lt;value&gt;, <span class="nt">--outputPath</span> &lt;value&gt;, <span class="nt">--outputPath</span> &lt;value&gt;, <span class="nt">--outputPath</span> &lt;value&gt;
+  <span class="nt">--aot</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-aot</span>, <span class="nt">-aot</span>, <span class="nt">-aot</span>, <span class="nt">-aot</span>
+  <span class="nt">--sourcemap</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-sm</span>, <span class="nt">--sourcemaps</span>, <span class="nt">--sourcemap</span>, <span class="nt">--sourcemap</span>, <span class="nt">--sourcemap</span>, <span class="nt">--sourcemap</span>
+  <span class="nt">--vendor-chunk</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">-vc</span>, <span class="nt">--vendorChunk</span>, <span class="nt">--vendorChunk</span>, <span class="nt">--vendorChunk</span>, <span class="nt">--vendorChunk</span>
+  <span class="nt">--base-href</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-bh</span> &lt;value&gt;, <span class="nt">--baseHref</span> &lt;value&gt;, <span class="nt">--baseHref</span> &lt;value&gt;, <span class="nt">--baseHref</span> &lt;value&gt;, <span class="nt">--baseHref</span> &lt;value&gt;
+  <span class="nt">--deploy-url</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-d</span> &lt;value&gt;, <span class="nt">--deployUrl</span> &lt;value&gt;, <span class="nt">--deployUrl</span> &lt;value&gt;, <span class="nt">--deployUrl</span> &lt;value&gt;, <span class="nt">--deployUrl</span> &lt;value&gt;
+  <span class="nt">--verbose</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span>
+    aliases: <span class="nt">-v</span>, <span class="nt">--verbose</span>, <span class="nt">--verbose</span>, <span class="nt">--verbose</span>, <span class="nt">--verbose</span>
+  <span class="nt">--progress</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">-pr</span>, <span class="nt">--progress</span>, <span class="nt">--progress</span>, <span class="nt">--progress</span>, <span class="nt">--progress</span>
+  <span class="nt">--i18n-file</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--i18nFile</span> &lt;value&gt;, <span class="nt">--i18nFile</span> &lt;value&gt;, <span class="nt">--i18nFile</span> &lt;value&gt;, <span class="nt">--i18nFile</span> &lt;value&gt;
+  <span class="nt">--i18n-format</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--i18nFormat</span> &lt;value&gt;, <span class="nt">--i18nFormat</span> &lt;value&gt;, <span class="nt">--i18nFormat</span> &lt;value&gt;, <span class="nt">--i18nFormat</span> &lt;value&gt;
+  <span class="nt">--locale</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--locale</span> &lt;value&gt;, <span class="nt">--locale</span> &lt;value&gt;, <span class="nt">--locale</span> &lt;value&gt;, <span class="nt">--locale</span> &lt;value&gt;
+  <span class="nt">--extract-css</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-ec</span>, <span class="nt">--extractCss</span>, <span class="nt">--extractCss</span>, <span class="nt">--extractCss</span>, <span class="nt">--extractCss</span>
+  <span class="nt">--watch</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-w</span>, <span class="nt">--watch</span>, <span class="nt">--watch</span>, <span class="nt">--watch</span>, <span class="nt">--watch</span>
+  <span class="nt">--output-hashing</span><span class="o">=</span>none|all|media|bundles <span class="o">(</span>String<span class="o">)</span> define the output filename cache-busting hashing mode
+    aliases: <span class="nt">-oh</span> &lt;value&gt;, <span class="nt">--outputHashing</span> &lt;value&gt;, <span class="nt">--outputHashing</span> &lt;value&gt;, <span class="nt">--outputHashing</span> &lt;value&gt;, <span class="nt">--outputHashing</span> &lt;value&gt;
+  <span class="nt">--poll</span> <span class="o">(</span>Number<span class="o">)</span> <span class="nb">enable </span>and define the file watching poll <span class="nb">time </span>period <span class="o">(</span>milliseconds<span class="o">)</span>
+    aliases: <span class="nt">-poll</span> &lt;value&gt;, <span class="nt">-poll</span> &lt;value&gt;, <span class="nt">-poll</span> &lt;value&gt;, <span class="nt">-poll</span> &lt;value&gt;
+  <span class="nt">--port</span> <span class="o">(</span>Number<span class="o">)</span> <span class="o">(</span>Default: 4200<span class="o">)</span>
+    aliases: <span class="nt">-p</span> &lt;value&gt;, <span class="nt">-port</span> &lt;value&gt;, <span class="nt">-port</span> &lt;value&gt;
+  <span class="nt">--host</span> <span class="o">(</span>String<span class="o">)</span> <span class="o">(</span>Default: localhost<span class="o">)</span> Listens only on localhost by default
+    aliases: <span class="nt">-H</span> &lt;value&gt;, <span class="nt">-host</span> &lt;value&gt;, <span class="nt">-host</span> &lt;value&gt;
+  <span class="nt">--proxy-config</span> <span class="o">(</span>Path<span class="o">)</span>
+    aliases: <span class="nt">-pc</span> &lt;value&gt;, <span class="nt">--proxyConfig</span> &lt;value&gt;, <span class="nt">--proxyConfig</span> &lt;value&gt;
+  <span class="nt">--ssl</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span>
+    aliases: <span class="nt">-ssl</span>, <span class="nt">-ssl</span>
+  <span class="nt">--ssl-key</span> <span class="o">(</span>String<span class="o">)</span> <span class="o">(</span>Default: ssl/server.key<span class="o">)</span>
+    aliases: <span class="nt">--sslKey</span> &lt;value&gt;, <span class="nt">--sslKey</span> &lt;value&gt;
+  <span class="nt">--ssl-cert</span> <span class="o">(</span>String<span class="o">)</span> <span class="o">(</span>Default: ssl/server.crt<span class="o">)</span>
+    aliases: <span class="nt">--sslCert</span> &lt;value&gt;, <span class="nt">--sslCert</span> &lt;value&gt;
+  <span class="nt">--open</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span> Opens the url <span class="k">in </span>default browser
+    aliases: <span class="nt">-o</span>, <span class="nt">-open</span>, <span class="nt">-open</span>
+  <span class="nt">--live-reload</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">-lr</span>, <span class="nt">--liveReload</span>
+  <span class="nt">--live-reload-host</span> <span class="o">(</span>String<span class="o">)</span> Defaults to host
+    aliases: <span class="nt">-lrh</span> &lt;value&gt;, <span class="nt">--liveReloadHost</span> &lt;value&gt;
+  <span class="nt">--live-reload-base-url</span> <span class="o">(</span>String<span class="o">)</span> Defaults to baseURL
+    aliases: <span class="nt">-lrbu</span> &lt;value&gt;, <span class="nt">--liveReloadBaseUrl</span> &lt;value&gt;
+  <span class="nt">--live-reload-port</span> <span class="o">(</span>Number<span class="o">)</span> <span class="o">(</span>Defaults to port number within <span class="o">[</span>49152...65535]<span class="o">)</span>
+    aliases: <span class="nt">-lrp</span> &lt;value&gt;, <span class="nt">--liveReloadPort</span> &lt;value&gt;
+  <span class="nt">--live-reload-live-css</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span> Whether to live reload CSS <span class="o">(</span>default <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">--liveReloadLiveCss</span>
+  <span class="nt">--hmr</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span> Enable hot module replacement
+    aliases: <span class="nt">-hmr</span>
+</code></pre></div></div>
+
+<p>– Build ứng dụng:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng build &lt;options...&gt;
+</code></pre></div></div>
+<p>options có thể có hoặc không.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--aot</span><span class="o">=</span><span class="nb">true</span>: build với AOT
+<span class="nt">--aot</span><span class="o">=</span><span class="nb">false</span>: không build với AOT.
+
+<span class="c"># build production</span>
+<span class="nt">--target</span><span class="o">=</span>production <span class="nt">--environment</span><span class="o">=</span>prod
+<span class="nt">--prod</span> <span class="nt">--env</span><span class="o">=</span>prod
+<span class="nt">--prod</span>
+<span class="c"># build dev: default</span>
+<span class="nt">--target</span><span class="o">=</span>development <span class="nt">--environment</span><span class="o">=</span>dev
+<span class="nt">--dev</span> <span class="nt">--e</span><span class="o">=</span>dev
+<span class="nt">--dev</span>
+</code></pre></div></div>
+
+<p>Complete options available
+Builds your app and places it into the output path (dist/ by default).</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  aliases: b
+  <span class="nt">--target</span> <span class="o">(</span>String<span class="o">)</span> <span class="o">(</span>Default: development<span class="o">)</span>
+    aliases: <span class="nt">-t</span> &lt;value&gt;, <span class="nt">-dev</span> <span class="o">(</span><span class="nt">--target</span><span class="o">=</span>development<span class="o">)</span>, <span class="nt">-prod</span> <span class="o">(</span><span class="nt">--target</span><span class="o">=</span>production<span class="o">)</span>, <span class="nt">--target</span> &lt;value&gt;
+  <span class="nt">--environment</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-e</span> &lt;value&gt;, <span class="nt">--environment</span> &lt;value&gt;
+  <span class="nt">--output-path</span> <span class="o">(</span>Path<span class="o">)</span>
+    aliases: <span class="nt">-op</span> &lt;value&gt;, <span class="nt">--outputPath</span> &lt;value&gt;
+  <span class="nt">--aot</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-aot</span>
+  <span class="nt">--sourcemap</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-sm</span>, <span class="nt">--sourcemaps</span>, <span class="nt">--sourcemap</span>
+  <span class="nt">--vendor-chunk</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">-vc</span>, <span class="nt">--vendorChunk</span>
+  <span class="nt">--base-href</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-bh</span> &lt;value&gt;, <span class="nt">--baseHref</span> &lt;value&gt;
+  <span class="nt">--deploy-url</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">-d</span> &lt;value&gt;, <span class="nt">--deployUrl</span> &lt;value&gt;
+  <span class="nt">--verbose</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span>
+    aliases: <span class="nt">-v</span>, <span class="nt">--verbose</span>
+  <span class="nt">--progress</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">true</span><span class="o">)</span>
+    aliases: <span class="nt">-pr</span>, <span class="nt">--progress</span>
+  <span class="nt">--i18n-file</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--i18nFile</span> &lt;value&gt;
+  <span class="nt">--i18n-format</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--i18nFormat</span> &lt;value&gt;
+  <span class="nt">--locale</span> <span class="o">(</span>String<span class="o">)</span>
+    aliases: <span class="nt">--locale</span> &lt;value&gt;
+  <span class="nt">--extract-css</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-ec</span>, <span class="nt">--extractCss</span>
+  <span class="nt">--watch</span> <span class="o">(</span>Boolean<span class="o">)</span>
+    aliases: <span class="nt">-w</span>, <span class="nt">--watch</span>
+  <span class="nt">--output-hashing</span><span class="o">=</span>none|all|media|bundles <span class="o">(</span>String<span class="o">)</span> define the output filename cache-busting hashing mode
+    aliases: <span class="nt">-oh</span> &lt;value&gt;, <span class="nt">--outputHashing</span> &lt;value&gt;
+  <span class="nt">--poll</span> <span class="o">(</span>Number<span class="o">)</span> <span class="nb">enable </span>and define the file watching poll <span class="nb">time </span>period <span class="o">(</span>milliseconds<span class="o">)</span>
+    aliases: <span class="nt">-poll</span> &lt;value&gt;
+  <span class="nt">--stats-json</span> <span class="o">(</span>Boolean<span class="o">)</span> <span class="o">(</span>Default: <span class="nb">false</span><span class="o">)</span>
+    aliases: <span class="nt">--statsJson</span>
+</code></pre></div></div>
+
+<h2 id="video-bài-học">Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/SXW-Nz-lp70" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="tham-khảo">Tham khảo</h2>
+<p>Ahead-of-time compilation: <a href="https://angular.io/docs/ts/latest/cookbook/aot-compiler.html" target="_blank">https://angular.io/docs/ts/latest/cookbook/aot-compiler.html</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

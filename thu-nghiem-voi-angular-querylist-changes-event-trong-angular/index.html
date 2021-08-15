@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 14 &#8211; QueryList Changes Event Trong Angular</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 14 – QueryList Changes Event Trong Angular | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 14 – QueryList Changes Event Trong Angular" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bài học này sẽ giải quyết vấn đề chúng ta gặp phải khi cần phải hook vào QueryList Changes Event Trong Angular nhằm theo dõi khi nào đối tượng này thay đổi để áp dụng các logic liên quan." />
+<meta property="og:description" content="Bài học này sẽ giải quyết vấn đề chúng ta gặp phải khi cần phải hook vào QueryList Changes Event Trong Angular nhằm theo dõi khi nào đối tượng này thay đổi để áp dụng các logic liên quan." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-querylist-changes-event-trong-angular/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-querylist-changes-event-trong-angular/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/03/angular2-14.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-19T16:06:57+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/03/angular2-14.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 14 – QueryList Changes Event Trong Angular" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Bài học này sẽ giải quyết vấn đề chúng ta gặp phải khi cần phải hook vào QueryList Changes Event Trong Angular nhằm theo dõi khi nào đối tượng này thay đổi để áp dụng các logic liên quan.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-querylist-changes-event-trong-angular/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/03/angular2-14.jpg","headline":"Thử Nghiệm Với Angular Phần 14 – QueryList Changes Event Trong Angular","dateModified":"2017-03-19T16:06:57+00:00","datePublished":"2017-03-19T16:06:57+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-querylist-changes-event-trong-angular/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 14 &#8211; QueryList Changes Event Trong Angular</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">March 19, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="querylist-changes-event-trong-angular">QueryList Changes Event Trong Angular</h1>
+
+<p>Trong bài học trước, chúng ta đã “<a href="/thu-nghiem-voi-angular-thuc-hanh-content-projection-va-lifecycle-angular/" target="_blank" rel="noopener noreferrer">Thực Hành Content Projection Và Lifecycle Liên Quan Trong Angular</a>“, với phiên bản code đó khi chúng ta làm việc với async như gọi api để lấy dữ liệu rồi in ra thì liệu app của chúng ta có chạy đúng. Bài học này sẽ giải quyết vấn đề chúng ta gặp phải khi cần phải hook vào QueryList Changes Event Trong Angular nhằm theo dõi khi nào đối tượng này thay đổi để áp dụng các logic liên quan.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#nội-dung" id="markdown-toc-nội-dung">Nội dung</a></li>
+  <li><a href="#video-bài-học" id="markdown-toc-video-bài-học">Video bài học:</a></li>
+  <li><a href="#tham-khảo" id="markdown-toc-tham-khảo">Tham khảo</a></li>
+</ul>
+
+<h2 id="nội-dung">Nội dung</h2>
+
+<p>Với phiên bản code từ bài học trước liệu rằng khi chúng ta làm việc với dữ liệu async thì app của chúng ta sẽ chạy đúng. Lúc này, chúng ta gặp phải một vấn đề đó là mặc dù chúng ta đã để <code class="language-plaintext highlighter-rouge">[multiple]="false"</code> nhưng app lại chạy không như chúng ta mong muốn.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;tp-collapse-group</span> <span class="na">[multiple]=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;tp-collapse</span>
+    <span class="na">*ngFor=</span><span class="s">"let post of posts"</span> <span class="na">[title]=</span><span class="s">"post.title"</span> <span class="na">[selected]=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      {{ post.body }}
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/tp-collapse&gt;</span>
+<span class="nt">&lt;/tp-collapse-group&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">POSTS</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./services/post</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./app.component.scss</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">posts</span><span class="p">:</span> <span class="kr">any</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">posts</span> <span class="o">=</span> <span class="nx">POSTS</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Bây giờ, chúng ta cần quan sát đối tượng của QueryList thay đổi như thế nào để có các hành động tương ứng bằng việc subscribe vào Changes Event của đối tượng đó như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">changes</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">object</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// do something here</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Ví dụ như trong app của chúng ta đang phát triển, chúng ta cần quan sát sự thay đổi của list CollapseComponent để thực hiện quản lý ở mode accordion như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">changes</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">clearListener</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">initListener</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Việc quan sát này thực sự cẩn thiết khi chúng ta cần phải áp dụng một phần logic nào đó để Component của chúng ta chạy đúng, chẳng hạn như mong muốn của chúng ta là CollapseGroupComponent chỉ thực hiện cho phép một CollapseComponent được phép mở ở tại một thời điểm nếu chúng ta set cho mode của group là accordion.</p>
+
+<p>Thêm vào đó, khi thực hiện subscribe bằng code như trên, chúng ta đã tạo ra một object của class Subscription, vậy nên khi Component bị destroy thì chúng ta nên (phải) hủy object đó đi như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// some method</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">changes</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">clearListener</span><span class="p">();</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">initListener</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="c1">// on destroy</span>
+<span class="nx">ngOnDestroy</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Đơn giản phải không nào!</p>
+
+<p>Và code hoàn thiện của <strong>CollapseGroupComponent</strong> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">AfterContentInit</span><span class="p">,</span> <span class="nx">Input</span><span class="p">,</span> <span class="nx">ContentChildren</span><span class="p">,</span> <span class="nx">QueryList</span><span class="p">,</span> <span class="nx">OnDestroy</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">CollapseComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../collapse/collapse.component</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Subscription</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">rxjs/Subscription</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tp-collapse-group</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./collapse-group.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./collapse-group.component.scss</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">CollapseGroupComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">AfterContentInit</span><span class="p">,</span> <span class="nx">OnDestroy</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">ContentChildren</span><span class="p">(</span><span class="nx">CollapseComponent</span><span class="p">)</span> <span class="nx">collapses</span><span class="p">:</span> <span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">CollapseComponent</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="p">@</span><span class="nd">Input</span><span class="p">()</span> <span class="nx">multiple</span><span class="p">:</span> <span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="k">private</span> <span class="nx">_subscriptions</span><span class="p">:</span> <span class="nx">Subscription</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">private</span> <span class="nx">_changeSubs</span><span class="p">:</span> <span class="nx">Subscription</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngAfterContentInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initListener</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">changes</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">clearListener</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">initListener</span><span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">initListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">collapse</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">subscription</span> <span class="o">=</span> <span class="nx">collapse</span><span class="p">.</span><span class="nx">selectedChange</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">coll</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">multiple</span> <span class="o">&amp;&amp;</span> <span class="nx">coll</span><span class="p">.</span><span class="nx">selected</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">toggleCollapse</span><span class="p">(</span><span class="nx">coll</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_subscriptions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">subscription</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">toggleCollapse</span><span class="p">(</span><span class="nx">collapse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">collapses</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">collapseId</span> <span class="o">!=</span> <span class="nx">collapse</span><span class="p">.</span><span class="nx">collapseId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">c</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">clearListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_subscriptions</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_subscriptions</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_subscriptions</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">sub</span> <span class="o">=&gt;</span> <span class="nx">sub</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_subscriptions</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngOnDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clearListener</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_changeSubs</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="video-bài-học">Video bài học:</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/OcmrLU_0thc" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="tham-khảo">Tham khảo</h2>
+
+<p>Source code: <a href="https://github.com/tieppt/try-angular/tree/lesson-14" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/try-angular/tree/lesson-14</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

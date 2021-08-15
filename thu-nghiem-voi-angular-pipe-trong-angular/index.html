@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 15 &#8211; Pipe Trong Angular</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 15 – Pipe Trong Angular | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 15 – Pipe Trong Angular" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular – một thành phần cơ bản của Angular." />
+<meta property="og:description" content="Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular – một thành phần cơ bản của Angular." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-pipe-trong-angular/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-pipe-trong-angular/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/04/angular15.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-04-10T02:53:51+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/04/angular15.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 15 – Pipe Trong Angular" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular – một thành phần cơ bản của Angular.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-pipe-trong-angular/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/04/angular15.jpg","headline":"Thử Nghiệm Với Angular Phần 15 – Pipe Trong Angular","dateModified":"2017-04-10T02:53:51+00:00","datePublished":"2017-04-10T02:53:51+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-pipe-trong-angular/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 15 &#8211; Pipe Trong Angular</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">April 10, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="pipe-trong-angular">Pipe Trong Angular</h1>
+
+<p>Bạn có dữ liệu nhận được từ đâu đó – từ API trả về – cho kiểu Date là dãy số kiểu long, bây giờ bạn phải hiển thị dữ liệu đó thành dạng mà người dùng có thể hiểu được trong ứng dụng viết bằng Angular. Làm thế nào để thực hiện điều đó trong Angular? Bài học này sẽ giới thiệu cho các bạn về Pipe trong Angular – một thành phần cơ bản của Angular.</p>
+
+<p>Chúng ta sẽ cùng tìm hiểu các câu hỏi như:</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#tnva-pipe-la-gi" id="markdown-toc-tnva-pipe-la-gi">1. Pipe là gì?</a></li>
+  <li><a href="#tnva-su-dung-pipe" id="markdown-toc-tnva-su-dung-pipe">2. Pipe sử dụng như thế nào?</a></li>
+  <li><a href="#tnva-tao-custom-pipe" id="markdown-toc-tnva-tao-custom-pipe">3. Cách tạo một Custom Pipe trong Angular như thế nào?</a></li>
+  <li><a href="#tnva-pipe-video" id="markdown-toc-tnva-pipe-video">4. Video bài học</a></li>
+  <li><a href="#5-tham-khảo" id="markdown-toc-5-tham-khảo">5. Tham khảo</a></li>
+</ul>
+
+<h2 id="tnva-pipe-la-gi">1. Pipe là gì?</h2>
+
+<blockquote>
+  <p>Pipes transform displayed values within a template.</p>
+</blockquote>
+
+<p>Pipe được dùng để chuyển đổi dữ liệu mà bạn hiển thị lên template cho người dùng có thể hiểu được.</p>
+
+<p>Ví dụ: định dạng ngày tháng cho kiểu Date, viết hoa các chữ cái đầu tiên của tên riêng như tên người, tên thành phố, etc.</p>
+
+<p>Pipe nhận một đầu vào và cho kết quả ở đầu ra, giống hình minh họa sau:</p>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/pipe-what-is-it.png" alt="Pipe - what is it?" class="img-responsive" /></p>
+
+<p>Angular cung cấp cho chúng ta các Pipes sau đây (những Pipes là Stable):</p>
+
+<ul class="api-list">
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/AsyncPipe-pipe.html" target="_blank" rel="noopener noreferrer">AsyncPipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/CurrencyPipe-pipe.html" target="_blank" rel="noopener noreferrer">CurrencyPipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/DatePipe-pipe.html" target="_blank" rel="noopener noreferrer">DatePipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/DecimalPipe-pipe.html" target="_blank" rel="noopener noreferrer">DecimalPipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/JsonPipe-pipe.html" target="_blank" rel="noopener noreferrer">JsonPipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/LowerCasePipe-pipe.html" target="_blank" rel="noopener noreferrer">LowerCasePipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/PercentPipe-pipe.html" target="_blank" rel="noopener noreferrer">PercentPipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/SlicePipe-pipe.html" target="_blank" rel="noopener noreferrer">SlicePipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/TitleCasePipe-pipe.html" target="_blank" rel="noopener noreferrer">TitleCasePipe</a>
+  </li>
+  <li class="api-item ng-scope">
+    <a class="ng-binding" href="https://angular.io/docs/ts/latest/api/common/index/UpperCasePipe-pipe.html" target="_blank" rel="noopener noreferrer">UpperCasePipe</a>
+  </li>
+</ul>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/pipe-list-item.png" alt="List Pipes trong Angular" class="img-responsive" /></p>
+
+<p>Trong đó có TitleCasePipe là pipe có từ phiên bản Angular 4.</p>
+
+<p>All Angular Pipes: <a href="https://angular.io/docs/ts/latest/api/#!?query=pipe" target="_blank" rel="noopener noreferrer">https://angular.io/docs/ts/latest/api/#!?query=pipe</a></p>
+
+<blockquote>
+  <p>Lưu ý rằng Angular không có FilterPipe or OrderByPipe như Angularjs.</p>
+</blockquote>
+
+<h2 id="tnva-su-dung-pipe">2. Pipe sử dụng như thế nào?</h2>
+
+<blockquote>
+  <p>The <code class="language-plaintext highlighter-rouge">Date</code> and <code class="language-plaintext highlighter-rouge">Currency</code> pipes need the <em>ECMAScript Internationalization API</em>. Safari and other older browsers don’t support it. You can add support with a polyfill.</p>
+
+  <p>Nếu bạn sử dụng <code class="language-plaintext highlighter-rouge">Date</code> và <code class="language-plaintext highlighter-rouge">Currency</code> pipes thì bạn cần phải có thêm polyfill để support trên các trình duyệt cũ, bằng việc thêm đoạn script sau vào file <em>index.html</em></p>
+
+  <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div>  </div>
+
+  <p>Hoặc nếu bạn sử dụng Angular CLI thì chạy lệnh cài đặt <code class="language-plaintext highlighter-rouge">npm install --save intl</code> và uncomment dòng sau trong file polyfill.ts</p>
+
+  <p><a href="https://github.com/tieppt/try-angular/blob/lesson-15/contact-app/src/polyfills.ts#L68" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/try-angular/blob/lesson-15/contact-app/src/polyfills.ts#L68</a></p>
+</blockquote>
+
+<p>Chúng ta có thể sử dụng một pipe duy nhất, có thể bao gồm cả tham số, hoặc có thể sử dụng pipe theo tuần tự – với kết quả của pipe này là đầu vào của pipe tiếp theo.</p>
+
+<p>Ví dự sử dụng Pipe <code class="language-plaintext highlighter-rouge">lowercase</code> và <code class="language-plaintext highlighter-rouge">uppercase</code>: (sử dụng không có tham số)</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">lowerupper-pipe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div&gt;
+    &lt;label&gt;Name: &lt;/label&gt;&lt;input #name (keyup)="change(name.value)" type="text"&gt;
+    &lt;p&gt;In lowercase: {{value | lowercase}}&lt;/p&gt;
+    &lt;p&gt;In uppercase: {{value | uppercase}}&lt;/p&gt;
+  &lt;/div&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">LowerUpperPipeComponent</span> <span class="p">{</span>
+  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+  <span class="nx">change</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sử dụng có tham số như Pipe <code class="language-plaintext highlighter-rouge">date</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">date-pipe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div&gt;
+    &lt;p&gt;Today is {{today | date}}&lt;/p&gt;
+    &lt;p&gt;Or if you prefer, {{today | date:'fullDate'}}&lt;/p&gt;
+    &lt;p&gt;The time is {{today | date:'jmZ'}}&lt;/p&gt;
+  &lt;/div&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">DatePipeComponent</span> <span class="p">{</span>
+  <span class="nl">today</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sử dụng nhiều tham số như Pipe <code class="language-plaintext highlighter-rouge">slice</code>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">slice-list-pipe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;ul&gt;
+    &lt;li *ngFor="let i of collection | slice:1:3"&gt;{{ i }}&lt;/li&gt;
+  &lt;/ul&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">SlicePipeListComponent</span> <span class="p">{</span>
+  <span class="nl">collection</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">d</span><span class="dl">'</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sử dụng nhiều Pipe tuần tự – Chaining Pipe:</p>
+
+<p>Chúng ta có thể sử dụng nhiều Pipes để có được kết quả mong muốn.</p>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/pipe-chain-pipe.png" alt="Chain Pipe" class="img-responsive" /></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">date-pipe</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;div&gt;
+    &lt;p&gt;Today is {{today | date | lowercase}}&lt;/p&gt;
+    &lt;p&gt;Or if you prefer, {{today | date:'fullDate' | lowercase}}&lt;/p&gt;
+    &lt;p&gt;The time is {{today | date:'jmZ' | uppercase}}&lt;/p&gt;
+  &lt;/div&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">DatePipeComponent</span> <span class="p">{</span>
+  <span class="nl">today</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Trong Angular chia làm hai loại Pipe là <strong>pure pipe</strong> và <strong>impure pipe</strong>.</p>
+
+<p>Pure pipe: chỉ thực hiện thay đổi khi đầu vào thay đổi. (các immutable objects, primitive type: <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">boolean</code>, etc): <code class="language-plaintext highlighter-rouge">lowercase</code>, <code class="language-plaintext highlighter-rouge">uppercase</code>, <code class="language-plaintext highlighter-rouge">date</code>, etc.</p>
+
+<p>Impure pipe: thực hiện thay đổi mỗi chu kỳ của Change detection (chu kỳ kiểm tra xem các state trong ứng dụng có thay đổi không để update lên view): <code class="language-plaintext highlighter-rouge">async</code>, <code class="language-plaintext highlighter-rouge">json</code>, etc.</p>
+
+<h2 id="tnva-tao-custom-pipe">3. Cách tạo một Custom Pipe trong Angular như thế nào?</h2>
+
+<p>Đầu tiên, chúng ta tạo một class và decorate nó với decorator <em><strong>@Pipe</strong></em>, decorator này cần tối thiểu một object có property <em><strong>name</strong></em>, chính là tên của pipe.</p>
+
+<p>Ví dụ, chúng ta có thể tạo một pipe để convert nhiệt độ giữa độ C và độ F với tên <em>tempConverter</em> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Pipe</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Pipe</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tempConverter</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">TempConverterPipe</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Mặc định khi tạo là pure pipe.</p>
+</blockquote>
+
+<p>Tiếp theo, chúng ta cần implement một interface là <code class="language-plaintext highlighter-rouge">PipeTransform</code>, và implement hàm <code class="language-plaintext highlighter-rouge">transform</code> của interface đó:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Pipe</span><span class="p">,</span> <span class="nx">PipeTransform</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Pipe</span><span class="p">({</span>
+ <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tempConverter</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">TempConverterPipe</span> <span class="k">implements</span> <span class="nx">PipeTransform</span> <span class="p">{</span>
+  <span class="nx">transform</span><span class="p">(</span><span class="nx">value</span><span class="p">:</span> <span class="kr">any</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">:</span> <span class="kr">any</span><span class="p">[]):</span> <span class="kr">any</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Trong hàm transform, chúng ta sẽ thực hiện các công việc để biến đổi đầu vào ra kết quả mong muốn ở đầu ra.</p>
+
+<p>Lưu ý: chúng ta sử dụng <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank" rel="noopener noreferrer">Rest parameters của ES2015</a> “…args” để nhận tất cả các tham số được truyền vào cho pipe.</p>
+
+<p>Sau khi hoàn thành implement class Pipe ở trên, chúng ta cần khai báo vào NgModule mà nó thuộc về để có thể sử dụng nó trong toàn module đó:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">TempConverterPipe</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./pipes/temp-converter.pipe</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+    <span class="c1">// các Component, Directive, Pipe khác</span>
+    <span class="nx">TempConverterPipe</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[...],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[...],</span>
+  <span class="c1">//...</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Code hoàn chỉnh cho Pipe converter tại đây: <a href="https://github.com/tieppt/try-angular/blob/lesson-15/contact-app/src/app/pipes/temp-converter.pipe.ts" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/try-angular/blob/lesson-15/contact-app/src/app/pipes/temp-converter.pipe.ts</a></p>
+
+<p>Sử dụng pipe ở trong Component như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Temperature {{ temp | tempConverter:true:'F' }}
+</code></pre></div></div>
+
+<h2 id="tnva-pipe-video">4. Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/cECpOh3lScM" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="5-tham-khảo">5. Tham khảo</h2>
+
+<p>Angular Pipe Official Document: <a href="https://angular.io/docs/ts/latest/guide/pipes.html" target="_blank" rel="noopener noreferrer">https://angular.io/docs/ts/latest/guide/pipes.html</a></p>
+
+<p>Code: <a href="https://github.com/tieppt/try-angular/tree/lesson-15" target="_blank" rel="noopener noreferrer">https://github.com/tieppt/try-angular/tree/lesson-15</a></p>
+
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

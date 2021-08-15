@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Advanced Layout with CSS Grid Area</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Advanced Layout with CSS Grid Area | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Advanced Layout with CSS Grid Area" />
+<meta name="author" content="Tuan Le" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cùng nhau thử nghiệm cách dựng layout với CSS Grid Area" />
+<meta property="og:description" content="Cùng nhau thử nghiệm cách dựng layout với CSS Grid Area" />
+<link rel="canonical" href="https://www.tiepphan.com/advanced-layout-css-grid-area/" />
+<meta property="og:url" content="https://www.tiepphan.com/advanced-layout-css-grid-area/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2021/01/1_grid_area.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2021/01/1_grid_area.png" />
+<meta property="twitter:title" content="Advanced Layout with CSS Grid Area" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Cùng nhau thử nghiệm cách dựng layout với CSS Grid Area","url":"https://www.tiepphan.com/advanced-layout-css-grid-area/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tuan Le"},"image":"https://www.tiepphan.com/assets/uploads/2021/01/1_grid_area.png","headline":"Advanced Layout with CSS Grid Area","dateModified":"2021-01-31T00:00:00+00:00","datePublished":"2021-01-31T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/advanced-layout-css-grid-area/"},"author":{"@type":"Person","name":"Tuan Le"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Advanced Layout with CSS Grid Area</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tuan Le</span> on <span class="bold">January 31, 2021</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="mở-đầu">Mở đầu</h1>
+
+<p>Trong bài viết ngày hôm nay, mình sẽ cùng các bạn tìm hiểu về một khái niệm nâng cao khi viết CSS đó là dựng layout với Grid Area. Để truyền tải khái niệm một cái rõ ràng và dễ tiếp thu nhất mình sẽ cùng các bạn đi qua 2 ví dụ để cùng thực hành về khái niệm CSS Grid Area.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#named-grid-areas" id="markdown-toc-named-grid-areas">Named Grid Areas</a></li>
+  <li><a href="#grid-area-cell-grid-placement" id="markdown-toc-grid-area-cell-grid-placement"><code class="language-plaintext highlighter-rouge">grid-area</code> cell grid placement</a></li>
+  <li><a href="#tổng-kết" id="markdown-toc-tổng-kết">Tổng kết</a></li>
+</ul>
+
+<h2 id="named-grid-areas">Named Grid Areas</h2>
+<p>Ở ví dụ đầu tiên, chúng ta sẽ đến với khái niệm về <code class="language-plaintext highlighter-rouge">Named grid area</code> thông qua việc thực hành dựng layout như trong hình ảnh bên dưới.</p>
+
+<p class="text-center"><img src="/assets/uploads/2021/01/grid-1.jpg" alt="Named Grid Area" class="img-responsive" /></p>
+
+<p>Như trên hình ảnh thể hiện, các khối từ 1 đến 5 được bố trí theo một cách tùy biến mà ta khó có thể sử dụng các CSS thông thường để thực hiện layout này.</p>
+
+<p>Bước đầu tiên, ta sẽ chuẩn bị các thẻ html cần thiết và một số CSS để ví dụ được “fancy” hơn :D</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-container-1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.card</span> <span class="p">{</span>
+    <span class="nl">background</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0px</span> <span class="m">1px</span> <span class="m">4px</span> <span class="nb">rgb</span><span class="p">(</span><span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="p">/</span> <span class="m">10%</span><span class="p">);</span>
+    <span class="nl">min-height</span><span class="p">:</span> <span class="m">300px</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="nl">justify-content</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Xong công tác chuẩn bị, nhìn trên source code đã có, ta có thế thấy rõ ràng, hiện tại, mọi CSS tiếp theo được viết sẽ đc targe tới class <code class="language-plaintext highlighter-rouge">grid-container-1</code> bao ngoài cùng các khối từ 1 đến 5.</p>
+
+<p>Như chính cái tên của khái niệm này, sơ lược, chúng ta sẽ đặt tên cho các “grid item” thông qua thuộc tính css <code class="language-plaintext highlighter-rouge">grid-area</code> và đặt những cái tên đã đặt này vào một “line-based” template thông qua thuộc tính <code class="language-plaintext highlighter-rouge">grid-template-areas</code> của parent để các khối đã được đặt tên được đặt đúng vị trí mà template đã định nghĩa.</p>
+
+<p>Đi vào ví dụ, bước đầu tên ta sẽ thực hiện đặt tên các “grid item” từ 1 đến 5 tương ứng.</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.grid-container-1</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">1</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="n">card1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-1</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">2</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="n">card2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-1</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">3</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="n">card3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-1</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">4</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="n">card4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-1</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">5</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="n">card5</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Để có thể dựng được template đúng với ví dụ, ta sẽ thực hiện khảo sát yêu cầu để dựng một template chính xác. Dựng vào yêu cầu, ta có thể thấy được layout này được dựng dưới dạng “bàn cờ” và các khối của chúng ta sẽ chiếm vị trí của một số “ô cờ” tương ứng.</p>
+
+<p class="text-center"><img src="/assets/uploads/2021/01/grid-1-2.jpg" alt="Named Grid Area" class="img-responsive" /></p>
+
+<p>Sau khi khảo sát và hiểu yêu cầu của layout, ta thực hiện dựng template cho layout target vào class <code class="language-plaintext highlighter-rouge">grid-container-1</code> bao ngoài cùng như sau.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.grid-container-1</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+    <span class="py">grid-template-areas</span><span class="p">:</span> 
+       <span class="s1">"card1 card1 card5"</span>
+       <span class="s1">"card2 card4 card5"</span>
+       <span class="s1">"card3 card4 card5"</span>
+       <span class="s1">"card3 card4 card5"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ta có thể dễ dàng thấy được, template đc viết dưới dạng các dòng text, mỗi dòng thể hiện những cái tên ta đặt cho từng khối từ bước trước và vị trí của chúng trên “bàn cờ” mà ta mong muốn.</p>
+
+<p>Cụ thể:</p>
+
+<p class="text-center"><img src="/assets/uploads/2021/01/grid-1-1.jpg" alt="Named Grid Area" class="img-responsive" /></p>
+
+<p>Như vậy, ta đã thực hiện xong một layout tùy biến bằng cách sử dụng Named Grid Area. Tuy nhiên, cách thực hiện này vẫn tồn tại hạn chế, ta chỉ có thể dựng được các layout có dạng các hình chữ nhật được được lấp đầy trong một “bàn cờ”, không có khả năng dựng các layout tùy biến dạng T hoặc L.</p>
+
+<p>Để có thể dựng được các layout dạng tùy biến khác, ta sẽ đến với cách tiếp cận thứ 2 trong bài viết về CSS Grid Area.</p>
+
+<h2 id="grid-area-cell-grid-placement"><code class="language-plaintext highlighter-rouge">grid-area</code> cell grid placement</h2>
+
+<p>Ở phần này, ta sẽ cùng nhau thực hiện một layout tùy biến khác khác, được mô tả bằng hình ảnh bên dưới.</p>
+
+<p class="text-center"><img src="/assets/uploads/2021/01/grid-2.jpg" alt="Cell Grid Placement" class="img-responsive" /></p>
+
+<p>Qua hình ảnh mô tả ví dụ, đây không giống với layout ở ví dụ thứ nhất, và ta cũng không thể sử dụng cách đặt tên để dựng được layout này.</p>
+
+<p>Trước khi bắt đầu, ta cũng sẽ thực hiện các bước chuẩn bị tương tự như ví dụ đầu tiên.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>#1<span class="nt">&lt;/h1&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-container-2"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>4<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card"</span><span class="nt">&gt;</span>5<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Ở ví dụ này, ta vẫn sẽ dựa trên tư tưởng về việc chia “bàn cờ” ở ví dụ trước, tuy nhiên ở cách tiếp cận này, ta sẽ chỉ định vị trí, kích thước của từng “ô cờ” để đặt trên “bàn cờ”. Dễ dàng nhận thấy, layout của chúng ta có 3 cột và chúng ta sẽ thực hiện css cho <code class="language-plaintext highlighter-rouge">grid-container-2</code> bao ngoài.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.grid-container-2</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">grid</span><span class="p">;</span>
+    <span class="py">grid-template-columns</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="n">fr</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Để chỉ định kích thước, vị trí của từng khối, ta sẽ đến với 1 cách viết khác của <code class="language-plaintext highlighter-rouge">grid-area</code>. Ngoài việc để đặt tên cho từng khối như ở ví dụ trên, <code class="language-plaintext highlighter-rouge">grid-area</code> còn là cách viết short-hand của 4 thuộc tính khác theo đúng thứ tự như sau.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">grid-area</span><span class="o">:</span> <span class="nt">auto</span><span class="o">/</span><span class="nt">auto</span><span class="o">/</span><span class="nt">auto</span><span class="o">/</span><span class="nt">auto</span><span class="o">;</span>
+<span class="err">#</span>    <span class="nt">grid-row-start</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+<span class="err">#</span>    <span class="nt">grid-column-start</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+<span class="err">#</span>    <span class="nt">grid-row-end</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+<span class="err">#</span>    <span class="nt">grid-column-end</span><span class="o">:</span> <span class="nt">auto</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Như vậy, ta có thể dẽ dàng thấy được, ta sẽ chỉ định “tọa độ” của từng khối, các khối sẽ bắt đầu và kết thức tại các dòng và các cột nào hoàn toàn do ta chỉ định, các khối sẽ hiện thị chính xác vào các vị trí đã được chỉ định.</p>
+
+<p>Ta vẫn sẽ thực hiện khảo sát yêu cầu và vẽ ra một “bàn cờ” tương ứng, từ đó có được các “tọa độ” chính xác cho các khối thành phần.</p>
+
+<p class="text-center"><img src="/assets/uploads/2021/01/grid-2-1.jpg" alt="Cell Grid Placement" class="img-responsive" /></p>
+
+<p>Như vậy, thông qua “bàn cờ” ta có thể thực hiện việc chỉ định “tọa độ” tương ứng cho từng khối để hoàn thành layout theo đúng yêu cầu.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.grid-container-2</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">1</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="m">4</span><span class="p">/</span><span class="m">1</span><span class="p">/</span><span class="m">8</span><span class="p">/</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-2</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">2</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="m">2</span><span class="p">/</span><span class="m">2</span><span class="p">/</span><span class="m">6</span><span class="p">/</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-2</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">3</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="m">6</span><span class="p">/</span><span class="m">2</span><span class="p">/</span><span class="m">10</span><span class="p">/</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-2</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">4</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="m">1</span><span class="p">/</span><span class="m">3</span><span class="p">/</span><span class="m">5</span><span class="p">/</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.grid-container-2</span> <span class="nc">.card</span><span class="nd">:nth-child</span><span class="o">(</span><span class="err">5</span><span class="o">)</span> <span class="p">{</span>
+    <span class="py">grid-area</span><span class="p">:</span> <span class="m">5</span><span class="p">/</span><span class="m">3</span><span class="p">/</span><span class="m">9</span><span class="p">/</span><span class="nb">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="tổng-kết">Tổng kết</h2>
+<p>Qua 2 ví dụ trên, mình đã cùng mọi người đi qua 2 ví dụ dựng layout tùy biến với CSS Grid Area. Cách diễn giải có thể chưa dễ hiểu với tất cả mọi người, tuy nhiên, để có thể sử dụng thành thạo và hình thành được “phản xạ” với các layout này không có cách nào khác là các bạn hãy code thật nhiều để quen tay hơn.</p>
+
+<p>Chúc các bạn nhiều sức khỏe và thành công.</p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 17 &#8211; Template-Driven Forms Trong Angular</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 17 – Template-Driven Forms Trong Angular | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 17 – Template-Driven Forms Trong Angular" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template. Chúng ta thực hiện việc thêm các directives và hành vi vào template." />
+<meta property="og:description" content="Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template. Chúng ta thực hiện việc thêm các directives và hành vi vào template." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-template-driven-forms-trong-angular/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-template-driven-forms-trong-angular/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/05/angular-p17.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-05-21T09:47:50+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/05/angular-p17.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 17 – Template-Driven Forms Trong Angular" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template. Chúng ta thực hiện việc thêm các directives và hành vi vào template.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-template-driven-forms-trong-angular/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/05/angular-p17.jpg","headline":"Thử Nghiệm Với Angular Phần 17 – Template-Driven Forms Trong Angular","dateModified":"2017-05-21T09:47:50+00:00","datePublished":"2017-05-21T09:47:50+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-template-driven-forms-trong-angular/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 17 &#8211; Template-Driven Forms Trong Angular</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">May 21, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="template-driven-forms-trong-angular">Template-Driven Forms Trong Angular</h1>
+
+<p>Hầu hết các ứng dụng web hiện đại đều làm việc với forms để thu thập dữ liệu từ người dùng. Angular cung cấp cho chúng ta hai phương pháp để tạo forms, một là Template-driven forms (mà có thể bạn đã quen thuộc từ Angularjs) và hai là <a href="/thu-nghiem-voi-angular-reactive-forms-trong-angular/">Reactive forms hay Model-driven forms</a>.</p>
+
+<p>Trong bài này chúng ta sẽ cùng tìm hiểu cách tạo forms trong Angular, và để bắt đầu chúng ta sẽ tìm hiểu Template-driven forms.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#1-template" id="markdown-toc-1-template">1. Template</a></li>
+  <li><a href="#2-import-apis-cho-template-driven-forms" id="markdown-toc-2-import-apis-cho-template-driven-forms">2. Import APIs cho Template-driven forms</a></li>
+  <li><a href="#3-ngform-và-ngmodel-directives" id="markdown-toc-3-ngform-và-ngmodel-directives">3. ngForm và ngModel directives</a></li>
+  <li><a href="#4-ngmodelgroup-directive" id="markdown-toc-4-ngmodelgroup-directive">4. ngModelGroup directive</a></li>
+  <li><a href="#5-submit-form" id="markdown-toc-5-submit-form">5. Submit form</a></li>
+  <li><a href="#6-template-driven-error-validation" id="markdown-toc-6-template-driven-error-validation">6. Template-driven error validation</a></li>
+  <li><a href="#7-video-bài-học" id="markdown-toc-7-video-bài-học">7. Video bài học</a></li>
+  <li><a href="#8-tham-khảo" id="markdown-toc-8-tham-khảo">8. Tham khảo</a></li>
+</ul>
+
+<p>Template-driven forms là phương pháp mà chúng ta sẽ tạo forms dựa vào template (giống như trong Angularjs). Chúng ta thực hiện việc thêm các directives và hành vi vào template, sau đó Angular sẽ tự động tạo forms để quản lý và sử dụng.</p>
+
+<h2 id="1-template">1. Template</h2>
+
+<p>Giả sử chúng ta có template form như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span> <span class="na">(submit)=</span><span class="s">"onSubmit()"</span> <span class="na">class=</span><span class="s">"row justify-content-md-center"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-text-input"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Name:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"example-text-input"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-email-input"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Email:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">id=</span><span class="s">"example-email-input"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-fb"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Facebook:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-fb"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-twt"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Twitter:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-twt"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-web"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Website:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-web"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-tel-input"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>Tel:<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"tel"</span> <span class="na">id=</span><span class="s">"example-tel-input"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10 offset-md-2"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span> <span class="na">type=</span><span class="s">"submit"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>Trên đây chỉ là một form HTML thông thường, khi browser render chúng ta sẽ có form trông giống như sau:</p>
+
+<p><img src="/assets/uploads/2017/05/ContactAppForm.png" alt="Contact App Form" class="img-responsive" /></p>
+
+<h2 id="2-import-apis-cho-template-driven-forms">2. Import APIs cho Template-driven forms</h2>
+
+<p>Để có thể sử dụng các APIs mà Angular cung cấp cho việc thao tác với Template-driven forms, chúng ta cần import NgModule là <code class="language-plaintext highlighter-rouge">FormsModule</code> từ package <code class="language-plaintext highlighter-rouge">@angular/forms</code> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">FormsModule</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[...],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">...,</span>
+    <span class="nx">FormsModule</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[...],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[...]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="3-ngform-và-ngmodel-directives">3. ngForm và ngModel directives</h2>
+
+<p>Nhiệm vụ đầu tiên chúng ta cần làm là truy cập vào form instance và gán các control vào form. Chúng ta sẽ lần lượt sử dụng <code class="language-plaintext highlighter-rouge">ngForm</code> và <code class="language-plaintext highlighter-rouge">ngModel</code> directives như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span> <span class="na">#form</span><span class="err">="</span><span class="na">ngForm</span><span class="err">"</span> <span class="err">...</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre></div></div>
+
+<p>Angular cung cấp một giải pháp để có thể truy cập được directive/component instance ở trong template của component bằng cách sử dụng <code class="language-plaintext highlighter-rouge">exportAs</code> trong khai báo directive/component metadata.</p>
+
+<p>Ở trong đoạn code phía trên, chúng ta đã tạo một template variable là <code class="language-plaintext highlighter-rouge">form</code>, nó sẽ là một instance của directive <code class="language-plaintext highlighter-rouge">ngForm</code>, như thế chúng ta có thể sử dụng các public API mà directive này cung cấp như lấy ra value của nó chẳng hạn như <code class="language-plaintext highlighter-rouge">form.value</code>.</p>
+
+<p>Giờ đây chúng ta có thể sử dụng form value cho việc submit form chẳng hạn.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;form</span> <span class="na">novalidate</span> <span class="na">#form</span><span class="err">="</span><span class="na">ngForm</span><span class="err">"</span>
+  <span class="na">(submit)=</span><span class="s">"onSubmit(form.value)"</span> <span class="err">...</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+ 
+<span class="nt">&lt;p&gt;</span>Form value:<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;pre&gt;</span>{{ form.value | json }}<span class="nt">&lt;/pre&gt;</span>
+</code></pre></div></div>
+
+<p>Và để dễ dàng trong quá trình development, chúng ta có thể thêm một phần hiển thị ở template để biết được form value đang có gì như hai dòng code cuối ở trên.</p>
+
+<p>Tại thời điểm này, cho dù chúng ta có form control ở template nhưng Angular không thể biết cái nào cần quản lý nên chúng ta chỉ nhận được một object rỗng.</p>
+
+<p>Bây giờ công việc tiếp theo là chúng ta phải nói cho Angular biết các form control nào cần phải quản lý. Đây chính là lúc chúng ta dùng đến <code class="language-plaintext highlighter-rouge">ngModel</code> directive.</p>
+
+<p>Chúng ta sẽ thêm <code class="language-plaintext highlighter-rouge">ngModel</code> vào các control như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">ngModel</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Nhưng nếu bạn không khai báo attribute name cho form control, bạn sẽ gặp phải một lỗi giống như sau:</p>
+
+<blockquote>
+  <p>Error: If ngModel is used within a form tag, either the name attribute must be set or the form control must be defined as ‘standalone’ in ngModelOptions.</p>
+</blockquote>
+
+<p>Kèm với đó là bạn sẽ có các ví dụ để sửa lỗi trên.</p>
+
+<p>OK, chúng ta cần thêm một số config để Angular biết cách tạo ra form control của nó để quản lý. Và chúng ta sẽ thêm attribute <code class="language-plaintext highlighter-rouge">name</code> cho các form control ở template trên.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"contact-name"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Bây giờ quan sát form value chúng ta sẽ có một object có key <code class="language-plaintext highlighter-rouge">contact-name</code> chẳng hạn:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">contact-name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Nếu bạn quen với camel case, chúng ta có thể sửa đổi chút để object của chúng ta có key nhìn quen thuộc hơn chẳng hạn.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"contactName"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Kết quả nhận được:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">contactName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>OK cool, giờ chúng ta có thể cài đặt tương tự cho các phần tử khác của form.</p>
+
+<p>Và khi bạn nhập giá trị cho các control thì Angular sẽ tự cập nhật cho các control của form tương ứng, chẳng hạn sau khi nhập xong và submit thì form sẽ có value như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">contactName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tiep Phan</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc@deg.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">facebook.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">twitter</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">twitter.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">website</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tiepphan.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tel</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1234-5678-90</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Bây giờ có một tình huống phát sinh là bạn cần bind data cho các control với một dữ liệu có sẵn, lúc này chúng ta sẽ dùng đến binding cho property, và property chúng ta nhắc đến ở đây chính là <code class="language-plaintext highlighter-rouge">ngModel</code>.</p>
+
+<p>Chúng ta có dạng binding quen thuộc như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ngModel]="obj.prop"
+</code></pre></div></div>
+
+<p>Giả sử object mà chúng ta có ở đây có dạng:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">contact</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">contactName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Tiep Phan</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abc@deg.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">facebook.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">twitter</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">twitter.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">website</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tiepphan.com</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">tel</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1234-5678-90</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Template của chúng ta sẽ thay đổi như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">[ngModel]=</span><span class="s">"contact.contactName"</span> <span class="na">name=</span><span class="s">"contactName"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Mọi thứ đều bắt nguồn từ những điều cơ bản nhất, <code class="language-plaintext highlighter-rouge">[ngModel]</code> chính là one-way binding mà chúng ta vẫn thường dùng.</p>
+
+<p>Lưu ý rằng, khi bạn update form control, bản thân control được form quản lý sẽ thay đổi – <code class="language-plaintext highlighter-rouge">form.value</code>, nhưng object contact ở trên sẽ không hề hấn gì, vì chúng ta không hề đụng chạm gì tới nó, chúng ta chỉ binding một chiều, mà không binding ngược trở lại. Điều này dẫn đến chúng ta có thêm một dạng khác của <code class="language-plaintext highlighter-rouge">ngModel</code> đó là cú pháp two-way binding <code class="language-plaintext highlighter-rouge">[(ngModel)]</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">[(ngModel)]=</span><span class="s">"contact.contactName"</span> <span class="na">name=</span><span class="s">"contactName"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Như vậy, nếu bạn không cần binding thì chỉ cần thêm <code class="language-plaintext highlighter-rouge">ngModel</code> là đủ, nếu bạn muốn one-way binding thì sử dung <code class="language-plaintext highlighter-rouge">[ngModel]</code>, cuối cùng là muốn dùng two-way binding với <code class="language-plaintext highlighter-rouge">[(ngModel)]</code>. Mặc dù vậy, khi bạn thay đổi form control value, thì Angular sẽ cập nhật lại giá trị của các control của form mà nó đang quản lý.</p>
+
+<h2 id="4-ngmodelgroup-directive">4. ngModelGroup directive</h2>
+
+<p>Đến lúc này, chúng ta vẫn đang chỉ quản lý form control với một object chứa tất cả các keys cần thiết, vậy làm thế nào chúng ta có thể gom nhóm một số key lại thành một group riêng, câu trả lời là <code class="language-plaintext highlighter-rouge">ngModelGroup</code>. Directive này tạo ra một group lồng vào group cha, giống như object nằm trong một object khác.</p>
+
+<p>Giả sử như template kể trên, chúng ta sẽ nhóm các url thành một nhóm có tên là <code class="language-plaintext highlighter-rouge">social</code> chẳng hạn:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;fieldset</span> <span class="na">ngModelGroup=</span><span class="s">"social"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-fb"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>
+      Facebook:
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-fb"</span>
+        <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"facebook"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-twt"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>
+      Twitter:
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-twt"</span>
+        <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"twitter"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group row"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"example-url-web"</span> <span class="na">class=</span><span class="s">"col-md-2 col-form-label"</span><span class="nt">&gt;</span>
+      Website:
+    <span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-10"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"url"</span> <span class="na">id=</span><span class="s">"example-url-web"</span>
+        <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"website"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/fieldset&gt;</span>
+</code></pre></div></div>
+
+<p>Kết quả thu được chúng ta có form value với cấu trúc:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">contactName</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">social</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">twitter</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">website</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">tel</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="5-submit-form">5. Submit form</h2>
+
+<p>Lưu ý rằng phần nội dung này có thể áp dụng cho cả Reactive forms mà chúng ta sẽ tìm hiểu tiếp theo.</p>
+
+<p>Ở phần trước, chúng ta đã listen event <code class="language-plaintext highlighter-rouge">submit</code> của form, nhưng ngoài ra, còn một event khác cũng được fired ra khi thực hiện submit form, đó là <code class="language-plaintext highlighter-rouge">ngSubmit</code>. Vậy có điều gì khác biệt giữa <code class="language-plaintext highlighter-rouge">submit</code> và <code class="language-plaintext highlighter-rouge">ngSubmit</code>?</p>
+
+<p>Giống như <code class="language-plaintext highlighter-rouge">submit</code>, event <code class="language-plaintext highlighter-rouge">ngSubmit</code> cũng thực hiện hành động khi form thực hiện submit – người dùng nhấn vào button submit chẳng hạn. Nhưng <code class="language-plaintext highlighter-rouge">ngSubmit</code> sẽ thêm một số nhiệm vụ để đảm bảo form của bạn không thực hiện submit form theo cách thông thường – tải lại trang sau khi submit.</p>
+
+<p>Giả sử, chúng ta thực hiện một tác vụ nào đó trong hàm listen form submit mà sinh ra exception, lúc này nếu bạn sử dụng <code class="language-plaintext highlighter-rouge">submit</code>, trang web của bạn sẽ reload, còn nếu bạn sử dụng <code class="language-plaintext highlighter-rouge">ngSubmit</code>, nó sẽ không reload – phiên bản lúc này tôi đang sử dụng.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">onSubmit</span><span class="p">(</span><span class="nx">formValue</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Do something awesome</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">formValue</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">something go wrong</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lời khuyên dành cho bạn là nên dùng <code class="language-plaintext highlighter-rouge">ngSubmit</code> cho việc listen form submit.</p>
+
+<h2 id="6-template-driven-error-validation">6. Template-driven error validation</h2>
+
+<blockquote>
+  <p>– Huh, có vẻ như user nhập sai thông tin rồi, làm sao tôi có thể hiển thị thông báo cho họ biết để sửa đây?</p>
+
+  <p>– Bình tĩnh, Angular đã có sẵn tính năng cơ bản cho việc validation của bạn. Bây giờ hãy bắt đầu với việc kiểm tra lỗi và cảnh báo.</p>
+</blockquote>
+
+<p>Angular cung cấp một số Validators cơ bản mà bạn có thể dùng ngay trong template như: required, minlength, maxlength, pattern và từ Angular v4 trở đi có thêm email. Chúng được viết là các directives, nên bạn có thể sử dụng như các directives khác trong template của bạn.</p>
+
+<p>Chúng ta sẽ bỏ qua validation của HTML5, vậy nên ngay từ đầu form chúng ta đã thêm novalidate attribute vào khai báo form, thay vào đó là sử dụng Angular validation.</p>
+
+<p>Giả sử chúng ta cần cài đặt contactName là required, chúng ta sẽ đặt như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"contactName"</span> <span class="na">required</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Và để dễ dàng quan sát, chúng ta sẽ thêm phần hiển thị lỗi như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>Form contactName errors:<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;pre&gt;</span>{{ form.controls.contactName?.errors | json }}<span class="nt">&lt;/pre&gt;</span>
+</code></pre></div></div>
+
+<p>Chúng ta sử dụng <strong>safe navigation operator</strong> để truy cập property của một object có thể bị null/undefined mà không gây ra lỗi chương trình.</p>
+
+<p>Khi không nhập gì vào input contactName, chúng ta có thể thấy một thông báo lỗi như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">required</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Khi input này được nhập dữ liệu thì chúng ta sẽ thấy key required của object trên sẽ bị xóa bỏ.</p>
+
+<p>Công việc của chúng ta bây giờ là sử dụng <code class="language-plaintext highlighter-rouge">ngIf</code> chẳng hạn để show/hide error cho người dùng được biết.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+  <span class="na">*ngIf=</span><span class="s">"form.controls.contactName?.errors?.required"</span><span class="nt">&gt;</span>
+  Name is required!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Và có thể thêm việc không cho người dùng nhấn button submit khi trạng thái của form là invalid như sau:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span> <span class="na">type=</span><span class="s">"submit"</span>
+  <span class="na">[disabled]=</span><span class="s">"form.invalid"</span><span class="nt">&gt;</span>
+  Submit
+<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>Bây giờ, nếu bạn muốn chỉ hiển thị thông báo error khi người dùng đã focus vào input đó mà không nhập gì, lúc này chúng ta có thể thông qua trạng thái của form bằng cách truy cập các propeties như touched, dirty hay pristine, …</p>
+
+<p>Trong đó:</p>
+
+<ul>
+  <li>touched: true nếu người dùng đã focus vào input rồi không focus vào nữa.</li>
+  <li>untouched: true nếu người dùng chưa đụng chạm gì hoặc lần đầu tiên focus và chưa bị mất focus (ngược lại với touched)</li>
+  <li>dirty: true nếu người dùng đã tương tác với control – nhập một ký tự vào input text chẳng hạn.</li>
+  <li>pristine: true nếu người dùng chưa tương tác gì với control, mặc dù có thể đã touched, nhưng chưa sửa đổi gì.</li>
+</ul>
+
+<p>Chúng ta sẽ thay đổi một chút form validation:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+  <span class="na">*ngIf=</span><span class="s">"form.controls.contactName?.errors?.required &amp;&amp; form.controls.contactName?.touched"</span><span class="nt">&gt;</span>
+  Name is required!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>OK cool, giờ đây chỉ khi nào người dùng touched vào control và có error thì validation message sẽ hiển thị.</p>
+
+<blockquote>
+  <p>– Huh, giờ chúng ta muốn dùng template variable để truy cập control thay vì truy cập dài dài như trên có được không?</p>
+
+  <p>– Câu trả lời là có, chúng ta hoàn toàn có thể dùng template variable như sau:</p>
+</blockquote>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">ngModel</span> <span class="na">name=</span><span class="s">"contactName"</span> <span class="na">required</span> <span class="na">#contactName</span><span class="err">="</span><span class="na">ngModel</span><span class="err">"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="err">...</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>Và sử dụng như một template variable thông thường:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col alert alert-danger"</span> <span class="na">role=</span><span class="s">"alert"</span>
+  <span class="na">*ngIf=</span><span class="s">"contactName?.errors?.required &amp;&amp; contactName?.touched"</span><span class="nt">&gt;</span>
+  Name is required!
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Như vậy, việc sử dụng Template-driven form trong Angular khá dễ dàng, trong phần này chúng ta chưa đề cập đến custom validation cho form control. Thay vào đó chúng ta sẽ có một phần riêng để thảo luận về tính năng này.</p>
+
+<h2 id="7-video-bài-học">7. Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/fn3oucje1Xg" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="8-tham-khảo">8. Tham khảo</h2>
+
+<p>Supported Validators: <a href="https://angular.io/docs/ts/latest/api/#!?query=validator&amp;type=directive" target="_blank">https://angular.io/docs/ts/latest/api/#!?query=validator&amp;type=directive</a></p>
+
+<p>Forms documentation: <a href="https://angular.io/docs/ts/latest/guide/forms.html" target="_blank">https://angular.io/docs/ts/latest/guide/forms.html</a></p>
+
+<p>Git repo: <a href="https://github.com/tieppt/try-angular/tree/lesson-17" target="_blank">https://github.com/tieppt/try-angular/tree/lesson-17</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

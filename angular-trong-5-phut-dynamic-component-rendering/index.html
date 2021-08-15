@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Angular Trong 5 Phút: Dynamic Component Rendering</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Angular Trong 5 Phút: Dynamic Component Rendering | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Angular Trong 5 Phút: Dynamic Component Rendering" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hướng Dẫn Dynamic Component Rendering Trong Angular" />
+<meta property="og:description" content="Hướng Dẫn Dynamic Component Rendering Trong Angular" />
+<link rel="canonical" href="https://www.tiepphan.com/angular-trong-5-phut-dynamic-component-rendering/" />
+<meta property="og:url" content="https://www.tiepphan.com/angular-trong-5-phut-dynamic-component-rendering/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2019/09/angular-5-mins-dynamic-component-rendering.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-08T10:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2019/09/angular-5-mins-dynamic-component-rendering.jpg" />
+<meta property="twitter:title" content="Angular Trong 5 Phút: Dynamic Component Rendering" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Hướng Dẫn Dynamic Component Rendering Trong Angular","url":"https://www.tiepphan.com/angular-trong-5-phut-dynamic-component-rendering/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2019/09/angular-5-mins-dynamic-component-rendering.jpg","headline":"Angular Trong 5 Phút: Dynamic Component Rendering","dateModified":"2019-09-08T10:00:00+00:00","datePublished":"2019-09-08T10:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/angular-trong-5-phut-dynamic-component-rendering/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Angular Trong 5 Phút: Dynamic Component Rendering</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">September 8, 2019</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="angular-trong-5-phút-dynamic-component-rendering">Angular Trong 5 Phút: Dynamic Component Rendering</h1>
+
+<p>Trong nhiều trường hợp, chúng ta không biết trước phải render component nào, mà sẽ được render lúc runtime.</p>
+
+<p>Ví dụ như Dialog, Snackbar của Angular Material chẳng hạn. Là người viết lib, chúng ta chỉ tạo ra phần khung, còn người dùng lib sẽ tự định nghĩa component và trigger việc render khi nào họ muốn.</p>
+
+<p>Trong bài này chúng ta sẽ tìm hiểu cách để Dynamic Component Rendering trong Angular như thế nào.</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#create-app" id="markdown-toc-create-app">1. Create Angular Application</a></li>
+  <li><a href="#create-angular-components" id="markdown-toc-create-angular-components">2. Create Angular Components</a></li>
+  <li><a href="#setup-view-container" id="markdown-toc-setup-view-container">3. Thiết lập phần container</a></li>
+  <li><a href="#dynamic-component-rendering" id="markdown-toc-dynamic-component-rendering">4. Tiến hành render component ở runtime</a></li>
+  <li><a href="#dynamic-comp-communication" id="markdown-toc-dynamic-comp-communication">5. Tương tác giữa 2 component</a></li>
+  <li><a href="#6-video" id="markdown-toc-6-video">6. Video</a></li>
+  <li><a href="#doc-references" id="markdown-toc-doc-references">7. Link Tham Khảo</a></li>
+</ul>
+
+<h2 id="create-app">1. Create Angular Application</h2>
+
+<p>Để bắt đầu chúng ta sẽ tạo một project mới bằng Angular CLI, các bạn có thể để chọn default bằng cách nhấn enter vài lần.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ng new dynamic-component
+</code></pre></div></div>
+
+<p>Sau đó mở project bằng editor tùy thích, rồi khởi chạy project bằng câu lệnh <code class="language-plaintext highlighter-rouge">ng serve</code> và mở app ở <a href="http://localhost:4200" target="_blank">http://localhost:4200</a> để xem.</p>
+
+<h2 id="create-angular-components">2. Create Angular Components</h2>
+
+<p>Chúng ta sẽ lần lượt tạo 2 component đặt tên lần lượt là alert-container và alert-content; để demo.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ng g c alert-container
+
+<span class="nv">$ </span>ng g c alert-content
+</code></pre></div></div>
+
+<p>Thêm selector của alert-container vào <code class="language-plaintext highlighter-rouge">app.component.html</code> và xem kết quả.</p>
+
+<h2 id="setup-view-container">3. Thiết lập phần container</h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ng-container</span> <span class="na">#container</span><span class="nt">&gt;&lt;/ng-container&gt;</span>
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">ViewChild</span><span class="p">,</span> <span class="nx">ViewContainerRef</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-alert-container</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./alert-container.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./alert-container.component.scss</span><span class="dl">'</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">ViewChild</span><span class="p">(</span><span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">read</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="na">static</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">})</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 class="no_toc" id="31-viewcontainerref-là-gì">3.1 <code class="language-plaintext highlighter-rouge">ViewContainerRef</code> là gì?</h3>
+
+<p>Nó là một cái container từ đó có thể tạo ra Host View (component khi được khởi tạo sẽ tạo ra view tương ứng), và Embedded View  (được tạo từ TemplateRef). Với các view được tạo đó sẽ có nơi để gắn vào (container).</p>
+
+<p>Container có thể chứa các container khác (<code class="language-plaintext highlighter-rouge">ng-container</code> chẳng hạn) tạo nên cấu trúc cây.
+Hay hiểu đơn giản thì nó giống như 1 DOM Element, khi đó có thể add thêm các view khác (<code class="language-plaintext highlighter-rouge">Component</code>, <code class="language-plaintext highlighter-rouge">Template</code>) vào đó.</p>
+
+<h3 class="no_toc" id="32-static-property-có-ý-nghĩa-gì">3.2 <code class="language-plaintext highlighter-rouge">static</code> property có ý nghĩa gì?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">static: true</code> resolve query results before change detection runs</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">AfterViewInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">ViewChild</span><span class="p">(</span><span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">read</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="na">static</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">})</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngAfterViewInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">static: false</code> resolve query results after change detection runs</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">AfterViewInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">ViewChild</span><span class="p">(</span><span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">read</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="na">static</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">})</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngAfterViewInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="dynamic-component-rendering">4. Tiến hành render component ở runtime</h2>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">AfterViewInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">ViewChild</span><span class="p">(</span><span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">read</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="na">static</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">})</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">;</span>
+
+  <span class="nl">componentRef</span><span class="p">:</span> <span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">AlertContentComponent</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="nx">ngAfterViewInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">renderComponent</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">;</span>
+    <span class="nx">container</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">injector</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">cfr</span><span class="p">:</span> <span class="nx">ComponentFactoryResolver</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">ComponentFactoryResolver</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">componentFactory</span> <span class="o">=</span> <span class="nx">cfr</span><span class="p">.</span><span class="nx">resolveComponentFactory</span><span class="p">(</span><span class="nx">AlertContentComponent</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">componentFactory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">injector</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">componentRef</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Chúng ta cần một số bước như sau để dynamic render component:</p>
+
+<p><strong>Bước 1:</strong> Lấy ra <code class="language-plaintext highlighter-rouge">ComponentFactoryResolver</code> service để có thể tạo ra <code class="language-plaintext highlighter-rouge">ComponentFactory</code>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">cfr</span><span class="p">:</span> <span class="nx">ComponentFactoryResolver</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">ComponentFactoryResolver</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">componentFactory</span> <span class="o">=</span> <span class="nx">cfr</span><span class="p">.</span><span class="nx">resolveComponentFactory</span><span class="p">(</span><span class="nx">AlertContentComponent</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Bước 2:</strong> Từ <code class="language-plaintext highlighter-rouge">ComponentFactory</code> sẽ dùng <code class="language-plaintext highlighter-rouge">ViewContainerRef</code> để tạo ra component.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">componentFactory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">injector</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 class="no_toc" id="fix-lỗi-error-no-component-factory-found-for">Fix lỗi Error No component factory found for</h3>
+
+<blockquote>
+  <p>Error: No component factory found for AlertContentComponent. Did you add it to @NgModule.entryComponents?</p>
+</blockquote>
+
+<p>Lỗi này do chúng ta sử dụng dynamic render, nên cần báo cho Angular biết chúng ta sẽ cần những component nào.
+Chỉ cần add component vào array <code class="language-plaintext highlighter-rouge">entryComponents</code> khi khai báo <code class="language-plaintext highlighter-rouge">NgModule</code> là được.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="c1">/// ...other config</span>
+  <span class="na">entryComponents</span><span class="p">:</span> <span class="p">[</span> <span class="nx">AlertContentComponent</span> <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">YourModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="dynamic-comp-communication">5. Tương tác giữa 2 component</h2>
+
+<h3 class="no_toc" id="51-gửi-dữ-liệu-cho-dynamic-component">5.1 Gửi dữ liệu cho dynamic component:</h3>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContentComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">Input</span><span class="p">()</span>
+  <span class="nx">data</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">componentFactory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">injector</span><span class="p">);</span>
+<span class="nx">componentRef</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Data from container</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="no_toc" id="52-emit-event-để-close-bằng-service">5.2 Emit Event để close bằng service</h3>
+
+<p>Tạo service và sử dụng RxJS Subject để làm Event Bus, giúp dễ dàng gửi Event qua lại giữa các componnent.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>ng g s alert
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Subject</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">rxjs</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">({</span>
+  <span class="na">providedIn</span><span class="p">:</span> <span class="dl">'</span><span class="s1">root</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertService</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">_close$</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+
+  <span class="k">public</span> <span class="nx">close$</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_close$</span><span class="p">.</span><span class="nx">asObservable</span><span class="p">();</span>
+
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">close</span><span class="p">(</span><span class="nx">reason</span><span class="p">?:</span> <span class="kr">any</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_close$</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="nx">reason</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>Inject service vào các component, 1 bên emit event, 1 bên listen event đó.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="p">{</span>
+
+  <span class="c1">// ... other setup</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">alertService</span><span class="p">:</span> <span class="nx">AlertService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alertService</span><span class="p">.</span><span class="nx">close$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">reason</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">ngOnDestroy</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContentComponent</span> <span class="p">{</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">alertService</span><span class="p">:</span> <span class="nx">AlertService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">close</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alertService</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+<h3 class="no_toc" id="53-fix-lỗi-error-expressionchangedafterithasbeencheckederror">5.3 Fix lỗi Error ExpressionChangedAfterItHasBeenCheckedError</h3>
+
+<blockquote>
+  <p>Error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: ‘XXX’. Current value: ‘YYY’. It seems like the view has been created after its parent and its children have been dirty checked. Has it been created in a change detection hook ?</p>
+</blockquote>
+
+<p>Lỗi này do chúng ta tạo component dynamic (tạo sau khi OnInit, ở ngoài Angular lifecycle), nên phải thực hiện trigger change detection bằng tay như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">componentFactory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">injector</span><span class="p">);</span>
+<span class="nx">componentRef</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Data from container</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">componentRef</span><span class="p">.</span><span class="nx">changeDetectorRef</span><span class="p">.</span><span class="nx">detectChanges</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Hoặc chúng ta sẽ render component ở trong OnInit (có thể áp dụng trong trường hợp này, vì ViewChild đã resolve trước khi chạy Change Detection).</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">AlertContainerComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+
+  <span class="p">@</span><span class="nd">ViewChild</span><span class="p">(</span><span class="dl">'</span><span class="s1">container</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">read</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="na">static</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">})</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">;</span>
+
+  <span class="nl">componentRef</span><span class="p">:</span> <span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">AlertContentComponent</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">alertService</span><span class="p">:</span> <span class="nx">AlertService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alertService</span><span class="p">.</span><span class="nx">close$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">reason</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Một giải pháp khác ổn định hơn là chúng ta sẽ tạo một directive và inject <code class="language-plaintext highlighter-rouge">ViewContainerRef</code> thông qua Dependency Injection. Lúc này sẽ đảm bảo được chúng ta luôn có thể render component ở <code class="language-plaintext highlighter-rouge">OnInit</code>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Directive</span><span class="p">,</span> <span class="nx">ViewContainerRef</span><span class="p">,</span> <span class="nx">OnInit</span><span class="p">,</span> <span class="nx">ComponentRef</span><span class="p">,</span> <span class="nx">ComponentFactoryResolver</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AlertService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./alert.service</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">AlertContentComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./alert-content/alert-content.component</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Directive</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">[appDynamicContainer]</span><span class="dl">'</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">DynamicContainerDirective</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">componentRef</span><span class="p">:</span> <span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">AlertContentComponent</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="kd">constructor</span><span class="p">(</span>
+    <span class="k">private</span> <span class="nx">container</span><span class="p">:</span> <span class="nx">ViewContainerRef</span><span class="p">,</span>
+    <span class="k">private</span> <span class="nx">alertService</span><span class="p">:</span> <span class="nx">AlertService</span>
+  <span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="nx">ngOnInit</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alertService</span><span class="p">.</span><span class="nx">close$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">reason</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderComponent</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">renderComponent</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">container</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">container</span><span class="p">;</span>
+    <span class="nx">container</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">injector</span><span class="p">;</span>
+
+    <span class="kd">const</span> <span class="nx">cfr</span><span class="p">:</span> <span class="nx">ComponentFactoryResolver</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">ComponentFactoryResolver</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">componentFactory</span> <span class="o">=</span> <span class="nx">cfr</span><span class="p">.</span><span class="nx">resolveComponentFactory</span><span class="p">(</span><span class="nx">AlertContentComponent</span><span class="p">);</span>
+
+    <span class="kd">const</span> <span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">container</span><span class="p">.</span><span class="nx">createComponent</span><span class="p">(</span><span class="nx">componentFactory</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">injector</span><span class="p">);</span>
+    <span class="nx">componentRef</span><span class="p">.</span><span class="nx">instance</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Data from appDynamicContainer directive</span><span class="dl">'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentRef</span> <span class="o">=</span> <span class="nx">componentRef</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="6-video">6. Video</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/Z5axQKnT0VU" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="doc-references">7. Link Tham Khảo</h2>
+
+<p>Code demo: <a href="https://github.com/tieppt/dynamic-component-demo" target="_blank">https://github.com/tieppt/dynamic-component-demo</a></p>
+
+<p><a href="https://angular.io/api/core/ViewChild" target="_blank">ViewChild</a></p>
+
+<p><a href="https://angular.io/api/core/ComponentRef" target="_blank">ComponentRef</a></p>
+
+<p><a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a></p>
+
+<p><a href="https://material.angular.io/cdk/portal/overview" target="_blank">Angular CDK Portal</a></p>
+
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Angular 2 &#8211; Bạn Đã Sẵn Sàng Thử Nghiệm</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Angular 2 – Bạn Đã Sẵn Sàng Thử Nghiệm | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Angular 2 – Bạn Đã Sẵn Sàng Thử Nghiệm" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Angular 2đã phát hành chính thức, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa?" />
+<meta property="og:description" content="Angular 2đã phát hành chính thức, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa?" />
+<link rel="canonical" href="https://www.tiepphan.com/angular-2-ban-da-san-sang-thu-nghiem/" />
+<meta property="og:url" content="https://www.tiepphan.com/angular-2-ban-da-san-sang-thu-nghiem/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2016/11/angular-2.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-12-03T00:00:32+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2016/11/angular-2.png" />
+<meta property="twitter:title" content="Angular 2 – Bạn Đã Sẵn Sàng Thử Nghiệm" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Angular 2đã phát hành chính thức, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa?","url":"https://www.tiepphan.com/angular-2-ban-da-san-sang-thu-nghiem/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2016/11/angular-2.png","headline":"Angular 2 – Bạn Đã Sẵn Sàng Thử Nghiệm","dateModified":"2016-12-03T00:00:32+00:00","datePublished":"2016-12-03T00:00:32+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/angular-2-ban-da-san-sang-thu-nghiem/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Angular 2 &#8211; Bạn Đã Sẵn Sàng Thử Nghiệm</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">December 3, 2016</span></p>
+            </div>
+            <hr />
+            <p><h1 id="angular-2--bạn-đã-sẵn-sàng-thử-nghiệm">Angular 2 – Bạn Đã Sẵn Sàng Thử Nghiệm</h1>
+
+<p><a href="https://angular.io/" target="_blank">Angular 2</a> đã phát hành chính thức, tính tới thời điểm viết bài này, nó đã ra đến phiên bản 2.2.x, hầu hết các blog đều có những lời đánh tiếng về nó và cũng có vô vàn các hướng dẫn để bạn có thể tiếp cận với Angular 2. Vậy bạn đã sẵn sàng để bắt đầu với nền tảng hot này chưa? Hãy cùng mình thử nghiệm với nó nhé.</p>
+
+<p class="text-center"><a href="/assets/uploads/2016/12/angular-angular.png" target="_blank"><img class="img-responsive" src="/assets/uploads/2016/12/angular-angular.png" alt="Angular 2 repository Github" /></a></p>
+
+<p class="text-center"><em>Hình 1: Repository của Angular 2 trên Github</em></p>
+
+<h2 id="1-giới-thiệu">1. Giới thiệu.</h2>
+
+<blockquote>
+  <p>Angular is a development platform for building mobile and desktop web applications.</p>
+</blockquote>
+
+<p>Angular 2 giờ đây là một nền tảng, nó không chỉ là một framework như trước nữa. <a href="https://angular.io/features.html" target="_blank">Giờ đây bạn có thể tạo ứng dụng đa nền tảng như web application, native application, desktop application với Angular 2</a>. Ngoài ra, còn có một cộng đồng lớn mạnh, bạn rất dễ dàng để có thể tiếp cận.</p>
+
+<p>Bằng việc thay đổi lại hoàn toàn kiến trúc của mình, Angular 2 dễ dàng tiếp cận hơn, hiện đại hơn – component based, hiệu năng cao hơn, nhanh hơn Angular 1. Angular 2 được phát triển từ hơn 5 năm đóng góp ý kiến của cộng đồng người dùng Angular, được viết lại trên <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> cho phép các nhà phát triển tận dụng các tính năng nổi bật của ES2015, ES2016+ càng khiến nó trở nên mạnh mẽ hơn trong quá trình phát triển tiếp theo của mình.</p>
+
+<p>Một số tính năng mới của Angular 2 như:</p>
+
+<ul>
+  <li>Form Builder</li>
+  <li>Change Detection</li>
+  <li>Templating</li>
+  <li>Routing</li>
+  <li>Annotations</li>
+  <li>Observables</li>
+  <li>Shadow DOM</li>
+</ul>
+
+<h2 id="2-yêu-cầu-chung">2. Yêu cầu chung.</h2>
+
+<p>Trước khi bắt đầu thử nghiệm, chúng ta cần chuẩn bị một số công cụ cho quá trình phát triển phần mềm, trong trường hợp này là tạo các ứng dụng trên nền tảng của Angular 2.</p>
+
+<p>– <a href="https://nodejs.org/en/" target="_blank">Nodejs:</a></p>
+
+<p>Các bạn tải về phần cài đặt cho <a href="https://nodejs.org/en/download/" target="_blank">Nodejs tại đây</a>, mình ưu tiên sử dụng bản 6 trở lên và dùng bản LTS. Các bạn tải về và cài đặt theo hệ điều hành đang sử dụng.</p>
+
+<p>– <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>:</p>
+
+<p>Sau khi cài đặt các bạn mở Command Prompt/Terminal lên và cài đặt TypeScript qua npm.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> typescript
+<span class="c"># or short version</span>
+npm i <span class="nt">-g</span> typescript
+</code></pre></div></div>
+
+<p>Quá trình cài đặt sẽ cài đặt TypeScript thành global package, có thể chạy command từ bất kỳ đâu.</p>
+
+<p>– <a href="https://github.com/angular/angular-cli" target="_blank">Angular CLI</a>:</p>
+
+<p>Angular CLI là command line tool giúp bạn tạo một số thành phần hoặc một project Angular 2 từ đầu. Ngoài ra, còn một số thiết lập để bạn bắt đầu với Angular 2 dễ dàng hơn.</p>
+
+<p>Các bạn có thể sử dụng “<a href="https://github.com/angular/quickstart" target="_blank">Quick start</a>” hoặc “<a href="https://github.com/angular/angular2-seed" target="_blank">Angular 2 seed</a>” nếu muốn, các phần code cũng sẽ giống nhau. Mình sẽ sử dụng Angular CLI.</p>
+
+<p>Để cài đặt Angular CLI, chúng ta cũng làm tương tự như khi cài đặt TypeScript.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="nt">-g</span> @angular/cli
+<span class="c"># or</span>
+npm i <span class="nt">-g</span> @angular/cli
+</code></pre></div></div>
+
+<p>– Version Control System: <a href="https://git-scm.com/" target="_blank">Git</a> (không bắt buộc)</p>
+
+<p>Hiện nay, việc dùng Git khi phát triển phần mềm rất phổ biến, bạn có thể quản lý các phiên bản một cách dễ dàng. Nếu chưa biết bạn hoàn toàn có thể học cách sử dụng khá nhanh.</p>
+
+<p>Các bạn có thể tải về bản mới nhất từ trang chủ rồi cài đặt cho máy của mình.</p>
+
+<p>– Editor:</p>
+
+<p>Các bạn có thể dùng bất cứ editor nào mình thích và quen thuộc để làm việc, mình có một số gợi ý: <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a>, <a href="https://www.sublimetext.com/" target="_blank">Sublime Text</a>, <a href="https://atom.io/" target="_blank">Atom</a>, thậm chí <a href="http://www.vim.org/" target="_blank">Vim</a>.</p>
+
+<h3 id="3-tiến-hành">3. Tiến hành.</h3>
+
+<p>Đầu tiên, chúng ta tạo mới một project với sự trợ giúp của Angular CLI. Các bạn chạy lệnh dưới đây trong Command Prompt/Terminal.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ng new &lt;app-name&gt;
+<span class="c"># example</span>
+ng new contact-application
+<span class="c"># use preprocessor instead of css: scss, sass, stylus, less</span>
+ng new contact-application <span class="nt">--style</span><span class="o">=</span>scss
+</code></pre></div></div>
+
+<p>Quá trình khởi tạo lần đầu tiên có thể mất vài (chục) phút, để tạo project và download các thư viện cần thiết để ứng dụng có thể thực thi.</p>
+
+<p>Sau khi hoàn thành việc khởi tạo project, chúng ta sẽ có một project với cấu trúc dạng như sau:</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/1-project-structure.png" alt="Angular project structure" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 2: Project structure</em></p>
+
+<p><strong>Vậy chúng ta phải bắt đầu từ đâu?</strong></p>
+
+<p>Một ứng dụng Angular 2 xây dựng trên vô số Component.</p>
+
+<blockquote>
+  <p>A component controls a patch of screen called a view.</p>
+</blockquote>
+
+<p>Để dễ hiểu thì Component là tất cả những gì mà end-user có thể nhận biết, nó có thể được sử dụng lại nhiều lần trong một ứng dụng. Sau khi tạo xong một project với Angular CLI, chúng ta đã có một Component có tên: <code class="language-plaintext highlighter-rouge">AppComponent</code> trong file <code class="language-plaintext highlighter-rouge">src/app/app.component.ts</code>.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/2-app-comp.png" alt="AppComponent" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 3: AppComponent</em></p>
+
+<p>Đoạn code trên có ý nghĩa gì?</p>
+
+<ul>
+  <li>
+    <p>Dòng 1: khi bạn muốn dùng một, một số module, thành phần nào đó từ module khác, bạn import chúng vào, đây là công việc để lấy về các thành phần mà module của bạn phụ thuộc vào. Tính năng này có trong ES2015: modules import. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Bạn có thể tìm hiểu thêm tại đây</a>.</p>
+  </li>
+  <li>
+    <p>Dòng 3 – 7: <code class="language-plaintext highlighter-rouge">@Component</code> để làm gì?</p>
+  </li>
+</ul>
+
+<p>Nó là một khai báo (Decorator) cho class ngay sau đó, để chỉ ra rằng class đó là một Angular component, bên cạnh đó nó còn cung cấp các configuration metadata để Angular 2 biết cách tạo ra Component tương ứng.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/3-at-component.png" alt="@Component" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 4: <code class="language-plaintext highlighter-rouge">@Component</code></em></p>
+
+<p><code class="language-plaintext highlighter-rouge">@Component</code> yêu cầu tối thiểu phải truyền vào một Javascript object với ít nhất thuộc tính: <code class="language-plaintext highlighter-rouge">selector</code> và <code class="language-plaintext highlighter-rouge">templateUrl</code> hoặc <code class="language-plaintext highlighter-rouge">template</code>.</p>
+
+<p>Dòng 4: là <code class="language-plaintext highlighter-rouge">selector</code> hay mục đích chỉ ra rằng, khi trong template có một thẻ dạng như thẻ HTML có tên <code class="language-plaintext highlighter-rouge">app-root</code> thì Angular sẽ hiển thị Component khai báo bên dưới vào đó. Bạn có thể nhìn thấy thẻ này trong file <code class="language-plaintext highlighter-rouge">src/index.html</code>. Trong trường hợp component này, khi render sẽ thay thế phần Text Node <code class="language-plaintext highlighter-rouge">Loading&amp;#8230</code>.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/app-root.png" alt="app-root" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 5: Custom tag <code class="language-plaintext highlighter-rouge">&lt;app-root&gt;</code> – selector</em></p>
+
+<p>Dòng 5: <code class="language-plaintext highlighter-rouge">templateUrl</code> sử dụng để link đến phần template tương ứng của component này. Trong một số trường hợp, các bạn có thể sử dụng inline template mà không cần tạo file html template riêng lẻ, khi đó bạn thay thế việc sử dụng property <code class="language-plaintext highlighter-rouge">templateUrl</code> thành property <code class="language-plaintext highlighter-rouge">template</code>.</p>
+
+<blockquote>
+  <p>Lưu ý, nếu bạn dùng property <code class="language-plaintext highlighter-rouge">template</code>, bạn có thể sử dụng <code class="language-plaintext highlighter-rouge">multi-line string</code> bằng việc bao đóng string trong cặp dấu <code>``</code>.</p>
+</blockquote>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/templateUrl.png" alt="templateUrl" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 6: templateUrl content</em></p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/template.png" alt="template" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 7: inline template content</em></p>
+
+<p>Dòng 6: <code class="language-plaintext highlighter-rouge">styleUrls</code> để link đến phần style tương ứng cho component này, giá trị của nó là 1 mảng các files style. Tương tự như template, style có thể sử dụng inline style bằng cách thay vì dùng <code class="language-plaintext highlighter-rouge">styleUrls</code> bạn sẽ dùng <code class="language-plaintext highlighter-rouge">styles</code> property, nó cũng nhận giá trị là một mảng các string khai báo rule, bạn có thể sử dụng multi-line string như <code class="language-plaintext highlighter-rouge">template</code> property.</p>
+
+<p>Khi mới tạo project, component bằng Angular CLI, nội dung trong file style thường không có gì, các bạn có thể tùy ý thêm các rules của mình cho ứng dụng.</p>
+
+<p>Dưới đây là list đầy đủ các properties của object trên. Mình sẽ không giải thích hết ý nghĩa của các properties này, các bạn tìm hiểu xem nhé.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">animations</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of animations of this component</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">changeDetection</span><span class="p">:</span> <span class="dl">"</span><span class="s2">change detection strategy used by this component</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">encapsulation</span><span class="p">:</span> <span class="dl">"</span><span class="s2">style encapsulation strategy used by this component</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">entryComponents</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of components that are dynamically inserted into the view of this component</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">exportAs</span><span class="p">:</span> <span class="dl">"</span><span class="s2">name under which the component instance is exported in a template</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">map of class property to host element bindings for events, properties and attributes</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">inputs</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of class property names to data-bind as component inputs</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">interpolation</span><span class="p">:</span> <span class="dl">"</span><span class="s2">custom interpolation markers used in this component's template</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">moduleId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ES/CommonJS module id of the file in which this component is defined</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">outputs</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of class property names that expose output events that others can subscribe to</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">providers</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of providers available to this component and its children</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">queries</span><span class="p">:</span> <span class="dl">"</span><span class="s2"> configure queries that can be injected into the component</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">selector</span><span class="p">:</span> <span class="dl">"</span><span class="s2">css selector that identifies this component in a template</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">styleUrls</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of urls to stylesheets to be applied to this component's view</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">styles</span><span class="p">:</span> <span class="dl">"</span><span class="s2">inline-defined styles to be applied to this component's view</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">template</span><span class="p">:</span> <span class="dl">"</span><span class="s2">inline-defined template for the view</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">templateUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">url to an external file containing a template for the view</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">viewProviders</span><span class="p">:</span> <span class="dl">"</span><span class="s2">list of providers available to this component and its view children</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Dòng 8 – 10:</li>
+</ul>
+
+<p>Định nghĩa class tên là <code class="language-plaintext highlighter-rouge">AppComponent</code>, với property <code class="language-plaintext highlighter-rouge">title</code> sau đó export cho module khác sử dụng, đây là tính năng <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" target="_blank">module export</a> và <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class" target="_blank">class</a> trong ES2015.</p>
+
+<p><strong>Chúng ta vừa hoàn thành duyệt qua một vòng về Component, vậy làm gì tiếp theo đây?</strong></p>
+
+<p>Câu trả lời là <a href="https://angular.io/docs/ts/latest/guide/ngmodule.html" target="_blank">Angular Module</a> hay NgModule.</p>
+
+<blockquote>
+  <p><strong>Angular Modules</strong> help organize an application into cohesive blocks of functionality.</p>
+
+  <p>An Angular Module is a class adorned with the <code class="language-plaintext highlighter-rouge">@NgModule</code> decorator function. <code class="language-plaintext highlighter-rouge">@NgModule</code>takes a metadata object that tells Angular how to compile and run module code. It identifies the module’s own components, directives and pipes, making some of them public so external components can use them. It may add service providers to the application dependency injectors. And there are many more options covered here.</p>
+</blockquote>
+
+<p>Trong quá trình phát triển ứng dụng, bạn cũng sẽ thường xuyên gặp các thư viện của Angular là các NgModule chẳng hạn: <code class="language-plaintext highlighter-rouge">FormsModule</code>, <code class="language-plaintext highlighter-rouge">ReactiveFormsModule</code>, <code class="language-plaintext highlighter-rouge">HttpModule</code>, <code class="language-plaintext highlighter-rouge">RouterModule</code>, etc.</p>
+
+<p>Mỗi ứng dụng Angular đều có ít nhất một Module đó là root Module, là nơi để khởi chạy ứng dụng. Module có thể chứa các components, pipes, directives, services, …</p>
+
+<p>Thông thường nó được đặt tên là <code class="language-plaintext highlighter-rouge">AppModule</code>, nhưng bạn hoàn toàn có thể đặt bất kỳ tên nào nếu muốn. Bạn có thể tìm thấy Module đó trong file <code class="language-plaintext highlighter-rouge">src/app/app.module.ts</code>.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/NgModule-root-Module-1.png" alt="NgModule root Module" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 8: <code class="language-plaintext highlighter-rouge">AppModule</code> – root Module</em></p>
+
+<p>Trong class này chúng ta cũng nhìn thấy phần quen thuộc như trong định nghĩa của một Component: các phần <code class="language-plaintext highlighter-rouge">import</code>, <code class="language-plaintext highlighter-rouge">export</code>.</p>
+
+<p>Ở đây, mình muốn các bạn chú ý đến <code class="language-plaintext highlighter-rouge">@NgModule</code>, nó là một decorator tương tự như <code class="language-plaintext highlighter-rouge">@Component</code>, nhưng object truyền vào thì có các properties khác với object của <code class="language-plaintext highlighter-rouge">@Component</code>.</p>
+
+<p>Như hình 8, các properties <code class="language-plaintext highlighter-rouge">imports</code>, <code class="language-plaintext highlighter-rouge">declarations</code>, <code class="language-plaintext highlighter-rouge">providers</code>, <code class="language-plaintext highlighter-rouge">bootstrap</code> có ý nghĩa gì?</p>
+
+<ul>
+  <li><strong>The <code class="language-plaintext highlighter-rouge">imports</code> array:</strong></li>
+</ul>
+
+<p>Như mình đã nói, Angular chia thành nhiều Module tương ứng với các tính năng chẳng hạn. Khi một Module cần sử dụng đến tính năng đó, chúng ta cần nói cho Angular biết và import vào khi tạo Module.</p>
+
+<p>Chẳng hạn, ứng dụng mình đã tạo ở trên, mình làm việc với platform là trình duyệt – browser, nên mình cần import BrowserModule, còn FormsModule để làm việc với form, HttpModule để làm việc với Http như call AJAX, …</p>
+
+<p><strong>Lưu ý:</strong></p>
+
+<blockquote>
+  <p><strong>Only <code>NgModule</code> classes</strong> go in the <code>imports</code> array. Don’t put any other kind of class in <code>imports</code>.</p>
+
+  <p>Don’t confuse the <code>import</code> statements at the top of the file with the Angular module’s <code>imports</code> array. They have different jobs.</p>
+
+  <p>The <em>JavaScript</em> <code>import</code> statements give you access to symbols <em>exported</em> by other files so you can reference them within <em>this</em> file. They have nothing to do with Angular and Angular knows nothing about them.</p>
+
+  <p>The <em>module’s</em> <code>imports</code> array tells Angular about specific Angular modules — classes decorated with <code>@NgModule</code> — that the application needs to function properly.</p>
+</blockquote>
+
+<ul>
+  <li><strong>The <code class="language-plaintext highlighter-rouge">declarations</code> array:</strong></li>
+</ul>
+
+<p>Dùng để khai báo các thành phần: components, directives and pipes mà nó thuộc về Module đó. Tất cả các loại class khác không thuộc ba nhóm trên đều không được cho vào array này.</p>
+
+<ul>
+  <li><strong>The <code class="language-plaintext highlighter-rouge">providers</code> array:</strong></li>
+</ul>
+
+<p>Khi làm việc với Dependency injection, chúng ta cần khai báo các Services cho Injector thực hiện việc nạp các dependencies.</p>
+
+<ul>
+  <li><strong>The <code class="language-plaintext highlighter-rouge">bootstrap</code> array:</strong></li>
+</ul>
+
+<p>Khi định nghĩa root Module, chúng ta cần nói cho Angular biết chương trình cần bắt đầu ở đâu. Trong hình 8, chúng ta muốn Angular khởi chạy <code class="language-plaintext highlighter-rouge">AppComponent</code>.</p>
+
+<p>Ngoài ra còn có <strong><code class="language-plaintext highlighter-rouge">exports</code> array</strong> là list các component mà Module này trả về cho Module khác. Các bạn có thể xem thêm về <a href="https://angular.io/docs/ts/latest/guide/architecture.html" target="_blank">kiến trúc của Angular tại đây</a>.</p>
+
+<p><strong>Chúng ta đã có Component, có Module, vậy khởi chạy chúng như thế nào?</strong></p>
+
+<p>Các bạn có thể tìm thấy câu trả lời trong file <code class="language-plaintext highlighter-rouge">src/main.ts</code>.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/main-1.png" alt="Angular 2 main" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 9: <code class="language-plaintext highlighter-rouge">main.ts</code></em></p>
+
+<p>Ở đây, chúng ta đã sử dụng platformBrowser, sau đó bootstrapModule là root Module – AppModule.</p>
+
+<p>Vậy là tất cả đã rõ, chúng ta có Component, có root Module, có nơi thực hiện bootstrap. Bây giờ, chúng ta sẽ chạy thử chương trình để xem nó hình thù thế nào.</p>
+
+<p>Các bạn vào Command Prompt/Terminal sau đó gõ lệnh <code class="language-plaintext highlighter-rouge">ng serve</code> và nhấn enter để Angular CLI thực hiện công việc của nó.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/ng-serve.png" alt="ng serve" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 10: ng serve</em></p>
+
+<p>Sau đó, các bạn mở trình duyệt vào truy cập vào địa chỉ <a href="http://localhost:4200/" target="_blank">http://localhost:4200/</a>. Kết quả có dạng như sau.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/first-app.png" alt="first app" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 11: first app</em></p>
+
+<p>Bây giờ, chúng ta thay đổi chút, mình sẽ thay đổi title trong AppComponent thành một chuỗi khác, và xem kết quả.</p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/change-app-component.png" alt="Change AppComponent" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 12: edit AppComponent</em></p>
+
+<p class="text-center"><img src="/assets/uploads/2016/12/result.png" alt="result" class="img-responsive" /></p>
+
+<p class="text-center"><em>Hình 13: result</em></p>
+
+<h2 id="4-lời-kết">4. Lời kết</h2>
+
+<p>Angular 2 đang từng bước hoàn thiện và độ nóng của cô nàng này cũng có thừa. Hi vọng với những cái nhìn ban đầu sẽ có nhiều cơ hội để chúng ta từng bước cùng nhau chinh phục.</p>
+
+<p>Hẹn gặp lai các bạn trong bài tiếp theo.</p>
+
+<p>Thân ái!</p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>

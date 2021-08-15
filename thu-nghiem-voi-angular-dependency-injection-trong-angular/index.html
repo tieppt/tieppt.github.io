@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<title>Thử Nghiệm Với Angular Phần 16 &#8211; Dependency Injection Trong Angular</title>-->
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Thử Nghiệm Với Angular Phần 16 – Dependency Injection Trong Angular | Lập Trình Thật Kỳ Diệu</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Thử Nghiệm Với Angular Phần 16 – Dependency Injection Trong Angular" />
+<meta name="author" content="Tiep Phan" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI." />
+<meta property="og:description" content="Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI." />
+<link rel="canonical" href="https://www.tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/" />
+<meta property="og:url" content="https://www.tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/" />
+<meta property="og:site_name" content="Lập Trình Thật Kỳ Diệu" />
+<meta property="og:image" content="https://www.tiepphan.com/assets/uploads/2017/04/angular-16-Dependency-Injection.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-04-23T09:59:27+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://www.tiepphan.com/assets/uploads/2017/04/angular-16-Dependency-Injection.jpg" />
+<meta property="twitter:title" content="Thử Nghiệm Với Angular Phần 16 – Dependency Injection Trong Angular" />
+<meta name="google-site-verification" content="Gcn3Y0oBud7gufI1PtszF7DFNgFOifgLRIaZAoLZWWU" />
+<meta name="msvalidate.01" content="F160AE523B1846CBDC431CB91CB6613A" />
+<script type="application/ld+json">
+{"description":"Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI.","url":"https://www.tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/","@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://www.tiepphan.com/assets/logo.png"},"name":"Tiep Phan"},"image":"https://www.tiepphan.com/assets/uploads/2017/04/angular-16-Dependency-Injection.jpg","headline":"Thử Nghiệm Với Angular Phần 16 – Dependency Injection Trong Angular","dateModified":"2017-04-23T09:59:27+00:00","datePublished":"2017-04-23T09:59:27+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/"},"author":{"@type":"Person","name":"Tiep Phan"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto:100,300,400,500,700|Volkhov:400i">
+<link rel="stylesheet" href="/css/owl.carousel.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/css/airspace.css" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/ionicons.min.css" />
+<link rel="stylesheet" href="/css/animate.css" />
+<link rel="stylesheet" href="/css/responsive.css" />
+<link rel="stylesheet" href="/css/syntax.css" />
+
+<!--
+/*
+ * Airspace
+ * Ported to Jekyll by Andrew Lee
+ * https://github.com/luminousrubyist/airspace-jekyll
+ * Designed and Developed by ThemeFisher
+ * https://themefisher.com/
+ *
+ */
+-->
+
+
+  </head>
+  <body>
+
+
+    <!-- Header Start -->
+<header>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- header Nav Start -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.tiepphan.com">
+              <img src="/assets/logo.png" alt="Logo" class="img-logo">
+              <span>Lập trình thật kỳ diệu</span>
+            </a>
+          </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/work/">Work</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header><!-- header close -->
+
+
+
+    <div class="post">
+  <!-- Wrapper Start -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="block">
+            <h1>Thử Nghiệm Với Angular Phần 16 &#8211; Dependency Injection Trong Angular</h1>
+            <div class="post-info-wrapper">
+              <p class="italic">By <span class="bold">Tiep Phan</span> on <span class="bold">April 23, 2017</span></p>
+            </div>
+            <hr />
+            <p><h1 class="no_toc" id="dependency-injection-trong-angular">Dependency Injection Trong Angular</h1>
+
+<p>Bài viết này sẽ giới thiệu về Dependency Injection trong Angular – một trong những tính năng quan trọng của Angular – cho đến thời điểm hiện tại chỉ có Angular là framework duy nhất phía client cung cấp DI.</p>
+
+<p>Bài viết bao gồm các nội dung sau:</p>
+
+<ul class="tp__toc" id="markdown-toc">
+  <li><a href="#tp-di-di-la-gi" id="markdown-toc-tp-di-di-la-gi">1. Dependency là gì?</a></li>
+  <li><a href="#tp-di-injection" id="markdown-toc-tp-di-injection">2. Injection</a></li>
+  <li><a href="#tp-di-di-trong-angular-ntn" id="markdown-toc-tp-di-di-trong-angular-ntn">3. DI system trong Angular như thế nào?</a>    <ul>
+      <li><a href="#31-các-thành-phần-chính" id="markdown-toc-31-các-thành-phần-chính">3.1 Các thành phần chính</a></li>
+      <li><a href="#32-injectable-và-inject" id="markdown-toc-32-injectable-và-inject">3.2 @Injectable() và @Inject()</a></li>
+    </ul>
+  </li>
+  <li><a href="#tp-di-di-in-depth" id="markdown-toc-tp-di-di-in-depth">4. Provider in-depth</a>    <ul>
+      <li><a href="#41-sử-dụng-value" id="markdown-toc-41-sử-dụng-value">4.1 Sử dụng value</a></li>
+      <li><a href="#42-sử-dụng-alias" id="markdown-toc-42-sử-dụng-alias">4.2 Sử dụng alias</a></li>
+      <li><a href="#43-sử-dụng-factory" id="markdown-toc-43-sử-dụng-factory">4.3 Sử dụng factory</a></li>
+      <li><a href="#44-overrides-provider" id="markdown-toc-44-overrides-provider">4.4 Overrides Provider</a></li>
+      <li><a href="#45-multiple-provider" id="markdown-toc-45-multiple-provider">4.5 Multiple Provider</a></li>
+      <li><a href="#46-forward-references" id="markdown-toc-46-forward-references">4.6 Forward References</a></li>
+    </ul>
+  </li>
+  <li><a href="#tp-di-di-su-dung-trong-angular" id="markdown-toc-tp-di-di-su-dung-trong-angular">5. DI sử dụng trong thực tế</a></li>
+  <li><a href="#tp-di-services-la-gi" id="markdown-toc-tp-di-services-la-gi">6. Services</a></li>
+  <li><a href="#tp-di-optional-di-la-gi" id="markdown-toc-tp-di-optional-di-la-gi">7. Optional Dependencies</a></li>
+  <li><a href="#tp-di-di-video" id="markdown-toc-tp-di-di-video">8. Video bài học</a></li>
+  <li><a href="#tp-di-di-references" id="markdown-toc-tp-di-di-references">9. Tham khảo</a></li>
+</ul>
+
+<h2 id="tp-di-di-la-gi">1. Dependency là gì?</h2>
+
+<p>Khi trong class A có sự tồn tại của class B, dùng class B để làm một công việc nào đó, ta nói rằng class A đang phụ thuộc vào class B.</p>
+
+<p>Ví dụ, chúng ta có class Computer và class CPU như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">CPU speed 3.2GHz</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Như ở ví dụ trên, class Computer đang phụ thuộc vào class CPU. Nếu muốn sử dụng property cpu trong class Computer, chúng ta phải khởi tạo ở đâu, vì nếu không khởi tạo chúng ta không thể sử dụng các method của property đó.</p>
+
+<p>Chúng ta sẽ có 2 cách để khởi tạo như sau:</p>
+
+<ol>
+  <li>Khởi tạo instance của class CPU trong class Computer và gán cho property cpu, trong trường hợp của JavaScript, TypeScript là khởi tạo trong hàm tạo.</li>
+  <li>Khởi tạo instance của class CPU ở một context (container) bên ngoài, và truyền vào (inject) cho class Computer, trong trường hợp của JavaScript, TypeScript là truyền qua constructor của class Computer.</li>
+</ol>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/DI.png" alt="Khởi tạo instance của class CPU" class="img-responsive" /></p>
+
+<p>Đối với cách 1, chúng ta đã hard-coded khi khởi tạo như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">cpu</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CPU</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Giả sử lúc này chúng ta chạy chương trình với đoạn code như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="nx">context</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">computer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Computer</span><span class="p">();</span>
+  <span class="nx">computer</span><span class="p">.</span><span class="nx">cpu</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>Đoạn code trên không có gì đặc biệt, chúng ta đã khởi tạo instance của class CPU bên trong contructor của class Computer. Vấn đề phát sinh bây giờ, nếu chúng ta muốn thay instance đó bằng một instance của một class CPU khác, lúc này chúng ta bắt buộc phải viết lại class Computer, ngay kể cả việc test chương trình cũng khó khăn vì chúng ta khó để thay đổi instance đó cho việc mock dữ liệu test.</p>
+
+<h2 id="tp-di-injection">2. Injection</h2>
+
+<p>Chúng ta có thể cải thiện code trên bằng cách sử dụng cách 2, với việc inject các phụ thuộc. Kết quả là chúng ta có thể dễ dàng test, thay đổi linh động các phụ thuộc. Chúng ta thay đổi code như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">cpu</span> <span class="o">=</span> <span class="nx">cpu</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Và khi chạy chương trình chúng ta có thể inject phụ thuộc như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="nx">context</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">computer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Computer</span><span class="p">(</span><span class="k">new</span> <span class="nx">CPU</span><span class="p">());</span>
+  <span class="nx">computer</span><span class="p">.</span><span class="nx">cpu</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>Khi áp dụng Abstration, chúng ta hoàn toàn có thể sử dụng tính đa hình để dễ dàng thay đổi các phụ thuộc. Giả sử OCCPU là một class dẫn xuất của class CPU, bây giờ thay vì truyền vào instance của class CPU, chúng ta có thể truyền vào instance của class OCCPU.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="nx">context</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">computer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Computer</span><span class="p">(</span><span class="k">new</span> <span class="nx">OCCPU</span><span class="p">());</span>
+  <span class="nx">computer</span><span class="p">.</span><span class="nx">cpu</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>Điều này thật tuyệt phải không nào, chúng ta không cần viết lại class Computer, không cần chạy lại tất cả các test case liên quan, ác mộng sẽ giảm đi rất nhiều.</p>
+
+<p>Các bạn có thể đoán được mẫu thiết kế trên chính là <strong>Dependency Injection (DI)</strong>, chi tiết hơn đó là <strong>constructor injection</strong>.</p>
+
+<h2 id="tp-di-di-trong-angular-ntn">3. DI system trong Angular như thế nào?</h2>
+
+<p>Angular giúp chúng ta dễ dàng sử dụng DI trong ứng dụng, giả sử với đoạn code phía trên, chúng ta có thể biến đổi để sử dụng Angular DI như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ReflectiveInjector</span><span class="p">,</span> <span class="nx">Inject</span><span class="p">,</span> <span class="nx">Injectable</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">CPU</span><span class="p">)</span> <span class="nx">cpu</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">cpu</span> <span class="o">=</span> <span class="nx">cpu</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">(</span><span class="kd">function</span> <span class="nx">context</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">ReflectiveInjector</span><span class="p">.</span><span class="nx">resolveAndCreate</span><span class="p">([</span><span class="nx">Computer</span><span class="p">,</span> <span class="nx">CPU</span><span class="p">]);</span>
+  <span class="kd">const</span> <span class="nx">computer</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">Computer</span><span class="p">);</span> 
+  <span class="nx">computer</span><span class="p">.</span><span class="nx">cpu</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p>Đối với việc sử dụng TypeScript, chúng ta có thể bỏ qua property của class và kèm theo keyword public/private vào tham số của constructor, TypeScript sẽ compile ra đúng những gì chúng ta cần như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">CPU</span><span class="p">)</span> <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Nếu phụ thuộc vào một class khác, chúng ta có thể bỏ qua <strong>@Inject</strong> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Lưu ý rằng, trong Angular 4, tất cả các class có phụ thuộc đến các thành phần khác – như class Computer ở trên – sẽ phải decorate bằng <strong>@Injectable()</strong> decorator.</p>
+</blockquote>
+
+<h3 id="31-các-thành-phần-chính">3.1 Các thành phần chính</h3>
+
+<p>DI trong Angular bao gồm 3 thành phần sau đây:</p>
+
+<p><strong>Injector</strong>: là một object có chứa các API để chúng ta tạo các instances của các phụ thuộc.</p>
+
+<p><strong>Provider</strong>: giống như một công thức để Injector có thể biết làm thế nào để tạo một instance của một phụ thuộc.</p>
+
+<p><strong>Dependency</strong>: là một object của một kiểu dữ liệu cần phải khởi tạo.</p>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/DI-angular.png" alt="Dependency Injection Trong Angular" class="img-responsive" /></p>
+
+<p>Chúng ta đã sử dụng <strong>ReflectiveInjector</strong> để lấy được object của class Computer – đó  chính là <strong>Injector</strong> – thông qua method <strong>resolveAndCreate</strong>.</p>
+
+<p><strong>@Inject/@Injectable</strong> sẽ thêm các metadata vào class Computer, mà sau này sẽ được sử dụng bởi DI system. Trong trường hợp ở trên, <strong>@Inject/@Injectable</strong> sẽ đánh dấu cho DI biết tham số đầu tiên của hàm tạo của class Computer cần một instance của class CPU – nếu có nhiều tham số hơn, nó sẽ cho đúng thứ tự các tham số của hàm tạo để DI biết cách inject instances vào.</p>
+
+<p>Để Injector có thể biết được cách để tạo một object, chúng ta cần cung cấp các providers, đó chính là đầu vào của method <strong>resolveAndCreate</strong>. Ở ví dụ trên, chúng ta đã truyền vào một mảng các class.</p>
+
+<p>Thực chất đó là cách viết ngắn gọn của một mảng object có dạng như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">injector</span> <span class="o">=</span> <span class="nx">ReflectiveInjector</span><span class="p">.</span><span class="nx">resolveAndCreate</span><span class="p">([</span>
+  <span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">Computer</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">CPU</span> <span class="p">}</span>
+<span class="p">]);</span>
+</code></pre></div></div>
+
+<p>Chúng ta có object với key <strong>provide</strong>, đây là <strong>token</strong> để DI system map với token mà <strong>@Inject/@Injectable</strong> đã mô tả. Khi có token, DI system sẽ đọc key tiếp theo, trong trường hợp trên là <strong>useClass</strong>, với key trên nó sẽ tạo instance của class tương ứng.</p>
+
+<p>Token có thể là string hoặc một kiểu dữ liệu.</p>
+
+<p>Trường hợp token và class giống nhau như ở trên, chúng ta có thể viết gọn lại như đã đề cập ở trên.</p>
+
+<p>Tại sao có 2 cách mô tả cho cùng một vấn đề. Quay trở lại vấn đề khi chúng ta cần thay đổi một class khác mà vẫn sử dụng token trên, chúng ta chỉ cần bảo DI class chúng ta cần mà không phải sửa token ở class cần phụ thuộc. Ví dụ chúng ta sử dụng token CPU nhưng dùng class OCCPU như sau chẳng hạn:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">OCCPU</span> <span class="kd">extends</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">CPU speed 3.7GHz</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">OCCPU</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sau khi Injector khởi tạo các objects và inject các dependencies cần thiết, chúng ta có thể lấy ra được object mà chúng ta mong muốn với phương thức <strong>get</strong>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">computer</span> <span class="o">=</span> <span class="nx">injector</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">Computer</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Đến thời điểm này, mỗi khi bạn gọi injector.get cho provider dạng useClass sẽ luôn nhận được cùng một object – singleton.</p>
+
+<h3 id="32-injectable-và-inject">3.2 @Injectable() và @Inject()</h3>
+
+<p>Quay trở lại đoạn code sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">CPU speed 3.2GHz</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sẽ ra sao nếu bạn sử dụng <strong>@Injectable</strong> trong trường hợp hàm tạo có tham số là một kiểu dữ liệu primitive. Ngay kể cả khi bạn viết theo TypeScript như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">public</span> <span class="nx">speed</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`CPU speed </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Lúc đó bạn không biết cách làm thế nào để báo cho DI biết kiểu của token là gì và DI sẽ không thể inject dependencies cần thiết cho bạn được, bạn có thể gặp lỗi sau đây.</p>
+
+<blockquote>
+  <p>Cannot resolve all parameters for ‘CPU’(?). Make sure that all the parameters are decorated with Inject or have valid type annotations and that ‘CPU’ is decorated with Injectable.</p>
+</blockquote>
+
+<p>Lúc này bạn cần đến <strong>@Inject</strong> decorator, để gán cho tham số đó một token nào đó. Ví dụ:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="dl">'</span><span class="s1">CPU Speed</span><span class="dl">'</span><span class="p">)</span> <span class="k">public</span> <span class="nx">speed</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`CPU speed </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Hoặc trong trường hợp bạn muốn sử dụng một token khác cho tham số thay vì kiểu dữ liệu của nó chẳng hạn.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="nx">OCCPU</span><span class="p">)</span> <span class="k">public</span> <span class="nx">cpu</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Bây giờ mọi thứ lại hoạt động thật hoàn hảo như chúng ta mong đợi.</p>
+
+<p>Tóm lại, chúng ta sử dụng <strong>@Injectable</strong> với các kiểu dữ liệu tự định nghĩa – class mà chúng ta tạo ra. Còn đối với các kiểu dữ liệu primitive như boolean, string, number, etc; chúng ta cần <strong>@Inject</strong> để báo cho Angular biết, và chúng ta sẽ config các provider tương ứng cho chúng. Chúng ta có thể sử dụng kết hợp cả hai khi một class phụ thuộc vào cả kiểu dữ liệu primitive và kiểu tự định nghĩa.</p>
+
+<h2 id="tp-di-di-in-depth">4. Provider in-depth</h2>
+
+<p>Trong các ví dụ trước, chúng ta đã sử dụng provider với cấu trúc của một object với các key <strong>provide</strong> và <strong>useClass</strong> như sau.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span> <span class="nx">useClass</span><span class="p">:</span> <span class="nx">Computer</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ngoài cách trên chúng ta có thể sử dụng một số cách dưới đây:</p>
+
+<h3 id="41-sử-dụng-value">4.1 Sử dụng value</h3>
+
+<p>Nếu bạn sử dụng token như sau, value sẽ được truyền vào thay vì tạo instance của class.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_ENDPOINT</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://tiepphan.com/blog/</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="42-sử-dụng-alias">4.2 Sử dụng alias</h3>
+
+<p>Có nhiều token có thể cùng sử dụng một token đã có.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span> <span class="nx">useClass</span><span class="p">:</span> <span class="nx">Computer</span> <span class="p">},</span>
+<span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="nx">Server</span><span class="p">,</span> <span class="na">useExisting</span><span class="p">:</span> <span class="nx">Computer</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="43-sử-dụng-factory">4.3 Sử dụng factory</h3>
+
+<p>Khi bạn muốn trả về một value dựa vào một điều kiện đầu vào, hoặc bạn muốn mỗi lần gọi đến instance của token sẽ cho một instance khác nhau thì bạn sử dụng factory function như sau.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">,</span>
+  <span class="nx">useFactory</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">forOC</span> <span class="p">?</span> <span class="k">new</span> <span class="nx">OCCPU</span><span class="p">()</span> <span class="p">:</span> <span class="k">new</span> <span class="nx">CPU</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Hoặc bạn cần tạo một instance của một class có tham số của hàm tạo là kiểu primitive.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">CPU</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">public</span> <span class="nx">speed</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nx">start</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`CPU speed </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">speed</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="nx">CPU</span><span class="p">,</span>
+  <span class="na">useFactory</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">CPU</span><span class="p">(</span><span class="dl">'</span><span class="s1">3.5GHz</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Factory có thể có dependencies, lúc đó chúng ta sử dụng key <strong>deps</strong>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span>
+  <span class="nx">useFactory</span><span class="p">:</span> <span class="p">(</span><span class="nx">cpu</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Computer</span><span class="p">(</span><span class="nx">cpu</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="err"> </span> <span class="nx">deps</span><span class="p">:</span> <span class="p">[</span><span class="nx">CPU</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="44-overrides-provider">4.4 Overrides Provider</h3>
+
+<p>Khi có nhiều providers có cùng giá trị của key <strong>provide</strong> và không sử dụng config multi: true thì provider nào thêm vào sau cùng sẽ win.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_ENDPOINT</span><span class="dl">'</span><span class="p">,</span><span class="err"> </span> <span class="nx">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://tiepphan.com/blog/</span><span class="dl">'</span> <span class="p">},</span>
+<span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_ENDPOINT</span><span class="dl">'</span><span class="p">,</span><span class="err"> </span> <span class="na">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/</span><span class="dl">'</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Kết quả cuối cùng của API_ENDPOINT sẽ là <code class="language-plaintext highlighter-rouge">http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/</code>.</p>
+
+<p>Để tránh nhập nhằng token, chúng ta sử dụng OpaqueToken (Angular 2) hoặc InjectionToken (chỉ có trong Angular 4+) để tạo các unique token.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">TOKEN_A</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpaqueToken</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">TOKEN_B</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpaqueToken</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">TOKEN_A</span> <span class="o">===</span> <span class="nx">TOKEN_B</span><span class="p">;</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>Từ Angular 4 trở đi chúng ta sử dụng InjectionToken thay vì OpaqueToken (có thể bị bỏ đi trong Angular phiên bản &gt; 4).</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">TOKEN_A</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InjectionToken</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">TOKEN_B</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">InjectionToken</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">TOKEN_A</span> <span class="o">===</span> <span class="nx">TOKEN_B</span><span class="p">;</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<h3 id="45-multiple-provider">4.5 Multiple Provider</h3>
+
+<p>Trong trường hợp bạn muốn một token có thể có nhiều value, lúc này bạn có thể sử dụng multiple như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_ENDPOINT</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://tiepphan.com/blog/</span><span class="dl">'</span><span class="p">,</span>
+  <span class="nx">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">},</span>
+<span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">API_ENDPOINT</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">useValue</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://tiepphan.com/thu-nghiem-voi-angular-dependency-injection-trong-angular/</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">},</span>
+</code></pre></div></div>
+
+<p>Khi đó kết quả nhận được là một mảng các giá trị.</p>
+
+<h3 id="46-forward-references">4.6 Forward References</h3>
+
+<p>Bây giờ đặt ra tình huống, bạn muốn tạo một provider mà class bạn định nghĩa sau khi tạo provider thì sẽ thế nào.  Hãy quan sát ví dụ sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">Computer</span> <span class="p">{</span>
+  <span class="nx">run</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Computer Running...</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tp-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./app.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./app.component.scss</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">COMP</span><span class="dl">'</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">COMP</span><span class="dl">'</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">Laptop</span><span class="p">,</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Inject</span><span class="p">(</span><span class="dl">'</span><span class="s1">COMP</span><span class="dl">'</span><span class="p">)</span> <span class="nx">comps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">comps</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">comp</span> <span class="o">=&gt;</span> <span class="nx">comp</span><span class="p">.</span><span class="nx">run</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">Laptop</span> <span class="p">{</span>
+  <span class="nx">run</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Laptop Running...</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Chúng ta mong muốn nhận được một mảng để chạy, nhưng khi chạy chương trình chúng ta gặp phải lỗi chẳng hạn như:</p>
+
+<blockquote>
+  <p><em>Error: Invalid provider for COMP. useClass cannot be undefined.</em></p>
+</blockquote>
+
+<p>Cách giải quyết lúc này, chúng ta sẽ sử dụng <strong>Forward References</strong> như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">COMP</span><span class="dl">'</span><span class="p">,</span> <span class="nx">useClass</span><span class="p">:</span> <span class="nx">Computer</span><span class="p">,</span> <span class="nx">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
+<span class="p">{</span> <span class="na">provide</span><span class="p">:</span> <span class="dl">'</span><span class="s1">COMP</span><span class="dl">'</span><span class="p">,</span> <span class="na">useClass</span><span class="p">:</span> <span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">Laptop</span><span class="p">),</span> <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Trường hợp này bạn thường gặp phải khi tạo custom validator directive cho form. Dưới đây là một đoạn code trích ra từ Angular Forms module để validate một field là <strong>required</strong>:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">REQUIRED_VALIDATOR</span><span class="p">:</span> <span class="nx">Provider</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">provide</span><span class="p">:</span> <span class="nx">NG_VALIDATORS</span><span class="p">,</span>
+  <span class="na">useExisting</span><span class="p">:</span> <span class="nx">forwardRef</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">RequiredValidator</span><span class="p">),</span>
+  <span class="na">multi</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">};</span>
+
+<span class="p">@</span><span class="nd">Directive</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">…</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">REQUIRED_VALIDATOR</span><span class="p">],</span>
+  <span class="na">host</span><span class="p">:</span> <span class="p">{</span><span class="dl">'</span><span class="s1">[attr.required]</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">required ? "" : null</span><span class="dl">'</span><span class="p">}</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">RequiredValidator</span> <span class="k">implements</span> <span class="nx">Validator</span> <span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Như bạn có thể thấy, Angular khai báo provider cần sử dụng đến class khai báo ngay sau nó. Đây chính là lúc chúng ta cần đến <strong>Forward References</strong>.</p>
+
+<h2 id="tp-di-di-su-dung-trong-angular">5. DI sử dụng trong thực tế</h2>
+
+<p>Trong ứng dụng Angular, bạn có thể cung cấp provider ở 2 cấp độ: Module và Component/Directive.</p>
+
+<p>Ở cấp độ Module, bạn khai báo các provider vào mảng <strong>providers</strong> trong config của <strong>@NgModule</strong> decorator. Lúc này tất cả các thành phần bên trong NgModule đó sẽ sử dụng cùng instance của token tương ứng.</p>
+
+<p>Ở cấp độ Component/Directive, bạn khai báo các provider vào mảng <strong>providers</strong> trong config của <strong>@Component</strong>/<strong>@Directive</strong> decorator. Lúc này mỗi instance của Component/Directive X sẽ sử dụng một instance của token (không phải dạng <strong>multiple</strong>) tương ứng. Nếu Component/Directive Y cũng dùng đến Dependency giống X, thì instance của dependency sử dụng trong X và Y là khác nhau.</p>
+
+<p>Hãy quan sát các ví dụ sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">PostService</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./services/post</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span>
+  <span class="c1">//…</span>
+  <span class="p">],</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span>
+  <span class="c1">//…</span>
+  <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">PostService</span><span class="p">],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span><span class="nx">AppComponent</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Dependency được định nghĩa như sau:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Injectable</span><span class="p">()</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">PostService</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sử dụng trong các components:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">CardComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">ps</span><span class="p">:</span> <span class="nx">PostService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">CollapseComponent</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">ps</span><span class="p">:</span> <span class="nx">PostService</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">========Collapse========</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Khi sử dụng ở các components khác nhau nhưng chúng ta chỉ có một instance duy nhất. Các bạn có thể xem ở console chỉ có 1 lần duy nhất log ra counter là 1.Nếu chúng ta đặt providers ở Component, mỗi lần component được tạo ra sẽ sinh ra một instance khác.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">tp-collapse</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">templateUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">./collapse.component.html</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">./collapse.component.scss</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">encapsulation</span><span class="p">:</span> <span class="nx">ViewEncapsulation</span><span class="p">.</span><span class="nx">None</span><span class="p">,</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span><span class="nx">PostService</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">CollapseComponent</span> <span class="k">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="c1">//…</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="text-center"><img src="/assets/uploads/2017/04/component-di.png" alt="Component Dependency Injection" class="img-responsive" /></p>
+
+<h2 id="tp-di-services-la-gi">6. Services</h2>
+
+<p>Đến đây các bạn đã thấy việc sử dụng service là PostService. Ý tưởng về việc dùng service rất đơn giản.Nếu bạn có các phần code xử lý business logic – ví dụ gọi API để nhận gửi dữ liệu – hoặc có các phần code cần để sử dụng lại, chúng ta sẽ tách các phần đó ra khỏi Component và gọi chúng là services. Chúng ta không để các Component phụ thuộc chặt chẽ vào các services, mà thay vào đó sẽ inject thông qua DI system. Bằng cách đó, các Component có thể phụ thuộc vào Interface – Abstraction – thay vì phụ thuộc vào class cụ thể, giúp dễ dàng kiểm thử, bảo trì, nâng cấp. Trong thực tế, chúng ta thường khai báo các services ở cấp độ Module để sử dụng xuyên suốt trong chương trình.</p>
+
+<h2 id="tp-di-optional-di-la-gi">7. Optional Dependencies</h2>
+
+<p>Để đánh dấu một dependency là optional – có cũng được, không có cũng được – chúng ta sử dụng <strong>@</strong><strong>Optional</strong> decorator.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">class</span> <span class="nx">OptionalClass</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="nx">log</span><span class="p">:</span> <span class="nx">LogService</span><span class="p">;</span>
+  <span class="kd">constructor</span><span class="p">(@</span><span class="nd">Optional</span><span class="p">()</span> <span class="nx">log</span><span class="p">:</span> <span class="nx">LogService</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// do something if log exist</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">log</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">log</span> <span class="o">=</span> <span class="nx">log</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Ngoài ra, DI trong Angular còn một số kiến thức về Controlling Visibility với các decorator <strong>@SkipSelf</strong>, <strong>@Host</strong> hay <strong>@Self</strong> các bạn có thể vào trang document chính thức để tìm hiểu thêm.</p>
+
+<h2 id="tp-di-di-video">8. Video bài học</h2>
+
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/bKadxkJJg4U" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+
+<h2 id="tp-di-di-references">9. Tham khảo</h2>
+
+<p><a href="https://angular.io/docs/ts/latest/cookbook/dependency-injection.html" target="_blank" rel="noopener noreferrer">https://angular.io/docs/ts/latest/cookbook/dependency-injection.html</a></p>
+
+<p><a href="https://edwardthienhoang.wordpress.com/2015/03/30/tan-man-ve-dependency-injection/" target="_blank" rel="noopener noreferrer">https://edwardthienhoang.wordpress.com/2015/03/30/tan-man-ve-dependency-injection/</a></p>
+
+<p><a href="https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html" target="_blank" rel="noopener noreferrer">https://blog.thoughtram.io/angular/2015/05/18/dependency-injection-in-angular-2.html</a></p>
+
+<p><strong>Download PDF:</strong> <a href="https://drive.google.com/file/d/0B-ux0B5az7XuNG9FaW5YVUJ6Nm8/view?usp=sharing" target="_blank" rel="noopener noreferrer">https://drive.google.com/file/d/0B-ux0B5az7XuNG9FaW5YVUJ6Nm8/view?usp=sharing</a></p>
+</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2>Facebook</h2>
+          <div class="fb-page" data-href="https://www.facebook.com/LapTrinhThatKyDieu/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/LapTrinhThatKyDieu/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/LapTrinhThatKyDieu/">Lập Trình Thật Kỳ Diệu</a></blockquote></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p class="center-text" style="padding: 30px;">
+  <a href="/blog">Back to blog</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- footer Start -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-manu">
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <p>Copyright &copy; 2017 to present - tiepphan.com All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Js -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/plugins.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    </body>
+</html>
