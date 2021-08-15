@@ -18,20 +18,20 @@ tags:
   - Angular 2
 ---
 
-# Mở đầu  
+# Mở đầu
 {:.no_toc}
 
 Trong bài trước, mình đã giới thiệu sơ qua về `HttpClientModule` và những ứng dụng thiết yếu của nó.  
 Học thì phải đi đôi với hành phải không nào? Hôm nay mình sẽ tiếp tục đi tiếp với Http Options và Demo 1 tính năng đó là `UPLOAD AND DOWNLOAD FILE WITH PROGRESS` nhé.  
-Các bạn vừa đọc vừa mở IDE lên code cùng mình nhé.:)
+Các bạn vừa đọc vừa mở IDE lên code cùng mình nhé.:)  
 
-Nào! bắt đầu thôi
+Nào! bắt đầu thôi  
 
 * ToC
-  {:toc}
-  {:.tp__toc}
+{:toc}
+{:.tp__toc}
 
-## 1. Http Options  
+## 1. Http Options
 {:#post-intro}
 Trong bài trước, mình có viết mẫu một `Post Service` để handle những việc nhận - gửi request liên quan tới `Post`  
 ```typescript
@@ -94,8 +94,8 @@ options: {
   withCredentials?: boolean,
 }
 ```  
-Chúng ta cùng tìm hiểu và sử dụng các option này nhé.
-
+Chúng ta cùng tìm hiểu và sử dụng các option này nhé.  
+  
 ### 1.1 Headers
 `headers` trong `http options` là header configuration cho 1 `Http Request`.  Nó có thể là 1 `HttpHeaders` hoặc 1 object có `key` là `string` và giá trị là 1 `string` hoặc 1 `mảng string`.  
 ví dụ hàm `GET`:  
@@ -117,7 +117,7 @@ getListPosts(): Observable<PostEntityModel[]> {
 }
 ```  
 Kết quả:  
-<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
 
 Các bạn nên nhớ. Instance của một `HttpHeaders` là immutable nhé. Nghĩa là mỗi lần modify là trả về 1 `cloned instance` kèm thèm giá trị vừa modify nhé.  
 Ví dụ:  
@@ -130,7 +130,7 @@ getListPosts(): Observable<PostEntityModel[]> {
     { headers }
   );
 }
-```  
+```
 Kết quả:
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901768/HTTP%20CLIENT%20MODULE/request-header-is-not-append-key_dhydwg.png" alt="Not working" />  
 
@@ -145,13 +145,13 @@ getListPosts(): Observable<PostEntityModel[]> {
   );
 }
 ```  
-Và kết quả là:  
-<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" /> 
-
-### 1.2 Observe  
+Và kết quả là:
+<img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
+  
+### 1.2 Observe
 `observe` là một giá trị kiểu string thuộc enum `'body' | 'events' | 'response'`. Nó báo cho `HttpClient` biết mình muốn lấy response ở mức độ nào. Mặc định nếu không set trong options thì sẽ lấy observe là `'body'`.  
 Chúng ta cùng điểm qua các `observe` value nhé.  
-#### 1.2.1 Observe 'body'  
+#### 1.2.1 Observe 'body'
 Mặc định khi gửi 1 `Http Request` và nhận lại một response. Chúng ta sẽ nhận được data là body của `HttpResponse`  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
@@ -173,7 +173,7 @@ Kết quả:
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592907735/HTTP%20CLIENT%20MODULE/observe-response-result_fgwn81.png" alt="Observe Response" />  
 Chúng ta đã có thêm thông tin để xử lý tiếp rồi:)
 
-#### 1.2.3 Observe 'events'  
+#### 1.2.3 Observe 'events'
 Khi sử dụng `observe: 'events'`, chúng ta sẽ nhận được full event của 1 `Http Request`. Thực tế là nó sẽ đi từ bắt đầu gọi request tới lúc request response hoàn chỉnh
 Hãy để ý nhé:  
 ```typescript
@@ -188,11 +188,11 @@ createPost(post: Partial<PostEntityModel>): Observable<HttpEvent<PostEntityModel
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592910602/HTTP%20CLIENT%20MODULE/http-obser-event-angular_zaspdq.png" alt="Observer events" />
 Các bạn thấy đấy, từ `{type: 0}` cho đến `{type: 4}` là lúc request hoàn thành rồi. Lát nữa chúng ta sẽ demo có sự góp mặt của `Observe` này
 
-### 1.3 Params  
+### 1.3 Params
 Khi bạn có 1 task gọi 1 API endpoint có query params. Bạn có bao giờ tự hỏi rẳng Angular có cung cấp sẵn để thực hiện công việc này hay không?  
 Câu trả lời là `CÓ`, `params` trong `Http Options` giúp chúng ta thêm query params vào enpoint. Trong ví dụ sau đây, tôi cần thêm query params vào hàm `GET`:  
-Có 3 cách để implement params options:  
-#### 1.3.1 Sử dụng fromString option  
+Có 3 cách để implement params options:
+#### 1.3.1 Sử dụng fromString option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
   return this.httpClient.get<PostEntityModel[]>(
@@ -200,7 +200,7 @@ getListPosts(): Observable<PostEntityModel[]> {
     {params: new HttpParams({ fromString: 'title=AngularVietNam&id=1' })}
   );
 }
-```  
+```
 #### 1.3.2 Sử dụng fromObject option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
@@ -209,21 +209,21 @@ getListPosts(): Observable<PostEntityModel[]> {
     {params: new HttpParams({ fromObject: {title: 'AngularVietNam', id: '1'}})}
   );
 }
-```  
+```
 Lưu ý: cách này value của các key luôn luôn là `string` nhé.  
-#### 1.3.3 Sử dụng set method option  
+#### 1.3.3 Sử dụng set method option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
   return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
     {params: new HttpParams().set('title', 'AngularVietNam').set('id', '1')}
   );
 }
-```  
+```
 Vì hàm `set` trả về chính instance của `HttpParams` đó nên chúng ta có thể chain.  
 Cả 3 đều có chung kết quả:  
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592929968/HTTP%20CLIENT%20MODULE/from-string-params-option_vtwjaj.png" alt="Query params" />
 
-`Http Params` có một số method khác các bạn tự tìm hiểu nhé. Vì phần này cũng dễ nên mình không đi sâu thêm  
+`Http Params` có một số method khác các bạn tự tìm hiểu nhé. Vì phần này cũng dễ nên mình không đi sâu thêm
 ```typescript
 class HttpParams {
   constructor(options: HttpParamsOptions = {} as HttpParamsOptions);
@@ -239,12 +239,12 @@ class HttpParams {
 ```
 
 ### 1.4 reportProgress
-`reportProgress` có giá trị `boolean` được dùng để thông báo progress event của chúng ta. Ví dụ chúng ta upload 1 hình ảnh thì nó sẽ report progress mình đã upload lên server. Các bạn có thể dùng dữ liệu này để show cho người dùng biết là đã upload được bao nhiêu %, ước tính thời gian xong .v.v
+`reportProgress` có giá trị `boolean` được dùng để thông báo progress event của chúng ta. Ví dụ chúng ta upload 1 hình ảnh thì nó sẽ report progress mình đã upload lên server. Các bạn có thể dùng dữ liệu này để show cho người dùng biết là đã upload được bao nhiêu %, ước tính thời gian xong .v.v  
 ### 1.5 responseType
 `responseType` option chỉ định `HttpRequest` đó sẽ trả về định dạng dữ liệu gì. Mặc định là `'json'`. Có các option khác là `'arraybuffer'` | `'blob'` | `'json'` | `'text'`
 ### 1.6 withCredentials
 Các `HttpRequest` trong Angular theo mặc định không truyền thông tin cookie với mỗi request. Điều này có nghĩa là nếu bạn muốn kèm theo thông tin Cookies, bạn phải sử dụng `withCredentials`  
-Sử dụng như sau:
+Sử dụng như sau:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
   return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
@@ -410,11 +410,11 @@ export class UploadComponent implements OnInit {
     }
   }
 }
-```  
-Và kết quả chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
+```
+Và chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592987729/HTTP%20CLIENT%20MODULE/ezgif.com-optimize_sldo9g.gif" alt="Upload progress">
 
-Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:)
+Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:)  
 
 ### 2.2 Download with Progress
 ```html
@@ -424,7 +424,7 @@ Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:
   [ngStyle]="{width: progress + '%'}"
 ></div>
 <button (click)="downloadFile()">Download File</button>
-```  
+```
 ```css
 .progress {
   height: 3px;
@@ -460,7 +460,7 @@ Vậy là đã xong 2 demo rồi. Các bạn code theo mình đã chạy đượ
 Chung quy lại. `Angular HttpClient` cung cấp cho chúng ta những options bá đạo, giúp ích cho chúng ta rất nhiều trong công việc. Còn chờ gì nữa, hãy áp dụng những kiến thức này vào những case thực tế ngay khi có thể nhé.  
 Bài viết hôm nay đến đây là kết thúc. Bài sau mình sẽ đi về `Interceptor`. `Interceptor` là một bài rất quan trọng, các bạn chú ý theo dõi nhé. Cảm ơn mọi người
 
-Link tham khảo:  
+Link tham khảo:
 <ol>
     <li><a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a></li>
     <li><a href="https://angular.io/api/common/http/HttpParams">https://angular.io/api/common/http/HttpParams</a></li>
