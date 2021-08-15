@@ -16,7 +16,6 @@ categories:
 tags:
   - Angular
   - Angular 2
-
 ---
 
 # Mở đầu
@@ -34,44 +33,65 @@ Nào! bắt đầu thôi
 
 ## 1. Http Options
 {:#post-intro}
-Trong bài trước, mình có viết mẫu một `Post Service` để handle những việc nhận - gửi request liên quan tới `Post`
+Trong bài trước, mình có viết mẫu một `Post Service` để handle những việc nhận - gửi request liên quan tới `Post`  
 ```typescript
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class PostService {
-    constructor(private httpClient: HttpClient) { }
+  constructor(
+    private readonly httpClient: HttpClient
+  ) {}
 
-    getListPosts(): Observable<PostEntityModel[]> {
-        return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts');
-    }
+  getListPosts(): Observable<PostEntityModel[]> {
+    return this.httpClient.get<PostEntityModel[]>(
+      'https://jsonplaceholder.typicode.com/posts'
+    );
+  }
 
-    createPost(post: PostEntityModel): Observable<PostEntityModel> {
-        return this.httpClient.post<PostEntityModel>('https://jsonplaceholder.typicode.com/posts', post);
-    }
+  createPost(post: PostEntityModel): Observable<PostEntityModel> {
+    return this.httpClient.post<PostEntityModel>(
+      'https://jsonplaceholder.typicode.com/posts',
+      post
+    );
+  }
 
-    updatePost(postId: number, post: PostEntityModel): Observable<PostEntityModel> {
-        return this.httpClient.put<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
-    }
+  updatePost(
+    postId: number,
+    post: PostEntityModel
+  ): Observable<PostEntityModel> {
+    return this.httpClient.put<PostEntityModel>(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`,
+      post
+    );
+  }
 
-    updateOptionPost(postId: number, post: Partial<PostEntityModel>): Observable<PostEntityModel> {
-        return this.httpClient.patch<PostEntityModel>(`https://jsonplaceholder.typicode.com/posts/${ postId }`, post);
-    }
+  updateOptionPost(
+    postId: number,
+    post: Partial<PostEntityModel>
+  ): Observable<PostEntityModel> {
+    return this.httpClient.patch<PostEntityModel>(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`,
+      post
+    );
+  }
 
-    deletePost(postId: number): Observable<any> {
-        return this.httpClient.delete(`https://jsonplaceholder.typicode.com/posts/${ postId }`);
-    }
+  deletePost(postId: number): Observable<any> {
+    return this.httpClient.delete(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`
+    );
+  }
 }
 ```  
 Trong các method như get, post, put, có params là các option khi thực hiện 1 request http. Nó có dạng như sau:  
 ```typescript
 options: {
-    headers?: HttpHeaders | {[header: string]: string | string[]},
-    observe?: 'body' | 'events' | 'response',
-    params?: HttpParams|{[param: string]: string | string[]},
-    reportProgress?: boolean,
-    responseType?: 'arraybuffer'|'blob'|'json'|'text',
-    withCredentials?: boolean,
+  headers?: HttpHeaders | {[header: string]: string | string[]},
+  observe?: 'body' | 'events' | 'response',
+  params?: HttpParams|{[param: string]: string | string[]},
+  reportProgress?: boolean,
+  responseType?: 'arraybuffer'|'blob'|'json'|'text',
+  withCredentials?: boolean,
 }
 ```  
 Chúng ta cùng tìm hiểu và sử dụng các option này nhé.  
@@ -81,19 +101,19 @@ Chúng ta cùng tìm hiểu và sử dụng các option này nhé.
 ví dụ hàm `GET`:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { headers: { angularVN: 'Angular Việt Nam' }}
-    );
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { headers: { angularVN: 'Angular Việt Nam' }}
+  );
 }
 ```  
 Hoặc sử dụng `HttpHeaders`:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { headers: new HttpHeaders({ angularVN: 'Angular Viet Nam' })}
-    );
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { headers: new HttpHeaders({ angularVN: 'Angular Viet Nam' })}
+  );
 }
 ```  
 Kết quả:  
@@ -103,12 +123,12 @@ Các bạn nên nhớ. Instance của một `HttpHeaders` là immutable nhé. Ng
 Ví dụ:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set('angularVN', 'Angular Viet Nam');
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { headers }
-    );
+  const headers: HttpHeaders = new HttpHeaders();
+  headers.set('angularVN', 'Angular Viet Nam');
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { headers }
+  );
 }
 ```
 Kết quả:
@@ -117,36 +137,36 @@ Kết quả:
 Ở đây `Request Header` không có key `angularVN`. Như đã nói ở trên. `mỗi lần modify là trả về 1 cloned instance kèm thèm giá trị vừa modify`. Giải quyết bằng cách:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.set('angularVN', 'Angular Viet Nam'); // --> gán lại cho biến headers
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { headers}
-    );
+  let headers: HttpHeaders = new HttpHeaders();
+  headers = headers.set('angularVN', 'Angular Viet Nam'); // --> gán lại cho biến headers
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { headers}
+  );
 }
-```
-Và kết quả là:  
+```  
+Và kết quả là:
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592901983/HTTP%20CLIENT%20MODULE/request-header-when-reassign-header-instance_fb5qq7.png" alt="Header are shown" />  
   
 ### 1.2 Observe
 `observe` là một giá trị kiểu string thuộc enum `'body' | 'events' | 'response'`. Nó báo cho `HttpClient` biết mình muốn lấy response ở mức độ nào. Mặc định nếu không set trong options thì sẽ lấy observe là `'body'`.  
 Chúng ta cùng điểm qua các `observe` value nhé.  
 #### 1.2.1 Observe 'body'
-Mặc định khi gửi 1 `Http Request` và nhận lại một response. Chúng ta sẽ nhận được data là body của `HttpResponse`
+Mặc định khi gửi 1 `Http Request` và nhận lại một response. Chúng ta sẽ nhận được data là body của `HttpResponse`  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { observe: 'body' });
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { observe: 'body' });
 }
 ```  
 #### 1.2.2 Observe 'response'
 Khi xử lý 1 `Http Request`, bạn có thể cần nhiều thông tin hơn về response như `status`, `statusText`, `headers`. Chúng ta sử dụng option `observe: 'response'` để hiển thị thêm thông tin của `Http Response` đó.  
 ```typescript
 getListPosts(): Observable<HttpResponse<PostEntityModel[]>> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        { observe: 'response' });
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    { observe: 'response' });
 }
 ```  
 Kết quả:  
@@ -158,11 +178,11 @@ Khi sử dụng `observe: 'events'`, chúng ta sẽ nhận được full event c
 Hãy để ý nhé:  
 ```typescript
 createPost(post: Partial<PostEntityModel>): Observable<HttpEvent<PostEntityModel>> {
-    return this.httpClient.post<PostEntityModel>(
-        'https://jsonplaceholder.typicode.com/posts',
-        post,
-        { observe: 'events' }
-    );
+  return this.httpClient.post<PostEntityModel>(
+    'https://jsonplaceholder.typicode.com/posts',
+    post,
+    { observe: 'events' }
+  );
 }
 ```  
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592910602/HTTP%20CLIENT%20MODULE/http-obser-event-angular_zaspdq.png" alt="Observer events" />
@@ -175,28 +195,28 @@ Có 3 cách để implement params options:
 #### 1.3.1 Sử dụng fromString option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        {params: new HttpParams({ fromString: "title=AngularVietNam&id=1" })}
-    );
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    {params: new HttpParams({ fromString: 'title=AngularVietNam&id=1' })}
+  );
 }
 ```
 #### 1.3.2 Sử dụng fromObject option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>(
-        'https://jsonplaceholder.typicode.com/posts',
-        {params: new HttpParams({ fromObject: {title: 'AngularVietNam', id: '1'}})}
-    );
+  return this.httpClient.get<PostEntityModel[]>(
+    'https://jsonplaceholder.typicode.com/posts',
+    {params: new HttpParams({ fromObject: {title: 'AngularVietNam', id: '1'}})}
+  );
 }
 ```
 Lưu ý: cách này value của các key luôn luôn là `string` nhé.  
 #### 1.3.3 Sử dụng set method option
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
-        {params: new HttpParams().set('title', 'AngularVietNam').set('id', '1')}
-    );
+  return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
+    {params: new HttpParams().set('title', 'AngularVietNam').set('id', '1')}
+  );
 }
 ```
 Vì hàm `set` trả về chính instance của `HttpParams` đó nên chúng ta có thể chain.  
@@ -206,15 +226,15 @@ Cả 3 đều có chung kết quả:
 `Http Params` có một số method khác các bạn tự tìm hiểu nhé. Vì phần này cũng dễ nên mình không đi sâu thêm
 ```typescript
 class HttpParams {
-  constructor(options: HttpParamsOptions = {} as HttpParamsOptions)
-  has(param: string): boolean
-  get(param: string): string | null
-  getAll(param: string): string[] | null
-  keys(): string[]
-  append(param: string, value: string): HttpParams
-  set(param: string, value: string): HttpParams
-  delete(param: string, value?: string): HttpParams
-  toString(): string
+  constructor(options: HttpParamsOptions = {} as HttpParamsOptions);
+  has(param: string): boolean;
+  get(param: string): string | null;
+  getAll(param: string): string[] | null;
+  keys(): string[];
+  append(param: string, value: string): HttpParams;
+  set(param: string, value: string): HttpParams;
+  delete(param: string, value?: string): HttpParams;
+  toString(): string;
 }
 ```
 
@@ -227,9 +247,9 @@ Các `HttpRequest` trong Angular theo mặc định không truyền thông tin c
 Sử dụng như sau:  
 ```typescript
 getListPosts(): Observable<PostEntityModel[]> {
-    return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
-        {withCredentials: true}
-    );
+  return this.httpClient.get<PostEntityModel[]>('https://jsonplaceholder.typicode.com/posts',
+    {withCredentials: true}
+  );
 }
 ```
 Và kết quả là đã có thông tin Cookies rồi nhé:  
@@ -244,166 +264,203 @@ Và kết quả là đã có thông tin Cookies rồi nhé:
 Chúng ta cùng đi qua một ứng dụng upload đơn giản nhé.  
 ```html
 // Upload component html
-<div *ngIf="arrayFileUpload.length > 0 && progress.percentage != -1" class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}"></div> <!--Show percentage ở đây-->
+<div *ngIf="arrayFileUpload.length > 0 && progress.percentage !== -1" class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+    [ngStyle]="{width:progress.percentage+'%'}">
+  </div>
 </div>
-<label for="fileUpload" class="default-upload" *ngIf="arrayFileUpload.length < 1;else localImage">
-    <img class="img-responsive" src="/assets/no-image.webp" class="default-image">
+<label for="fileUpload" class="default-upload" *ngIf="arrayFileUpload.length < 1; else localImage">
+  <img class="img-responsive default-image" src="//laichau.qlgd.vn/static/article/images/noimg.gif" alt="No image" />
 </label>
 <ng-template #localImage>
-    <div class="image-col" *ngFor="let img of arrayFileUpload; let i = index">
-        <label for="fileUpload">
-            <img *ngIf="img.url != null" [src]="img.url">
-        </label>
-    </div>
+  <div class="image-col" *ngFor="let img of arrayFileUpload; let i = index">
+    <label for="fileUpload">
+      <img *ngIf="img.url !== null" [src]="img.url" alt="Preview image" class="img-responsive" />
+    </label>
+  </div>
 </ng-template>
 <label class="btn btn-default" hidden>
-    <input type="file" (change)="selectFile($event)" id="fileUpload">
+  <input type="file" (change)="selectFile($event)" id="fileUpload">
 </label>
 ```
+
 Style xíu cho thanh progress bar
+
 ```css
 .progress-bar {
-    height: 5px;
-    background: #129AD4;
+  height: 5px;
+  background: #129ad4;
+}
+
+.img-responsive,
+.default-image {
+  max-width: 500px;
 }
 ```
-Tạo service để upload:  
+
+Tạo service để upload:
+
 ```typescript
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
-const BASE_URL = environment.apiUrl;
+const BASE_URL = 'YOUR_URL_API';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class UploadService {
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    postFile(files: Array<File>): Observable<HttpEvent<any>> {
-        const formData: FormData = new FormData();
-        for (let i = 0; i < files.length; i++) {
-        formData.append('fileUpload', files[i], files[i].name);
-        }
-        return this.http.post(`${BASE_URL}`, formData, { observe: 'events', reportProgress: true });
+  postFile(files: FileList): Observable<HttpEvent<Object>> {
+    const formData: FormData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i], files[i].name);
     }
+    return this.http.post(`${BASE_URL}`, formData, {
+      observe: 'events',
+      reportProgress: true
+    });
+  }
 }
-
-```
-Vì upload hình ảnh yêu cầu phải multipart/formdata nên phải khởi tạo instance của FormData nhé. Sau đó chúng ta append file và key vào. Ở đây server yêu cầu gửi file có key là `fileUpload`.
+```  
+Vì upload hình ảnh yêu cầu phải multipart/formdata nên phải khởi tạo instance của FormData nhé. Sau đó chúng ta append file và key vào. Ở đây server yêu cầu gửi file có key là `fileUpload`  
 ```typescript
 // Upload component
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpEventType,
+  HttpProgressEvent,
+  HttpResponse,
+} from '@angular/common/http';
 import { UploadService } from './upload.service';
 
+type FileUpload = {
+  url: string | null;
+  fileName: string;
+  fileType: string,
+}
+
 @Component({
-    selector: 'app-upload',
-    templateUrl: './upload.component.html',
-    styleUrls: ['./upload.component.scss']
+  selector: 'app-upload',
+  templateUrl: './upload.component.html',
+  styleUrls: ['./upload.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UploadComponent implements OnInit {
-    progress: { percentage: number } = { percentage: -1 };
-    arrayFileUpload: Array<{ url: string, filename: string, filetype: string, value: any }> = [];
+  progress: { percentage: number } = { percentage: -1 };
+  arrayFileUpload: Array<FileUpload> = [];
 
-    constructor(
-        private uploadService: UploadService,
-    ) { }
+  constructor(
+    private uploadService: UploadService,
+    private readonly cdr: ChangeDetectorRef,
+  ) { }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
+  }
 
-    selectFile(event): void {
-        this.progress.percentage = 0;
-        const selectedFiles: Array<File> = event.target.files;
-        if (selectedFiles && selectedFiles.length > 0) {
-            this.uploadLocal(selectedFiles);
-            this.uploadService.postFile(selectedFiles).subscribe(
-                (data: HttpEvent<any>) => {
-                    if (data.type === HttpEventType.UploadProgress) {
-                        this.progress.percentage = Math.round(100 * data.loaded / data.total); // --> Mình gán percentage ở đây
-                    } else if (data instanceof HttpResponse) {
-                        console.log("Upload done")
-                    }
-                },
-                (error: HttpErrorResponse) => {
-                    alert(false);
-                }
-            );
+  private getFileList(event: Event): FileList | null {
+    const target: HTMLInputElement = event.currentTarget as HTMLInputElement;
+    return target.files;
+  }
+
+  selectFile(event: Event): void {
+    this.progress.percentage = 0;
+    const selectedFiles: FileList = this.getFileList(event);
+    if (selectedFiles && selectedFiles.length > 0) {
+      this.uploadLocal(selectedFiles);
+      this.uploadService.postFile(selectedFiles).subscribe({
+        next: (data: HttpEvent<HttpProgressEvent>) => {
+          if (data.type === HttpEventType.UploadProgress) {
+            this.progress.percentage = Math.round(100 * data.loaded / (data.total ?? 1));
+            this.cdr.markForCheck();
+          } else if (data instanceof HttpResponse) {
+            console.log("Upload done")
+          }
+        },
+        error: (error: HttpErrorResponse) => {
+          alert(false);
         }
+      });
     }
+  }
 
-    private uploadLocal(selectedFiles: Array<File>): void {
-        if (selectedFiles.length > 0) {
-            for (let i = 0; i < selectedFiles.length; i++) {
-                const reader: FileReader = new FileReader();
-                const file: File = selectedFiles[i];
-                const image: { url: string, filename: string, filetype: string, value: any } = {
-                    url: null,
-                    filename: null,
-                    filetype: null,
-                    value: null
-                };
-                reader.readAsDataURL(selectedFiles[i]);
-                reader.onload = (event: ProgressEvent<FileReader>) => {
-                    image.url = event.target.result as string;
-                };
-                image.filename = file.name;
-                image.filetype = file.type;
-                image.value = reader.result;
-                this.arrayFileUpload[i] = image;
-            }
-        }
+  private uploadLocal(selectedFiles: FileList): void {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const reader: FileReader = new FileReader();
+      const file: File = selectedFiles[i];
+      this.arrayFileUpload[i] = {
+        fileName: file.name,
+        fileType: file.type,
+        url: null,
+      };
+      reader.readAsDataURL(selectedFiles[i]);
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        this.arrayFileUpload[i].url = event?.target?.result as string;
+        this.cdr.markForCheck();
+      };
     }
+  }
 }
 ```
-Và kết quả chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
+Và chúng ta đã có kết quả. Yeah yeah:) Progress bar theo tiến trình upload nhé.  
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592987729/HTTP%20CLIENT%20MODULE/ezgif.com-optimize_sldo9g.gif" alt="Upload progress">
 
 Vậy là đã xong phần upload. Tiếp theo mình chuyển qua download nhé:)  
 
 ### 2.2 Download with Progress
 ```html
-<div class="progress" *ngIf="progress >= 0" [ngStyle]="{width: progress + '%'}"></div>
+<div
+  class="progress"
+  *ngIf="progress >= 0"
+  [ngStyle]="{width: progress + '%'}"
+></div>
 <button (click)="downloadFile()">Download File</button>
 ```
 ```css
 .progress {
-    height: 3px;
-    background: #129AD4;
+  height: 3px;
+  background: #129AD4;
 }
 ```
 ```typescript
 progress: number = -1;
 downloadFile(): void {
-    this.downloadService.downloadFile('https://cdn.filestackcontent.com/sZ9r8Bp5SCSZcY2TxPYn').subscribe((data: HttpEvent<any>) => {
-        switch (data.type) {
+  this.downloadService.downloadFile('https://cdn.filestackcontent.com/sZ9r8Bp5SCSZcY2TxPYn').subscribe({
+    next: (data: HttpEvent<HttpProgressEvent>) => {
+      switch (data.type) {
         case HttpEventType.DownloadProgress:
-            this.progress = Math.round(100 * data.loaded / data.total);
-            break;
+          this.progress = Math.round(100 * data.loaded / data.total);
+          break;
         case HttpEventType.Response:
-            this.saveFile(data.body, 'test.png');
-        }
-    });
+          this.saveFile(data.body, 'test.png');
+      }
+    }
+  });
 }
 
 private saveFile(data: Blob, fileName: string): void {
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(data);
-    link.download = fileName;
-    link.click();
+  const link = document.createElement('a');
+  link.href = window.URL.createObjectURL(data);
+  link.download = fileName;
+  link.click();
 }
 ```
 Kết quả:  
 <img class="img-responsive" src="https://res.cloudinary.com/tuananh-asia/image/upload/v1592988548/HTTP%20CLIENT%20MODULE/download-progress_rqn7fb.gif" alt="Download Progress">
 Vậy là đã xong 2 demo rồi. Các bạn code theo mình đã chạy được chưa:)? Code chưa được thì code lại nhé :) không hiểu thì comment hỏi nha.  
 Chung quy lại. `Angular HttpClient` cung cấp cho chúng ta những options bá đạo, giúp ích cho chúng ta rất nhiều trong công việc. Còn chờ gì nữa, hãy áp dụng những kiến thức này vào những case thực tế ngay khi có thể nhé.  
-Bài viết hôm nay đến đây là kết thúc. Bài sau mình sẽ đi về `Interceptor`. `Interceptor` là một bài rất quan trọng, các bạn chú ý theo dõi nhé. Cảm ơn mọi người  
+Bài viết hôm nay đến đây là kết thúc. Bài sau mình sẽ đi về `Interceptor`. `Interceptor` là một bài rất quan trọng, các bạn chú ý theo dõi nhé. Cảm ơn mọi người
 
-Link tham khảo: 
+Link tham khảo:
 <ol>
     <li><a href="https://angular.io/api/common/http/HttpClientModule">https://angular.io/api/common/http/HttpClientModule</a></li>
     <li><a href="https://angular.io/api/common/http/HttpParams">https://angular.io/api/common/http/HttpParams</a></li>
